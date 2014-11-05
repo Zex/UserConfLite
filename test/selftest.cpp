@@ -7,6 +7,110 @@
 
 std::string userconf_db_file("UserConf.db");
 
+void selftest_case1(UserConfLite &u)
+{
+    // -case--------------------------------------------------------
+    LOG(u.get_double("Prepare.SwingAngle"))
+}
+
+void selftest_case2(UserConfLite &u)
+{
+    // -case--------------------------------------------------------
+
+    MAP_SS ret;
+    ret = u.get_map("View");
+
+    for (MAP_SS::iterator it = ret.begin();
+        it != ret.end(); it++)
+    {
+        LOG(it->first << " => " << decode_single<double>(it->second));
+    }
+}
+
+void selftest_case3(UserConfLite &u)
+{
+    // -case--------------------------------------------------------
+    u.set_value("View.QRotate", 270.0);
+    LOG(u.get_double("View.QRotate"))
+
+    LOG(u.get_string("Prepare.PreferedScan"))
+    u.set_value("Prepare.PreferedScan", "3D");
+    LOG(u.get_string("Prepare.PreferedScan"))
+}
+
+void selftest_case4(UserConfLite &u)
+{
+    // -case--------------------------------------------------------
+    MAP_SS ret;
+    ret = u.get_map("Prepare.");
+
+    for (MAP_SS::iterator it = ret.begin();
+        it != ret.end(); it++)
+    {
+        LOG(it->first << " => " << decode_single<double>(it->second));
+        LOG(it->first << " => " << decode_single<std::string>(it->second));
+    }
+
+}
+
+void selftest_case5(UserConfLite &u)
+{
+    // -case--------------------------------------------------------
+    VEC_UC ret;
+
+    ret = u.get_full("View.");
+
+    for (VEC_UC::iterator it = ret.begin();
+        it != ret.end(); it++)
+    {
+        LOG(*it);
+    }
+}
+
+void selftest_case6(UserConfLite &u)
+{
+    // -case--------------------------------------------------------
+    VEC_UC ret;
+    ret = u.get_full("Prepare.");
+
+    for (VEC_UC::iterator it = ret.begin();
+        it != ret.end(); it++)
+    {
+        LOG(*it);
+    }
+}
+
+void selftest_case7(UserConfLite &u)
+{
+    // -case--------------------------------------------------------
+    UserConf uc1("View.DisplayFormat", "1", VT_INT);
+    UserConf uc2("View.ReferenceImage", "C", VT_STRING);
+
+    u.add_item("Capture3D.Step", "10", VT_INT);
+    u.add_item(uc1);
+    u.add_item(uc2);
+
+    VEC_UC ret;
+    ret = u.get_full("");
+
+    for (VEC_UC::iterator it = ret.begin();
+        it != ret.end(); it++)
+    {
+        LOG(*it);
+    }
+}
+
+void (*selftests[])(UserConfLite&) = {
+
+        selftest_case1,
+        selftest_case2,
+        selftest_case3,
+        selftest_case4,
+        selftest_case5,
+        selftest_case6,
+        selftest_case7,
+};
+
 int main(int argc, char* argv[])
 {
     try
@@ -14,75 +118,16 @@ int main(int argc, char* argv[])
         UserConfLite u = UserConfLite(userconf_db_file);
         u.UserConfTable("UserConf");
 
-        // -case--------------------------------------------------------
-        LOG(u.get_double("Prepare.SwingAngle"))
-        // -case--------------------------------------------------------
-
-        MAP_SS ret1;
-        // -case--------------------------------------------------------
-
-        ret1 = u.get_map("View");
-
-        for (MAP_SS::iterator it = ret1.begin();
-            it != ret1.end(); it++)
+        for (size_t i = 0; i < sizeof(selftests)/sizeof(void*); i++)
         {
-            LOG(it->first << " => " << decode_single<double>(it->second));
-        }
-
-        // -case--------------------------------------------------------
-        u.set_value("View.QRotate", 270.0);
-        LOG(u.get_double("View.QRotate"))
-
-        LOG(u.get_string("Prepare.PreferedScan"))
-        u.set_value("Prepare.PreferedScan", "3D");
-        LOG(u.get_string("Prepare.PreferedScan"))
-
-        // -case--------------------------------------------------------
-
-        ret1 = u.get_map("Prepare.");
-
-        for (MAP_SS::iterator it = ret1.begin();
-            it != ret1.end(); it++)
-        {
-            LOG(it->first << " => " << decode_single<double>(it->second));
-            LOG(it->first << " => " << decode_single<std::string>(it->second));
-        }
-        // -case--------------------------------------------------------
-
-        VEC_UC ret2;
-
-        ret2 = u.get_full("View.");
-
-        for (VEC_UC::iterator it = ret2.begin();
-            it != ret2.end(); it++)
-        {
-            LOG(*it);
-        }
-        // -case--------------------------------------------------------
-
-        ret2 = u.get_full("Prepare.");
-
-        for (VEC_UC::iterator it = ret2.begin();
-            it != ret2.end(); it++)
-        {
-            LOG(*it);
-        }
-
-        // -case--------------------------------------------------------
-
-        UserConf uc1("View.DisplayFormat", "1", VT_INT);
-        UserConf uc2("View.ReferenceImage", "C", VT_STRING);
-
-//        u.add_item("Capture3D.Step", "10", VT_INT);
-//        u.add_item(uc1);
-//        u.add_item(uc2);
-
-        ret2 = u.get_full("");
-
-        for (VEC_UC::iterator it = ret2.begin();
-            it != ret2.end(); it++)
-        {
-            LOG(*it);
+            try
+            {
+                selftests[i](u);       
+            }
+            catch (std::exception &e)
+            {
+                LOG_ERR(e.what())
+            }
         }
     }
     catch (std::exception &e)
