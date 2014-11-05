@@ -83,6 +83,7 @@ void selftest_case6(UserConfLite &u)
 void selftest_case7(UserConfLite &u)
 {
     // -case--------------------------------------------------------
+    LOG("");
     UserConf uc1("View.DisplayFormat", "1", VT_INT);
     UserConf uc2("View.ReferenceImage", "C", VT_STRING);
 
@@ -118,17 +119,25 @@ int main(int argc, char* argv[])
         UserConfLite u = UserConfLite(userconf_db_file);
         u.UserConfTable("UserConf");
 
-        for (size_t i = 0; i < sizeof(selftests)/sizeof(void*); i++)
+        size_t except_cases = 0;
+        size_t total_cases = sizeof(selftests)/sizeof(void*);
+        size_t success_cases = 0;
+
+        for (size_t i = 0; i < total_cases; i++)
         {
             try
             {
-                selftests[i](u);       
+                selftests[i](u);
+                success_cases++;
             }
             catch (std::exception &e)
             {
                 LOG_ERR(e.what())
+                except_cases++;
             }
         }
+
+        LOG("FINALLY: total=" << total_cases << " success=" << success_cases << " exception=" << except_cases)
     }
     catch (std::exception &e)
     {
