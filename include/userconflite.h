@@ -96,8 +96,9 @@ T decode_single(std::string buf)
 template <typename T>
 std::string encode_single(T val)
 {
-   std::ostringstream o;
-   o << std::setprecision(2) << val;
+    std::ostringstream o;
+    o.precision(1);
+    o << std::fixed << val;
 
    return o.str();
 }
