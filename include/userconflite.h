@@ -27,10 +27,10 @@
 #define TH(s) \
     _OUT_ << s 
 
-#define EXEC_SQLITE_LOG(cmd, ok_log, err_log) \
+#define EXEC_SQLITE_LOG(conn, cmd, ok_log, err_log) \
     if (SQLITE_OK != cmd)\
     {\
-        LOG(err_log)\
+        LOG(err_log << ": " << sqlite3_errmsg(conn))\
         throw std::runtime_error(err_log);\
     }\
     else\
@@ -192,7 +192,7 @@ public:
         std::string sql = "update " + userconf_table_ + " set Value=\"" + encode_single<T>(value) + "\" where Key=\"" + key + "\";";
         LOG("::[" << sql << "]")
     
-        EXEC_SQLITE_LOG(sqlite3_exec(conn_, sql.c_str(), 0, 0, 0), "sqlite3_exec, query done", "sqlite3_exec failed");
+        EXEC_SQLITE_LOG(conn_, sqlite3_exec(conn_, sql.c_str(), 0, 0, 0), "sqlite3_exec, query done", "sqlite3_exec failed");
     }
 
     template <typename T>
@@ -204,7 +204,7 @@ public:
     
         std::string buf;
     
-        EXEC_SQLITE_LOG(sqlite3_exec(conn_, sql.c_str(), sql_query_cb, &buf, 0), "sqlite3_exec, query done", "sqlite3_exec failed");
+        EXEC_SQLITE_LOG(conn_, sqlite3_exec(conn_, sql.c_str(), sql_query_cb, &buf, 0), "sqlite3_exec, query done", "sqlite3_exec failed");
     
         return decode_single<T>(buf);
     }

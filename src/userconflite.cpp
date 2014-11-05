@@ -10,12 +10,12 @@
 UserConfLite::UserConfLite(std::string fname)
 : userconf_db_file_(fname)
 {
-    EXEC_SQLITE_LOG(sqlite3_open(userconf_db_file_.c_str(), &conn_), "sqlite3_open, database connected", "sqlite3_open failed")
+    EXEC_SQLITE_LOG(conn_, sqlite3_open(userconf_db_file_.c_str(), &conn_), "sqlite3_open, database connected", "sqlite3_open failed")
 }
 
 UserConfLite::~UserConfLite()
 {
-    EXEC_SQLITE_LOG(sqlite3_close(conn_), "sqlite3_close, database disconnected", "sqlite3_close failed")
+    EXEC_SQLITE_LOG(conn_, sqlite3_close(conn_), "sqlite3_close, database disconnected", "sqlite3_close failed")
 }
 
 double UserConfLite::get_double(std::string key)
@@ -44,7 +44,7 @@ MAP_SS UserConfLite::get_map(std::string key)
 
     MAP_SS ret;
 
-    EXEC_SQLITE_LOG(sqlite3_exec(conn_, sql.c_str(), sql_query_map_cb, &ret, 0), "sqlite3_exec, query done", "sqlite3_exec failed")
+    EXEC_SQLITE_LOG(conn_, sqlite3_exec(conn_, sql.c_str(), sql_query_map_cb, &ret, 0), "sqlite3_exec, query done", "sqlite3_exec failed")
 
     return ret;
 }
@@ -59,7 +59,7 @@ VEC_UC UserConfLite::get_full(std::string key)
 
     VEC_UC ret;
 
-    EXEC_SQLITE_LOG(sqlite3_exec(conn_, sql.c_str(), sql_query_full_cb, &ret, 0), "sqlite3_exec, query done", "sqlite3_exec failed")
+    EXEC_SQLITE_LOG(conn_, sqlite3_exec(conn_, sql.c_str(), sql_query_full_cb, &ret, 0), "sqlite3_exec, query done", "sqlite3_exec failed")
 
     return ret;
 }
@@ -91,7 +91,7 @@ void UserConfLite::add_item(std::string k, std::string v, VT_TABLE vt)
 
     VEC_UC ret;
 
-    EXEC_SQLITE_LOG(sqlite3_exec(conn_, sql.c_str(), 0, 0, 0), "sqlite3_exec, query done", "sqlite3_exec failed")
+    EXEC_SQLITE_LOG(conn_, sqlite3_exec(conn_, sql.c_str(), 0, 0, 0), "sqlite3_exec, query done", "sqlite3_exec failed")
 }
 // ------------------------------------selftest begin----------------------------------    
 //
