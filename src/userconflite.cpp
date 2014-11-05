@@ -9,51 +9,28 @@
 
 UserConfLite::UserConfLite(std::string fname)
 : userconf_db_file_(fname)
-//  userconf_table_("UserConf")
 {
-    if (SQLITE_OK != sqlite3_open(userconf_db_file_.c_str(), &conn_))
-    {
-        LOG("sqlite3_open failed")
-        throw std::runtime_error("sqlite3_open failed");
-    }
-    else
-    {
-        LOG("sqlite3_open, database connected")
-    }
+    EXEC_SQLITE_LOG(sqlite3_open(userconf_db_file_.c_str(), &conn_), "sqlite3_open, database connected", "sqlite3_open failed")
 }
 
 UserConfLite::~UserConfLite()
 {
-    if (SQLITE_OK != sqlite3_close(conn_))
-    {
-        LOG("sqlite3_close failed")
-        throw std::runtime_error("sqlite3_close failed");
-    }
-    else
-    {
-        LOG("sqlite3_close, database disconnected")
-    }
+    EXEC_SQLITE_LOG(sqlite3_close(conn_), "sqlite3_close, database disconnected", "sqlite3_close failed")
 }
 
 double UserConfLite::get_double(std::string key)
 {
-    // ex: key = "Prepare.SwingAngle";
-    std::string sql = "select Value from " + userconf_table_ + " where Key=\"" + key + "\";";
-    LOG("::[" << sql << "]")
+    return __get_value<double>(key);
+}
 
-    std::string buf;
+int UserConfLite::get_int(std::string key)
+{
+    return __get_value<int>(key);
+}
 
-    if (SQLITE_OK != sqlite3_exec(conn_, sql.c_str(), sql_query_cb, &buf, 0))
-    {
-        LOG("sqlite3_exec failed")
-        throw std::runtime_error("sqlite3_exec failed");
-    }
-    else
-    {
-        LOG("sqlite3_exec, query done")
-    }
-
-    return decode_single<double>(buf);
+std::string UserConfLite::get_string(std::string key)
+{
+    return __get_value<std::string>(key);
 }
 
 std::map<std::string, std::string> UserConfLite::get_map(std::string key)
@@ -64,40 +41,28 @@ std::map<std::string, std::string> UserConfLite::get_map(std::string key)
 
     std::map<std::string, std::string> ret;
 
-    if (SQLITE_OK != sqlite3_exec(conn_, sql.c_str(), sql_query_map_cb, &ret, 0))
-    {
-        LOG("sqlite3_exec failed")
-        throw std::runtime_error("sqlite3_exec failed");
-    }
-    else
-    {
-        LOG("sqlite3_exec, query done")
-    }
+    EXEC_SQLITE_LOG(sqlite3_exec(conn_, sql.c_str(), sql_query_map_cb, &ret, 0), "sqlite3_exec, query done", "sqlite3_exec failed")
 
     return ret;
 }
 
-void UserConfLite::set_double(std::string key, double value)
+void UserConfLite::set_value(std::string key, double value)
 {
-    // ex: update UserConf set Value="5.0" where Key="View.Zoom";
-    std::string sql = "update " + userconf_table_ + " set Value=\"" + encode_single<double>(value) + "\" where Key=\"" + key + "\";";
-    LOG("::[" << sql << "]")
+    __set_value<double>(key, value);
+}
 
-    std::string buf;
+void UserConfLite::set_value(std::string key, int value)
+{
+    __set_value<int>(key, value);
+}
 
-    if (SQLITE_OK != sqlite3_exec(conn_, sql.c_str(), 0, 0, 0))
-    {
-        LOG("sqlite3_exec failed")
-        throw std::runtime_error("sqlite3_exec failed");
-    }
-    else
-    {
-        LOG("sqlite3_exec, query done")
-    }
+void UserConfLite::set_value(std::string key, std::string value)
+{
+    __set_value<std::string>(key, value);
 }
 // ------------------------------------selftest begin----------------------------------    
 //
-//std::string userconf_db_file("UserConf.db3x");
+//std::string userconf_db_file("UserConf.db");
 //
 //int main(int argc, char* argv[])
 //{
@@ -116,7 +81,7 @@ void UserConfLite::set_double(std::string key, double value)
 //            LOG(it->first << " => " << decode_single<double>(it->second));
 //        }
 //
-//        u.set_double("View.QRotate", 90.0);
+//        u.set_value("View.QRotate", 90.0);
 //        LOG(u.get_double("View.QRotate"))
 //    }
 //    catch (std::exception &e)

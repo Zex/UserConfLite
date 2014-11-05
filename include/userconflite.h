@@ -22,10 +22,21 @@
 #define TH(s) \
     std::cout << s 
 
+#define EXEC_SQLITE_LOG(cmd, ok_log, err_log) \
+    if (SQLITE_OK != cmd)\
+    {\
+        LOG(err_log)\
+        throw std::runtime_error(err_log);\
+    }\
+    else\
+    {\
+        LOG(ok_log)\
+    }
+
 enum ValueType {
- vt_double,
- vt_int,
- vt_string,
+ VT_DOUBLE,
+ VT_INT,
+ VT_STRING,
 };
 
 template <typename T>
@@ -81,7 +92,6 @@ int sql_query_map_cb (void* ret, int col_nr, char** rows, char** colnames)
 
 class UserConfLite
 {
-    
     std::string userconf_db_file_;
     std::string userconf_table_;
     sqlite3 *conn_;
@@ -92,14 +102,18 @@ public:
 
     ~UserConfLite();
 
-    /* get value in double by key */
+    /* get value by key */
     double get_double(std::string key);
+    int get_int(std::string key);
+    std::string get_string(std::string key);
 
     /* get value in map by key */
     std::map<std::string, std::string> get_map(std::string key);
 
     /* set value referenced by key */
-    void set_double(std::string key, double value);
+    void set_value(std::string key, double value);
+    void set_value(std::string key, int value);
+    void set_value(std::string key, std::string value);
  
     void UserConfTable(std::string table)
     {
@@ -109,6 +123,30 @@ public:
     std::string UserConfTable()
     {
         return userconf_table_;
+    }
+
+    template <typename T>
+    void __set_value(std::string key, T value)
+    {
+        // ex: update UserConf set Value="5.0" where Key="View.Zoom";
+        std::string sql = "update " + userconf_table_ + " set Value=\"" + encode_single<T>(value) + "\" where Key=\"" + key + "\";";
+        LOG("::[" << sql << "]")
+    
+        EXEC_SQLITE_LOG(sqlite3_exec(conn_, sql.c_str(), 0, 0, 0), "sqlite3_exec, query done", "sqlite3_exec failed");
+    }
+
+    template <typename T>
+    T __get_value(std::string key)
+    {
+        // ex: key = "Prepare.SwingAngle";
+        std::string sql = "select Value from " + userconf_table_ + " where Key=\"" + key + "\";";
+        LOG("::[" << sql << "]")
+    
+        std::string buf;
+    
+        EXEC_SQLITE_LOG(sqlite3_exec(conn_, sql.c_str(), sql_query_cb, &buf, 0), "sqlite3_exec, query done", "sqlite3_exec failed");
+    
+        return decode_single<T>(buf);
     }
 };
 
