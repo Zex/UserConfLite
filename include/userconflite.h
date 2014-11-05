@@ -10,18 +10,22 @@
 #include <sqlite3.h>
 #include <iostream>
 #include <sstream>
+#include <iomanip>
 #include <stdexcept>
 #include <map>
 #include <vector>
 
+#define _OUT_ std::cout
+#define _ERR_ std::cerr
+
 #define LOG(s) \
-    std::cout << __PRETTY_FUNCTION__ << '[' << __FILE__ << ':' << __LINE__ << "]: " <<  s << '\n';
+    _OUT_ << __PRETTY_FUNCTION__ << '[' << __FILE__ << ':' << __LINE__ << "]: " <<  s << '\n';
 
 #define LOG_ERR(s) \
-    std::cerr << __PRETTY_FUNCTION__ << '[' << __FILE__ << ':' << __LINE__ << "]: " <<  s << '\n';
+    _ERR_ << __PRETTY_FUNCTION__ << '[' << __FILE__ << ':' << __LINE__ << "]: " <<  s << '\n';
 
 #define TH(s) \
-    std::cout << s 
+    _OUT_ << s 
 
 #define EXEC_SQLITE_LOG(cmd, ok_log, err_log) \
     if (SQLITE_OK != cmd)\
@@ -34,6 +38,11 @@
         LOG(ok_log)\
     }
 
+enum VT_TABLE
+{
+    VT_DOUBLE, VT_INT, VT_STRING,
+    VT_LAST
+};
 
 const char* VALUE_TYPE[] = {
     "VT_DOUBLE", "VT_INT", "VT_STRING",
@@ -53,9 +62,9 @@ struct UserConf
 {
     std::string Key;
     std::string Value;
-    int ValueType;
+    VT_TABLE ValueType;
 
-    UserConf (std::string k, std::string v, int vt)
+    UserConf (std::string k, std::string v, VT_TABLE vt)
     : Key(k), Value(v), ValueType(vt)
     {
     }
@@ -88,7 +97,7 @@ template <typename T>
 std::string encode_single(T val)
 {
    std::ostringstream o;
-   o << val;
+   o << std::setprecision(2) << val;
 
    return o.str();
 }
@@ -128,7 +137,7 @@ int sql_query_full_cb (void* ret, int col_nr, char** rows, char** colnames)
 
     ret_vec->at(ret_vec->size()-1).Key = rows[0];
     ret_vec->at(ret_vec->size()-1).Value = rows[1];
-    ret_vec->at(ret_vec->size()-1).ValueType = decode_single<int>(rows[2]);
+    ret_vec->at(ret_vec->size()-1).ValueType = (VT_TABLE)decode_single<int>(rows[2]);
 
     return 0;
 }
@@ -199,5 +208,9 @@ public:
     
         return decode_single<T>(buf);
     }
+
+    /* add new user configure item */
+    void add_item(UserConf uc);
+    void add_item(std::string k, std::string v, VT_TABLE vt);
 };
 

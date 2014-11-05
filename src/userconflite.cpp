@@ -35,6 +35,9 @@ std::string UserConfLite::get_string(std::string key)
 
 MAP_SS UserConfLite::get_map(std::string key)
 {
+    if (key.empty())
+        throw std::runtime_error("Iteration not allow");
+
     //ex: select Key, Value from UserConf where Key like "Prepare%";
     std::string sql = "select Key, Value from " + userconf_table_ + " where Key like \"%" + key + "%\";";
     LOG("::[" << sql << "]")
@@ -48,6 +51,8 @@ MAP_SS UserConfLite::get_map(std::string key)
 
 VEC_UC UserConfLite::get_full(std::string key)
 {
+    if (key.empty())
+        throw std::runtime_error("Iteration not allow");
     //ex: select Key, Value from UserConf where Key like "Prepare%";
     std::string sql = "select Key, Value, ValueType from " + userconf_table_ + " where Key like \"%" + key + "%\";";
     LOG("::[" << sql << "]")
@@ -72,6 +77,21 @@ void UserConfLite::set_value(std::string key, int value)
 void UserConfLite::set_value(std::string key, std::string value)
 {
     __set_value<std::string>(key, value);
+}
+
+void UserConfLite::add_item(UserConf uc)
+{
+    add_item(uc.Key, uc.Value, uc.ValueType);
+}
+
+void UserConfLite::add_item(std::string k, std::string v, VT_TABLE vt)
+{
+    std::string sql = "insert into " + userconf_table_ + " values (\"" + k + "\", \"" + v + "\", " + encode_single<VT_TABLE>(vt) + ");";
+    LOG("::[" << sql << "]")
+
+    VEC_UC ret;
+
+    EXEC_SQLITE_LOG(sqlite3_exec(conn_, sql.c_str(), 0, 0, 0), "sqlite3_exec, query done", "sqlite3_exec failed")
 }
 // ------------------------------------selftest begin----------------------------------    
 //

@@ -30,11 +30,11 @@ int main(int argc, char* argv[])
         }
 
         // -case--------------------------------------------------------
-        u.set_value("View.QRotate", 90.0);
+        u.set_value("View.QRotate", 270.0);
         LOG(u.get_double("View.QRotate"))
 
         LOG(u.get_string("Prepare.PreferedScan"))
-        u.set_value("Prepare.PreferedScan", "4D");
+        u.set_value("Prepare.PreferedScan", "3D");
         LOG(u.get_string("Prepare.PreferedScan"))
 
         // -case--------------------------------------------------------
@@ -61,6 +61,23 @@ int main(int argc, char* argv[])
         // -case--------------------------------------------------------
 
         ret2 = u.get_full("Prepare.");
+
+        for (VEC_UC::iterator it = ret2.begin();
+            it != ret2.end(); it++)
+        {
+            LOG(*it);
+        }
+
+        // -case--------------------------------------------------------
+
+        UserConf uc1("View.DisplayFormat", "1", VT_INT);
+        UserConf uc2("View.ReferenceImage", "C", VT_STRING);
+
+//        u.add_item("Capture3D.Step", "10", VT_INT);
+//        u.add_item(uc1);
+//        u.add_item(uc2);
+
+        ret2 = u.get_full("");
 
         for (VEC_UC::iterator it = ret2.begin();
             it != ret2.end(); it++)
