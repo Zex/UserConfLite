@@ -5,7 +5,7 @@
  */
 #include "userconflite.h"
 
-std::string userconf_db_file("UserConf.db3x");
+std::string userconf_db_file("UserConf.db");
 
 int main(int argc, char* argv[])
 {
