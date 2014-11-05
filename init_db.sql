@@ -1,10 +1,9 @@
 /*
  * ValueType:
- * 0 double
- * 1 int
- * 2 string
+ * 0 => double
+ * 1 => int
+ * 2 => string
  *
- */
 create table UserConf (
 Key text primary key not null,
 Value text not null,
@@ -26,4 +25,5 @@ insert into UserConf values ("View.Render", "3.0", 0);
 insert into UserConf values ("Slice.Shift", "0.0", 0);
 insert into UserConf values ("Prepare.PreferedScan", "3D", 2);
 
+ */
 
