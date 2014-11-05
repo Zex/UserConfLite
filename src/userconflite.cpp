@@ -33,15 +33,28 @@ std::string UserConfLite::get_string(std::string key)
     return __get_value<std::string>(key);
 }
 
-std::map<std::string, std::string> UserConfLite::get_map(std::string key)
+MAP_SS UserConfLite::get_map(std::string key)
 {
     //ex: select Key, Value from UserConf where Key like "Prepare%";
-    std::string sql = "select Key, Value from " + userconf_table_ + " where Key like \"" + key + "%\";";
+    std::string sql = "select Key, Value from " + userconf_table_ + " where Key like \"%" + key + "%\";";
     LOG("::[" << sql << "]")
 
-    std::map<std::string, std::string> ret;
+    MAP_SS ret;
 
     EXEC_SQLITE_LOG(sqlite3_exec(conn_, sql.c_str(), sql_query_map_cb, &ret, 0), "sqlite3_exec, query done", "sqlite3_exec failed")
+
+    return ret;
+}
+
+VEC_UC UserConfLite::get_full(std::string key)
+{
+    //ex: select Key, Value from UserConf where Key like "Prepare%";
+    std::string sql = "select Key, Value, ValueType from " + userconf_table_ + " where Key like \"%" + key + "%\";";
+    LOG("::[" << sql << "]")
+
+    VEC_UC ret;
+
+    EXEC_SQLITE_LOG(sqlite3_exec(conn_, sql.c_str(), sql_query_full_cb, &ret, 0), "sqlite3_exec, query done", "sqlite3_exec failed")
 
     return ret;
 }
@@ -73,9 +86,9 @@ void UserConfLite::set_value(std::string key, std::string value)
 //
 //        LOG(u.get_double("Prepare.SwingAngle"))
 //
-//        std::map<std::string, std::string> ret = u.get_map("View");
+//        MAP_SS ret = u.get_map("View");
 //
-//        for (std::map<std::string, std::string>::iterator it = ret.begin();
+//        for (MAP_SS::iterator it = ret.begin();
 //            it != ret.end(); it++)
 //        {
 //            LOG(it->first << " => " << decode_single<double>(it->second));

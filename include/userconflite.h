@@ -12,6 +12,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <map>
+#include <vector>
 
 #define LOG(s) \
     std::cout << __PRETTY_FUNCTION__ << '[' << __FILE__ << ':' << __LINE__ << "]: " <<  s << '\n';
@@ -33,10 +34,44 @@
         LOG(ok_log)\
     }
 
-enum ValueType {
- VT_DOUBLE,
- VT_INT,
- VT_STRING,
+
+const char* VALUE_TYPE[] = {
+    "VT_DOUBLE", "VT_INT", "VT_STRING",
+};
+
+
+/*
+ * Key => State(M) + '.' + Item(M) + '.' + Specification(O)
+ *
+ * Ex:  View.Zoom
+ *      Prepare.SwingAngle.Volumn ( for volumn probe)
+ *      Prepare.SwingAngle.Linear ( for linear probe)
+ *
+ */
+
+struct UserConf
+{
+    std::string Key;
+    std::string Value;
+    int ValueType;
+
+    UserConf (std::string k, std::string v, int vt)
+    : Key(k), Value(v), ValueType(vt)
+    {
+    }
+
+    UserConf ()
+    {
+    }
+
+    ~UserConf ()
+    {
+    }
+
+    friend std::ostream& operator<< (std::ostream &o, UserConf a)
+    {
+        return o << a.Key << " => " << a.Value << "(" << VALUE_TYPE[a.ValueType] << ")";
+    }
 };
 
 template <typename T>
@@ -58,15 +93,14 @@ std::string encode_single(T val)
    return o.str();
 }
 
+typedef std::map<std::string, std::string> MAP_SS;
+typedef std::vector<UserConf> VEC_UC;
+
 int sql_query_cb (void* ret, int col_nr, char** rows, char** colnames)
 {
-//    LOG("Total column: " << col_nr);
+    if (0 > col_nr)
+        return 0;
 
-//    for (int i = 0; i < col_nr; i++)
-//    {
-//        TH("Title: " << colnames[i] << ' ');
-//        TH(rows[i] << ' ');
-//    }
     std::string *val = reinterpret_cast<std::string*>(ret);
     *val = rows[0];
 
@@ -75,17 +109,26 @@ int sql_query_cb (void* ret, int col_nr, char** rows, char** colnames)
 
 int sql_query_map_cb (void* ret, int col_nr, char** rows, char** colnames)
 {
-//    LOG("Total column: " << col_nr);
+    if (2 > col_nr)
+        return 0;
 
-//    for (int i = 0; i < col_nr; i++)
-//    {
-//        TH(colnames[i] << ": ");
-//        TH(rows[i] << " ");
-//    }
-//    TH('\n');
-
-    std::map<std::string, std::string> *ret_map = reinterpret_cast<std::map<std::string, std::string>*>(ret);
+    MAP_SS *ret_map = reinterpret_cast<MAP_SS*>(ret);
     (*ret_map)[rows[0]] = rows[col_nr-1];
+
+    return 0;
+}
+
+int sql_query_full_cb (void* ret, int col_nr, char** rows, char** colnames)
+{
+    if (3 > col_nr)
+        return 0;
+
+    VEC_UC *ret_vec = reinterpret_cast<VEC_UC*>(ret);
+    ret_vec->resize(ret_vec->size()+1);
+
+    ret_vec->at(ret_vec->size()-1).Key = rows[0];
+    ret_vec->at(ret_vec->size()-1).Value = rows[1];
+    ret_vec->at(ret_vec->size()-1).ValueType = decode_single<int>(rows[2]);
 
     return 0;
 }
@@ -108,7 +151,10 @@ public:
     std::string get_string(std::string key);
 
     /* get value in map by key */
-    std::map<std::string, std::string> get_map(std::string key);
+    MAP_SS get_map(std::string key);
+
+    /* get all column values by key */
+    VEC_UC get_full(std::string key);
 
     /* set value referenced by key */
     void set_value(std::string key, double value);
@@ -123,6 +169,11 @@ public:
     std::string UserConfTable()
     {
         return userconf_table_;
+    }
+
+    std::string UserConfDB()
+    {
+        return userconf_db_file_;
     }
 
     template <typename T>
