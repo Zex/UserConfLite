@@ -103,13 +103,13 @@ void selftest_case7(UserConfLite &u)
 
 void (*selftests[])(UserConfLite&) = {
 
-        selftest_case1,
-        selftest_case2,
-        selftest_case3,
-        selftest_case4,
-        selftest_case5,
-        selftest_case6,
-        selftest_case7,
+    selftest_case1,
+    selftest_case2,
+    selftest_case3,
+    selftest_case4,
+    selftest_case5,
+    selftest_case6,
+    selftest_case7,
 };
 
 int main(int argc, char* argv[])
@@ -117,7 +117,7 @@ int main(int argc, char* argv[])
     try
     {
         UserConfLite u = UserConfLite(userconf_db_file);
-        u.UserConfTable("UserConf");
+        u.ConfTable("UserConf");
 
         size_t except_cases = 0;
         size_t total_cases = sizeof(selftests)/sizeof(void*);

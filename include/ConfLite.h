@@ -60,13 +60,13 @@ const char* VALUE_TYPE[] = {
 struct SysConf
 {
     std::string Key;
-    std::string DefaultValue;
-    std::string Step;
-    std::string Upper;
-    std::string Lower;
+    double DefaultValue;
+    double Step;
+    double Upper;
+    double Lower;
     std::string Unit;
 
-    SysConf (std::string k, std::string v, std::string s, std::string p, std::string l, std::string u = "")
+    SysConf (std::string k, double v, double s, double p, double l, std::string u = "")
     : Key(k), DefaultValue(v), Step(s), Upper(p), Lower(l), Unit(u)
     {
     }
@@ -81,7 +81,7 @@ struct SysConf
 
     friend std::ostream& operator<< (std::ostream &o, SysConf a)
     {
-        return o << a.Key << "(" << a.DefaultValue << " " << a.Unit << ") [" << a.Lower << ", " << a.Upper << "](" << a.Step << ")";
+        return o << a.Key << " (" << a.DefaultValue << " " << a.Unit << ") [" << a.Lower << ", " << a.Upper << "](" << a.Step << ")";
     }
 };
 
@@ -135,8 +135,8 @@ typedef std::vector<UserConf> VEC_UC;
 
 int sql_query_cb (void* ret, int col_nr, char** rows, char** colnames)
 {
-    if (0 > col_nr)
-        return 0;
+    if (rows == 0) return 0;
+    if (0 > col_nr) return 0;
 
     std::string *val = reinterpret_cast<std::string*>(ret);
     *val = rows[0];
@@ -170,22 +170,69 @@ int sql_query_full_cb (void* ret, int col_nr, char** rows, char** colnames)
     return 0;
 }
 
-class UserConfLite
+class ConfLite
 {
-    std::string userconf_db_file_;
-    std::string userconf_table_;
+protected:
+    std::string conf_db_file_;
+    std::string conf_table_;
     sqlite3 *conn_;
 
 public:
 
+    ConfLite(std::string fname) : conf_db_file_(fname)
+    {
+        EXEC_SQLITE_LOG(conn_, sqlite3_open(conf_db_file_.c_str(), &conn_), "sqlite3_open, database connected", "sqlite3_open failed")
+    }
+
+    ~ConfLite()
+    {
+        EXEC_SQLITE_LOG(conn_, sqlite3_close(conn_), "sqlite3_close, database disconnected", "sqlite3_close failed")
+    }
+
+    std::string ConfTable()
+    {
+        return conf_table_;
+    }
+
+    std::string ConfDB()
+    {
+        return conf_db_file_;
+    }
+
+    void ConfTable(std::string table)
+    {
+        conf_table_ = table;
+    }
+
+    template <typename T>
+    void __set_value(std::string key, T value, std::string entry)
+    {
+        std::string sql = "update " + conf_table_ + " set " + entry + "=\"" + encode_single<T>(value) + "\" where Key=\"" + key + "\";";
+        LOG("::[" << sql << "]")
+    
+        EXEC_SQLITE_LOG(conn_, sqlite3_exec(conn_, sql.c_str(), 0, 0, 0), "sqlite3_exec, query done", "sqlite3_exec failed");
+    }
+
+    template <typename T>
+    T __get_value(std::string key, std::string entry)
+    {
+        std::string sql = "select " + entry + " from " + conf_table_ + " where Key=\"" + key + "\";";
+        LOG("::[" << sql << "]")
+    
+        std::string buf;
+    
+        EXEC_SQLITE_LOG(conn_, sqlite3_exec(conn_, sql.c_str(), sql_query_cb, &buf, 0), "sqlite3_exec, query done", "sqlite3_exec failed");
+    
+        return decode_single<T>(buf);
+    }
+};
+
+class UserConfLite : public ConfLite
+{
+public:
     UserConfLite(std::string fname);
 
     ~UserConfLite();
-
-    /* get value by key */
-    double get_double(std::string key);
-    int get_int(std::string key);
-    std::string get_string(std::string key);
 
     /* get value in map by key */
     MAP_SS get_map(std::string key);
@@ -197,46 +244,37 @@ public:
     void set_value(std::string key, double value);
     void set_value(std::string key, int value);
     void set_value(std::string key, std::string value);
+
+    /* get value by key */
+    double get_double(std::string key);
+    int get_int(std::string key);
+    std::string get_string(std::string key);
  
-    void UserConfTable(std::string table)
-    {
-        userconf_table_ = table;
-    }
-
-    std::string UserConfTable()
-    {
-        return userconf_table_;
-    }
-
-    std::string UserConfDB()
-    {
-        return userconf_db_file_;
-    }
-
-    template <typename T>
-    void __set_value(std::string key, T value)
-    {
-        std::string sql = "update " + userconf_table_ + " set Value=\"" + encode_single<T>(value) + "\" where Key=\"" + key + "\";";
-        LOG("::[" << sql << "]")
-    
-        EXEC_SQLITE_LOG(conn_, sqlite3_exec(conn_, sql.c_str(), 0, 0, 0), "sqlite3_exec, query done", "sqlite3_exec failed");
-    }
-
-    template <typename T>
-    T __get_value(std::string key)
-    {
-        std::string sql = "select Value from " + userconf_table_ + " where Key=\"" + key + "\";";
-        LOG("::[" << sql << "]")
-    
-        std::string buf;
-    
-        EXEC_SQLITE_LOG(conn_, sqlite3_exec(conn_, sql.c_str(), sql_query_cb, &buf, 0), "sqlite3_exec, query done", "sqlite3_exec failed");
-    
-        return decode_single<T>(buf);
-    }
-
     /* add new user configure item */
     void add_item(UserConf uc);
     void add_item(std::string k, std::string v, VT_TABLE vt);
 };
 
+class SysConfLite : public ConfLite
+{
+public:
+    SysConfLite(std::string fname) : ConfLite(fname) {}
+
+    ~SysConfLite(){}
+
+//    /* get value in map by key */
+//    MAP_SS get_map(std::string key);
+//
+//    /* get all column values by key */
+//    VEC_UC get_full(std::string key);
+//
+//    /* set value referenced by key */
+//    void set_value(std::string key, double value);
+
+    /* get value by key */
+    SysConf get(std::string key);
+ 
+//    /* add new user configure item */
+//    void add_item(SysConf uc);
+//    void add_item(std::string k, std::string v, VT_TABLE vt);
+};

@@ -1,13 +1,13 @@
 # Makefile for test
 
-PROJECT		= UserConf
-DESCRIPTION	= A sqlite solution to user configure
+PROJECT		= ConfLite
+DESCRIPTION	= A sqlite solution to system/user configure
 VERSION		= 0.0.1
 
 INCLUDES	+= ../include ../build
 SRCS		+= .
 SOURCES		= $(shell find $(SRCS) -iregex ".*\.c\(c\|pp\|++\|xx\)")
-LIBS		+= userconflite
+LIBS		+= conflite
 LDPATH		+= ../build
 LDFLAGS		+= $(LDPATH:%=-L%)
 #MACROS		+= _GLIBCXX_USE_NANOSLEEP

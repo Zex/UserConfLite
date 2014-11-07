@@ -8,29 +8,27 @@
 #include "ConfLite.h"
 
 UserConfLite::UserConfLite(std::string fname)
-: userconf_db_file_(fname)
+:ConfLite(fname)
 {
-    EXEC_SQLITE_LOG(conn_, sqlite3_open(userconf_db_file_.c_str(), &conn_), "sqlite3_open, database connected", "sqlite3_open failed")
 }
 
 UserConfLite::~UserConfLite()
 {
-    EXEC_SQLITE_LOG(conn_, sqlite3_close(conn_), "sqlite3_close, database disconnected", "sqlite3_close failed")
 }
 
 double UserConfLite::get_double(std::string key)
 {
-    return __get_value<double>(key);
+    return __get_value<double>(key, "Value");
 }
 
 int UserConfLite::get_int(std::string key)
 {
-    return __get_value<int>(key);
+    return __get_value<int>(key, "Value");
 }
 
 std::string UserConfLite::get_string(std::string key)
 {
-    return __get_value<std::string>(key);
+    return __get_value<std::string>(key, "Value");
 }
 
 MAP_SS UserConfLite::get_map(std::string key)
@@ -38,7 +36,7 @@ MAP_SS UserConfLite::get_map(std::string key)
     if (key.empty())
         throw std::runtime_error("Iteration not allow");
 
-    std::string sql = "select Key, Value from " + userconf_table_ + " where Key like \"%" + key + "%\";";
+    std::string sql = "select Key, Value from " + conf_table_ + " where Key like \"%" + key + "%\";";
     LOG("::[" << sql << "]")
 
     MAP_SS ret;
@@ -53,7 +51,7 @@ VEC_UC UserConfLite::get_full(std::string key)
     if (key.empty())
         throw std::runtime_error("Iteration not allow");
 
-    std::string sql = "select Key, Value, ValueType from " + userconf_table_ + " where Key like \"%" + key + "%\";";
+    std::string sql = "select Key, Value, ValueType from " + conf_table_ + " where Key like \"%" + key + "%\";";
     LOG("::[" << sql << "]")
 
     VEC_UC ret;
@@ -65,17 +63,17 @@ VEC_UC UserConfLite::get_full(std::string key)
 
 void UserConfLite::set_value(std::string key, double value)
 {
-    __set_value<double>(key, value);
+    __set_value<double>(key, value, "Value");
 }
 
 void UserConfLite::set_value(std::string key, int value)
 {
-    __set_value<int>(key, value);
+    __set_value<int>(key, value, "Value");
 }
 
 void UserConfLite::set_value(std::string key, std::string value)
 {
-    __set_value<std::string>(key, value);
+    __set_value<std::string>(key, value, "Value");
 }
 
 void UserConfLite::add_item(UserConf uc)
@@ -85,7 +83,7 @@ void UserConfLite::add_item(UserConf uc)
 
 void UserConfLite::add_item(std::string k, std::string v, VT_TABLE vt)
 {
-    std::string sql = "insert into " + userconf_table_ + " values (\"" + k + "\", \"" + v + "\", " + encode_single<VT_TABLE>(vt) + ");";
+    std::string sql = "insert into " + conf_table_ + " values (\"" + k + "\", \"" + v + "\", " + encode_single<VT_TABLE>(vt) + ");";
     LOG("::[" << sql << "]")
 
     VEC_UC ret;
@@ -93,3 +91,16 @@ void UserConfLite::add_item(std::string k, std::string v, VT_TABLE vt)
     EXEC_SQLITE_LOG(conn_, sqlite3_exec(conn_, sql.c_str(), 0, 0, 0), "sqlite3_exec, query done", "sqlite3_exec failed")
 }
 
+SysConf SysConfLite::get(std::string key)
+{
+    SysConf sys;
+
+    sys.Key = key;
+    sys.DefaultValue = __get_value<double>(key, "DefaultValue");
+    sys.Step = __get_value<double>(key, "Step");
+    sys.Upper = __get_value<double>(key, "Upper");
+    sys.Lower = __get_value<double>(key, "Lower");
+    sys.Unit = __get_value<double>(key, "Unit");
+
+    return sys;
+}
