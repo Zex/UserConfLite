@@ -3,9 +3,9 @@
  *
  * Author: Zex <top_zlynch@yahoo.com>
  */
-#include "userconflite.h"
+#include "ConfLite.h"
 
-std::string userconf_db_file("UserConf.db");
+std::string userconf_db_file("dbs/config.db");
 
 void selftest_case1(UserConfLite &u)
 {

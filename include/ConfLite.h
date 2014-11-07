@@ -1,5 +1,5 @@
 /*
- * userconflite.h
+ * ConfLite.h
  *
  * A sqlite solution to user configure
  *
@@ -57,6 +57,33 @@ const char* VALUE_TYPE[] = {
  *      Prepare.SwingAngle.Linear ( for linear probe)
  *
  */
+struct SysConf
+{
+    std::string Key;
+    std::string DefaultValue;
+    std::string Step;
+    std::string Upper;
+    std::string Lower;
+    std::string Unit;
+
+    SysConf (std::string k, std::string v, std::string s, std::string p, std::string l, std::string u = "")
+    : Key(k), DefaultValue(v), Step(s), Upper(p), Lower(l), Unit(u)
+    {
+    }
+
+    SysConf ()
+    {
+    }
+
+    ~SysConf ()
+    {
+    }
+
+    friend std::ostream& operator<< (std::ostream &o, SysConf a)
+    {
+        return o << a.Key << "(" << a.DefaultValue << " " << a.Unit << ") [" << a.Lower << ", " << a.Upper << "](" << a.Step << ")";
+    }
+};
 
 struct UserConf
 {
@@ -189,7 +216,6 @@ public:
     template <typename T>
     void __set_value(std::string key, T value)
     {
-        // ex: update UserConf set Value="5.0" where Key="View.Zoom";
         std::string sql = "update " + userconf_table_ + " set Value=\"" + encode_single<T>(value) + "\" where Key=\"" + key + "\";";
         LOG("::[" << sql << "]")
     
@@ -199,7 +225,6 @@ public:
     template <typename T>
     T __get_value(std::string key)
     {
-        // ex: key = "Prepare.SwingAngle";
         std::string sql = "select Value from " + userconf_table_ + " where Key=\"" + key + "\";";
         LOG("::[" << sql << "]")
     

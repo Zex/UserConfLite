@@ -1,11 +1,11 @@
 /*
- * userconflite.cpp
+ * ConfLite.cpp
  *
  * A sqlite solution to user configure
  *
  * Author: Zex <top_zlynch@yahoo.com>
  */
-#include "userconflite.h"
+#include "ConfLite.h"
 
 UserConfLite::UserConfLite(std::string fname)
 : userconf_db_file_(fname)
@@ -38,7 +38,6 @@ MAP_SS UserConfLite::get_map(std::string key)
     if (key.empty())
         throw std::runtime_error("Iteration not allow");
 
-    //ex: select Key, Value from UserConf where Key like "Prepare%";
     std::string sql = "select Key, Value from " + userconf_table_ + " where Key like \"%" + key + "%\";";
     LOG("::[" << sql << "]")
 
@@ -53,7 +52,7 @@ VEC_UC UserConfLite::get_full(std::string key)
 {
     if (key.empty())
         throw std::runtime_error("Iteration not allow");
-    //ex: select Key, Value from UserConf where Key like "Prepare%";
+
     std::string sql = "select Key, Value, ValueType from " + userconf_table_ + " where Key like \"%" + key + "%\";";
     LOG("::[" << sql << "]")
 
@@ -93,37 +92,4 @@ void UserConfLite::add_item(std::string k, std::string v, VT_TABLE vt)
 
     EXEC_SQLITE_LOG(conn_, sqlite3_exec(conn_, sql.c_str(), 0, 0, 0), "sqlite3_exec, query done", "sqlite3_exec failed")
 }
-// ------------------------------------selftest begin----------------------------------    
-//
-//std::string userconf_db_file("UserConf.db");
-//
-//int main(int argc, char* argv[])
-//{
-//    try
-//    {
-//        UserConfLite u = UserConfLite(userconf_db_file);
-//        u.UserConfTable("UserConf");
-//
-//        LOG(u.get_double("Prepare.SwingAngle"))
-//
-//        MAP_SS ret = u.get_map("View");
-//
-//        for (MAP_SS::iterator it = ret.begin();
-//            it != ret.end(); it++)
-//        {
-//            LOG(it->first << " => " << decode_single<double>(it->second));
-//        }
-//
-//        u.set_value("View.QRotate", 90.0);
-//        LOG(u.get_double("View.QRotate"))
-//    }
-//    catch (std::exception &e)
-//    {
-//        LOG_ERR(e.what())
-//    }
-//
-//    return 0;
-//}
-//
-// ------------------------------------selftest end----------------------------------    
 

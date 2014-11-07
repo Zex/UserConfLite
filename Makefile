@@ -1,7 +1,7 @@
-# Makefile for UserConf
+# Makefile for ConfLite
 
-PROJECT		= UserConfLite
-DESCRIPTION	= A sqlite solution to user configure
+PROJECT		= ConfLite
+DESCRIPTION	= A sqlite solution to system/user configure
 VERSION		= 0.0.1
 
 INCLUDES	= include build
@@ -17,7 +17,6 @@ CFLAGS		+= `pkg-config --cflags sqlite3`
 LDFLAGS		+= `pkg-config --libs sqlite3`
 
 all: tests
-#userconflite
 
 userconflite: $(SHARED_OBJ)
 #	@echo $(MAKEFILE_LIST)
