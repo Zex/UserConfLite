@@ -8,12 +8,10 @@ BUILD	makefiles/predef.mk	/^BUILD			= $(PROJECT_DIR)\/build$/;"	m
 CC	makefiles/predef.mk	/^CC		= gcc$/;"	m
 CXX	makefiles/predef.mk	/^CXX		= g++$/;"	m
 DESCRIPTION	Makefile	/^DESCRIPTION	= A sqlite solution to user configure$/;"	m
-DESCRIPTION	build/version.h	5;"	d
 DESCRIPTION	test/Makefile	/^DESCRIPTION	= A sqlite solution to user configure$/;"	m
 EXEC_SQLITE_LOG	include/userconflite.h	30;"	d
 INCLUDES	Makefile	/^INCLUDES	= include build$/;"	m
 Key	include/userconflite.h	/^    std::string Key;$/;"	m	struct:UserConf
-LAST_BUILD_TIME	build/version.h	8;"	d
 LIBS	Makefile	/^LIBS		=$/;"	m
 LN	makefiles/predef.mk	/^LN		= ln -sf$/;"	m
 LOG	include/userconflite.h	21;"	d
@@ -22,11 +20,9 @@ MAP_SS	include/userconflite.h	/^typedef std::map<std::string, std::string> MAP_S
 MKDIR	makefiles/predef.mk	/^MKDIR	= mkdir -p$/;"	m
 OBJS	makefiles/predef.mk	/^OBJS			= $(patsubst %.cpp, $(BUILD)\/%.o, $(SOURCES))$/;"	m
 PROJECT	Makefile	/^PROJECT		= UserConfLite$/;"	m
-PROJECT	build/version.h	4;"	d
 PROJECT	test/Makefile	/^PROJECT		= UserConf$/;"	m
 PROJECT_ALIAS	makefiles/predef.mk	/^PROJECT_ALIAS	= $(shell echo $(PROJECT)|tr '[:upper:]' '[:lower:]')$/;"	m
 PROJECT_DIR	makefiles/predef.mk	/^PROJECT_DIR		= $(shell pwd)$/;"	m
-REVISION	build/version.h	7;"	d
 REVISION	makefiles/predef.mk	/^	REVISION		= $(shell git log |head -1|cut -f2 -d\\ |sed -r 's\/(.{5})\/\\1-\/g'|cut -f-8 -d-)$/;"	m
 REVISION	makefiles/predef.mk	/^	REVISION		= $(shell svn info|grep "Last Changed Rev"|cut -f2 -d:|cut -f2 -d\\ )$/;"	m
 REVISION	makefiles/predef.mk	/^	REVISION		= None$/;"	m
@@ -49,7 +45,6 @@ UserConfTable	include/userconflite.h	/^    void UserConfTable(std::string table)
 VALUE_TYPE	include/userconflite.h	/^const char* VALUE_TYPE[] = {$/;"	v
 VEC_UC	include/userconflite.h	/^typedef std::vector<UserConf> VEC_UC;$/;"	t
 VERSION	Makefile	/^VERSION		= 0.0.1$/;"	m
-VERSION	build/version.h	6;"	d
 VERSION	test/Makefile	/^VERSION		= 0.0.1$/;"	m
 VERSION_HEADER	makefiles/predef.mk	/^VERSION_HEADER	= $(BUILD)\/version.h$/;"	m
 VT_DOUBLE	include/userconflite.h	/^    VT_DOUBLE, VT_INT, VT_STRING,$/;"	e	enum:VT_TABLE
@@ -75,6 +70,14 @@ get_map	src/userconflite.cpp	/^MAP_SS UserConfLite::get_map(std::string key)$/;"
 get_string	src/userconflite.cpp	/^std::string UserConfLite::get_string(std::string key)$/;"	f	class:UserConfLite
 main	test/selftest.cpp	/^int main(int argc, char* argv[])$/;"	f
 operator <<	include/userconflite.h	/^    friend std::ostream& operator<< (std::ostream &o, UserConf a)$/;"	f	struct:UserConf
+selftest_case1	test/selftest.cpp	/^void selftest_case1(UserConfLite &u)$/;"	f
+selftest_case2	test/selftest.cpp	/^void selftest_case2(UserConfLite &u)$/;"	f
+selftest_case3	test/selftest.cpp	/^void selftest_case3(UserConfLite &u)$/;"	f
+selftest_case4	test/selftest.cpp	/^void selftest_case4(UserConfLite &u)$/;"	f
+selftest_case5	test/selftest.cpp	/^void selftest_case5(UserConfLite &u)$/;"	f
+selftest_case6	test/selftest.cpp	/^void selftest_case6(UserConfLite &u)$/;"	f
+selftest_case7	test/selftest.cpp	/^void selftest_case7(UserConfLite &u)$/;"	f
+selftests	test/selftest.cpp	/^void (*selftests[])(UserConfLite&) = {$/;"	v
 set_value	src/userconflite.cpp	/^void UserConfLite::set_value(std::string key, double value)$/;"	f	class:UserConfLite
 set_value	src/userconflite.cpp	/^void UserConfLite::set_value(std::string key, int value)$/;"	f	class:UserConfLite
 set_value	src/userconflite.cpp	/^void UserConfLite::set_value(std::string key, std::string value)$/;"	f	class:UserConfLite
