@@ -12,6 +12,8 @@
  *
  * Sample usage: sqlite3 ConfLite < init_db.sql
  */
+begin transaction;
+
 create table SysConf (
     Key text primary key not null,
     DefaultValue text not null,
@@ -43,9 +45,12 @@ create table UserConf (
 );
 
 insert into UserConf (Key, Value, ValueType) 
-    select Key, DefaultValue, 0 from SysConf;/* where Key = "Prepare.SwingAngle"; */
+    select Key, DefaultValue, 0 from SysConf;
 
 insert into UserConf values ("Prepare.PreferedScan", "3D",    2);
+
+commit;
+
 
                             /* Key,                  Value,   ValueType */
 /*
