@@ -1,6 +1,5 @@
 /*
  * Initial script for system configure
- */
 create table SysConf (
     Key text primary key not null,
     DefaultValue text not null,
@@ -24,4 +23,5 @@ insert into SysConf values ("View.Zoom", 1.0, 2.0, 30.0, 1.0, "");
 insert into SysConf values ("View.Render", 3.0, 2.0, 30.0, 1.0, "");
 insert into SysConf values ("Slice.Shift", 0.0, 2.0, 30.0, 1.0, "");
 
+ */
 
