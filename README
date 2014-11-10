@@ -44,6 +44,27 @@ different version of sqlite.
 UserConf.db2x: SQLite 2.x database
 UserConf.db3x: SQLite 3.x database
 
+Further Ex:
+Work as a ConfigManage module
+
+/* 
+ * +-----+ update sys config   +----------------+
+ * | DES +---------<<CGI>>---->+                |
+ * | /   |                     | config.db/sys  |
+ * | ENG +----<<USB/TERM>>---->+                |
+ * +-----+                     +--+-------------+
+ *                                | reset with config.db/sys
+ *                                V
+ *     /-----+             +----------------+    customize  +------+
+ *    | DEV  |   configure |                +<--<<IFACE>>---+      |
+ *    |      |<------------| config.db/user |               | User |
+ *     +--+--/             |                +<---<<IFACE>>--+      |
+ *        |                +----------------+    reset op   +------+
+ *        |                                                    A
+ *        +----------------------------------------------------+
+ *                         effect, response, image, blah
+ */
+
 Author:
 	Zex <top_zlynch@yahoo.com>
 
