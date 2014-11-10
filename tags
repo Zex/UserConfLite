@@ -5,8 +5,19 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
 BUILD	makefiles/predef.mk	/^BUILD			= $(PROJECT_DIR)\/build$/;"	kind:macro	line:12
+Brightness	test/ConfigManage.cpp	/^	void Brightness(double value)$/;"	kind:function	line:259	namespace:__anon1	signature:(double value)
 CC	makefiles/predef.mk	/^CC		= gcc$/;"	kind:macro	line:3
+CONF_DB_FILE	test/ConfigManage.cpp	283;"	kind:macro	line:283	file:
 CXX	makefiles/predef.mk	/^CXX		= g++$/;"	kind:macro	line:4
+Capture4DMode	test/ConfigManage.cpp	/^void KnobManage::Capture4DMode()$/;"	kind:function	line:629	class:KnobManage	signature:()
+Capture4DMode	test/ConfigManage.h	/^        void Capture4DMode();$/;"	kind:prototype	line:42	class:KnobManage	access:public	signature:()
+CaptureMode	test/ConfigManage.cpp	/^void KnobManage::CaptureMode()$/;"	kind:function	line:636	class:KnobManage	signature:()
+CaptureMode	test/ConfigManage.h	/^        void CaptureMode();$/;"	kind:prototype	line:41	class:KnobManage	access:public	signature:()
+ChangeShift	test/ConfigManage.cpp	/^	void ChangeShift(double value)$/;"	kind:function	line:235	namespace:__anon1	signature:(double value)
+ChangeVPQuality	test/ConfigManage.h	/^        void ChangeVPQuality(double angle);$/;"	kind:prototype	line:56	class:KnobManage	access:public	signature:(double angle)
+Chroma	test/ConfigManage.cpp	/^	void Chroma(double value)$/;"	kind:function	line:134	namespace:__anon1	signature:(double value)
+ClearParamLine	test/ConfigManage.cpp	/^void KnobManage::ClearParamLine()$/;"	kind:function	line:455	class:KnobManage	signature:()
+ClearRotationHint	test/ConfigManage.cpp	/^	gboolean ClearRotationHint(gpointer data)$/;"	kind:function	line:28	namespace:__anon1	signature:(gpointer data)
 ConfDB	include/ConfLite.h	/^    std::string ConfDB()$/;"	kind:function	line:166	class:ConfLite	access:public	signature:()
 ConfLite	include/ConfLite.h	/^    ConfLite(std::string fname) : conf_db_file_(fname)$/;"	kind:function	line:151	class:ConfLite	access:public	signature:(std::string fname)
 ConfLite	include/ConfLite.h	/^class ConfLite$/;"	kind:class	line:142
@@ -25,14 +36,178 @@ ConfLite::sql	include/ConfLite.h	/^        std::string sql = "update " + conf_ta
 ConfLite::~ConfLite	include/ConfLite.h	/^    ~ConfLite()$/;"	kind:function	line:156	class:ConfLite	access:public	signature:()
 ConfTable	include/ConfLite.h	/^    std::string ConfTable()$/;"	kind:function	line:161	class:ConfLite	access:public	signature:()
 ConfTable	include/ConfLite.h	/^    void ConfTable(std::string table)$/;"	kind:function	line:171	class:ConfLite	access:public	signature:(std::string table)
+Contrast	test/ConfigManage.cpp	/^	void Contrast(double value)$/;"	kind:function	line:266	namespace:__anon1	signature:(double value)
+CreateImageParam	test/ConfigManage.cpp	/^void KnobManage::CreateImageParam(GtkWidget* fixed)$/;"	kind:function	line:511	class:KnobManage	signature:(GtkWidget* fixed)
+CreateImageParam	test/ConfigManage.h	/^		void CreateImageParam(GtkWidget* fixed);$/;"	kind:prototype	line:34	class:KnobManage	access:public	signature:(GtkWidget* fixed)
 DESCRIPTION	Makefile	/^DESCRIPTION	= A sqlite solution to system\/user configure$/;"	kind:macro	line:4
 DESCRIPTION	build/version.h	5;"	kind:macro	line:5
 DESCRIPTION	test/Makefile	/^DESCRIPTION	= A sqlite solution to system\/user configure$/;"	kind:macro	line:4
+Debug	test/ConfigManage.cpp	/^void KnobManage::Debug()$/;"	kind:function	line:642	class:KnobManage	signature:()
+Debug	test/ConfigManage.h	/^		void Debug();$/;"	kind:prototype	line:44	class:KnobManage	access:public	signature:()
 DefaultValue	include/ConfLite.h	/^    double DefaultValue;$/;"	kind:member	line:63	struct:SysConf	access:public
+DefaultView	test/ConfigManage.h	/^        std::vector<double> DefaultView()$/;"	kind:function	line:68	class:KnobManage	access:public	signature:()
+Density	test/ConfigManage.cpp	/^	void Density(double value)$/;"	kind:function	line:244	namespace:__anon1	signature:(double value)
+DoSetKnobValue	test/ConfigManage.cpp	/^void KnobManage::DoSetKnobValue($/;"	kind:function	line:480	class:KnobManage	signature:( std::string key, int oper, double real_value)
 EXEC_SQLITE_LOG	include/ConfLite.h	30;"	kind:macro	line:30
+FHSwingAngle	test/ConfigManage.cpp	/^	void FHSwingAngle(double value)$/;"	kind:function	line:43	namespace:__anon1	signature:(double value)
+FnMap	test/ConfigManage.h	/^		std::map<int, std::vector<KeyCallback>> FnMap;$/;"	kind:member	line:105	class:KnobManage	access:private
+GTK_BOX	test/ConfigManage.cpp	/^		gtk_box_pack_start (GTK_BOX (line1), image_param_[i], TRUE, TRUE, 0);$/;"	kind:prototype	line:525	file:	signature:(line1)
+GTK_BOX	test/ConfigManage.cpp	/^		gtk_box_pack_start(GTK_BOX (line2), image_param_upper_[i], TRUE, TRUE, 0);$/;"	kind:prototype	line:531	file:	signature:(line2)
+GTK_BUTTON	test/ConfigManage.cpp	/^		gtk_button_set_label(GTK_BUTTON(image_param_[index++]), " ");$/;"	kind:prototype	line:461	file:	signature:(image_param_[index++])
+GTK_BUTTON	test/ConfigManage.cpp	/^		gtk_button_set_label(GTK_BUTTON(image_param_[index]), $/;"	kind:prototype	line:442	file:	signature:(image_param_[index])
+GTK_FIXED	test/ConfigManage.cpp	/^	gtk_fixed_put(GTK_FIXED(fixed), line1, UIS4DFACE::IMAGE_PARAM_X, UIS4DFACE::IMAGE_PARAM_Y);$/;"	kind:prototype	line:516	file:	signature:(fixed)
+GTK_FIXED	test/ConfigManage.cpp	/^	gtk_fixed_put(GTK_FIXED(fixed), line2, UIS4DFACE::IMAGE_START_X, UIS4DFACE::HINT_Y-UIS4DFACE::IMAGE_PARAM_HEIGHT\/2-5);$/;"	kind:prototype	line:519	file:	signature:(fixed)
+GTK_LABEL	test/ConfigManage.cpp	/^			GTK_LABEL(image_param_upper_[index-IMAGE_PARAM_NR]),$/;"	kind:prototype	line:448	file:	signature:(image_param_upper_[index-IMAGE_PARAM_NR])
+GTK_LABEL	test/ConfigManage.cpp	/^		gtk_label_set_text(GTK_LABEL(image_param_upper_[index-IMAGE_PARAM_NR]), " ");$/;"	kind:prototype	line:466	file:	signature:(image_param_upper_[index-IMAGE_PARAM_NR])
+GTK_MISC	test/ConfigManage.cpp	/^		gtk_misc_set_alignment(GTK_MISC(image_param_upper_[i]), 0, 0);$/;"	kind:prototype	line:532	file:	signature:(image_param_upper_[i])
+GenValueMap	test/ConfigManage.h	/^		void GenValueMap(std::vector<KnobItem> &knobs, ValueMap &pre_value);$/;"	kind:prototype	line:64	class:KnobManage	access:public	signature:(std::vector<KnobItem> &knobs, ValueMap &pre_value)
+GenValueMap	test/ConfigManage.h	/^		void GenValueMap(std::vector<KnobItem> &knobs, ValueMapStr &pre_value);$/;"	kind:prototype	line:65	class:KnobManage	access:public	signature:(std::vector<KnobItem> &knobs, ValueMapStr &pre_value)
+GetFixed	test/ConfigManage.h	/^		GtkWidget* GetFixed() { return m_fixed_knob; }$/;"	kind:function	line:36	class:KnobManage	access:public	signature:()
+GetImageParam	test/ConfigManage.h	/^        GtkWidget** GetImageParam() { return image_param_; }$/;"	kind:function	line:38	class:KnobManage	access:public	signature:()
+GetImageParamUpper	test/ConfigManage.h	/^        GtkWidget** GetImageParamUpper() { return image_param_upper_; }$/;"	kind:function	line:39	class:KnobManage	access:public	signature:()
+GetInstance	test/ConfigManage.cpp	/^KnobManage* KnobManage::GetInstance()$/;"	kind:function	line:289	class:KnobManage	signature:()
+GetInstance	test/ConfigManage.h	/^        static KnobManage* GetInstance();$/;"	kind:prototype	line:28	class:KnobManage	access:public	signature:()
+GetKnobValue	test/ConfigManage.h	/^		void GetKnobValue(ValueMapStr &pre_value);$/;"	kind:prototype	line:37	class:KnobManage	access:public	signature:(ValueMapStr &pre_value)
+GetKnobValues	test/ConfigManage.h	/^		std::vector<double> GetKnobValues(std::vector<KnobItem> &grp);$/;"	kind:prototype	line:80	class:KnobManage	access:private	signature:(std::vector<KnobItem> &grp)
+GetKnobViewValue	test/ConfigManage.h	/^        void GetKnobViewValue(std::vector<double> &view_value);$/;"	kind:prototype	line:53	class:KnobManage	access:public	signature:(std::vector<double> &view_value)
+GetPrepareVPQuality4D	test/ConfigManage.h	/^        double GetPrepareVPQuality4D();$/;"	kind:prototype	line:59	class:KnobManage	access:public	signature:()
+GetWindow	test/ConfigManage.h	/^		GtkWidget* GetWindow() { return window_; }$/;"	kind:function	line:35	class:KnobManage	access:public	signature:()
+Graymap	test/ConfigManage.cpp	/^	void Graymap(double value)$/;"	kind:function	line:153	namespace:__anon1	signature:(double value)
+IMAGE_PARAM_NR	test/ConfigManage.h	118;"	kind:macro	line:118
+IMAGE_PARAM_UPPER_NR	test/ConfigManage.h	119;"	kind:macro	line:119
+IMAGE_PARAM_X	test/ConfigManage.cpp	/^	gtk_fixed_put(GTK_FIXED(fixed), line1, UIS4DFACE::IMAGE_PARAM_X, UIS4DFACE::IMAGE_PARAM_Y);$/;"	kind:member	line:516	class:UIS4DFACE	file:
+IMAGE_PARAM_Y	test/ConfigManage.cpp	/^	gtk_fixed_put(GTK_FIXED(fixed), line1, UIS4DFACE::IMAGE_PARAM_X, UIS4DFACE::IMAGE_PARAM_Y);$/;"	kind:member	line:516	class:UIS4DFACE	file:
+IMAGE_START_X	test/ConfigManage.cpp	/^	gtk_fixed_put(GTK_FIXED(fixed), line2, UIS4DFACE::IMAGE_START_X, UIS4DFACE::HINT_Y-UIS4DFACE::IMAGE_PARAM_HEIGHT\/2-5);$/;"	kind:member	line:519	class:UIS4DFACE	file:
 INCLUDES	Makefile	/^INCLUDES	= include build$/;"	kind:macro	line:7
+InitConfig	test/ConfigManage.cpp	/^void KnobManage::InitConfig()$/;"	kind:function	line:327	class:KnobManage	signature:()
+InitConfig	test/ConfigManage.h	/^		void InitConfig();$/;"	kind:prototype	line:29	class:KnobManage	access:public	signature:()
+InitKnobGroup	test/ConfigManage.cpp	/^void KnobManage::InitKnobGroup(std::vector<KnobItem> &grp, ValueMap &knobs)$/;"	kind:function	line:540	class:KnobManage	signature:(std::vector<KnobItem> &grp, ValueMap &knobs)
+InitKnobGroup	test/ConfigManage.h	/^        void InitKnobGroup(std::vector<KnobItem> &grp, ValueMap &knobs);$/;"	kind:prototype	line:127	class:KnobManage	access:protected	signature:(std::vector<KnobItem> &grp, ValueMap &knobs)
+KNOB_4DCAPTURE	test/ConfigManage.h	/^	KNOB_4DCAPTURE,$/;"	kind:enumerator	line:20	enum:KnobType
+KNOB_CAPTURE	test/ConfigManage.h	/^	KNOB_CAPTURE,$/;"	kind:enumerator	line:16	enum:KnobType
+KNOB_DEBUG	test/ConfigManage.h	/^	KNOB_DEBUG$/;"	kind:enumerator	line:21	enum:KnobType
+KNOB_FAN	test/ConfigManage.h	/^	KNOB_FAN,$/;"	kind:enumerator	line:13	enum:KnobType
+KNOB_LINEAR	test/ConfigManage.h	/^	KNOB_LINEAR,$/;"	kind:enumerator	line:12	enum:KnobType
+KNOB_REVIEW	test/ConfigManage.h	/^	KNOB_REVIEW,$/;"	kind:enumerator	line:18	enum:KnobType
+KNOB_SLICES	test/ConfigManage.h	/^	KNOB_SLICES,$/;"	kind:enumerator	line:19	enum:KnobType
+KNOB_VIEW	test/ConfigManage.h	/^	KNOB_VIEW,$/;"	kind:enumerator	line:17	enum:KnobType
+KNOB_VP_3D	test/ConfigManage.h	/^	KNOB_VP_3D,$/;"	kind:enumerator	line:15	enum:KnobType
+KNOB_VP_4D	test/ConfigManage.h	/^	KNOB_VP_4D,$/;"	kind:enumerator	line:14	enum:KnobType
 Key	include/ConfLite.h	/^    std::string Key;$/;"	kind:member	line:62	struct:SysConf	access:public
 Key	include/ConfLite.h	/^    std::string Key;$/;"	kind:member	line:90	struct:UserConf	access:public
+KeyCallback	test/ConfigManage.h	/^			KeyCallback()$/;"	kind:function	line:95	signature:()
+KeyCallback	test/ConfigManage.h	/^			KeyCallback(std::string k, void (*cb)(double))$/;"	kind:function	line:100	signature:(std::string k, void (*cb)(double))
+KeyCallback	test/ConfigManage.h	/^		struct KeyCallback;$/;"	kind:externvar	line:90
+KnobF1	test/ConfigManage.cpp	/^void KnobManage::KnobF1(bool oper)$/;"	kind:function	line:383	class:KnobManage	signature:(bool oper)
+KnobF1	test/ConfigManage.h	/^        void KnobF1(bool oper);$/;"	kind:prototype	line:48	class:KnobManage	access:public	signature:(bool oper)
+KnobF2	test/ConfigManage.cpp	/^void KnobManage::KnobF2(bool oper)$/;"	kind:function	line:388	class:KnobManage	signature:(bool oper)
+KnobF2	test/ConfigManage.h	/^        void KnobF2(bool oper);$/;"	kind:prototype	line:49	class:KnobManage	access:public	signature:(bool oper)
+KnobF3	test/ConfigManage.cpp	/^void KnobManage::KnobF3(bool oper)$/;"	kind:function	line:393	class:KnobManage	signature:(bool oper)
+KnobF3	test/ConfigManage.h	/^        void KnobF3(bool oper);$/;"	kind:prototype	line:50	class:KnobManage	access:public	signature:(bool oper)
+KnobF4	test/ConfigManage.cpp	/^void KnobManage::KnobF4(bool oper)$/;"	kind:function	line:398	class:KnobManage	signature:(bool oper)
+KnobF4	test/ConfigManage.h	/^        void KnobF4(bool oper);$/;"	kind:prototype	line:51	class:KnobManage	access:public	signature:(bool oper)
+KnobF5	test/ConfigManage.cpp	/^void KnobManage::KnobF5(bool oper)$/;"	kind:function	line:403	class:KnobManage	signature:(bool oper)
+KnobF5	test/ConfigManage.h	/^        void KnobF5(bool oper);$/;"	kind:prototype	line:52	class:KnobManage	access:public	signature:(bool oper)
+KnobManage	test/ConfigManage.cpp	/^KnobManage::KnobManage()$/;"	kind:function	line:299	class:KnobManage	signature:()
+KnobManage	test/ConfigManage.h	/^        KnobManage();$/;"	kind:prototype	line:76	class:KnobManage	access:private	signature:()
+KnobManage	test/ConfigManage.h	/^class KnobManage$/;"	kind:class	line:24
+KnobManage::Capture4DMode	test/ConfigManage.cpp	/^void KnobManage::Capture4DMode()$/;"	kind:function	line:629	class:KnobManage	signature:()
+KnobManage::Capture4DMode	test/ConfigManage.h	/^        void Capture4DMode();$/;"	kind:prototype	line:42	class:KnobManage	access:public	signature:()
+KnobManage::CaptureMode	test/ConfigManage.cpp	/^void KnobManage::CaptureMode()$/;"	kind:function	line:636	class:KnobManage	signature:()
+KnobManage::CaptureMode	test/ConfigManage.h	/^        void CaptureMode();$/;"	kind:prototype	line:41	class:KnobManage	access:public	signature:()
+KnobManage::ChangeVPQuality	test/ConfigManage.h	/^        void ChangeVPQuality(double angle);$/;"	kind:prototype	line:56	class:KnobManage	access:public	signature:(double angle)
+KnobManage::ClearParamLine	test/ConfigManage.cpp	/^void KnobManage::ClearParamLine()$/;"	kind:function	line:455	class:KnobManage	signature:()
+KnobManage::CreateImageParam	test/ConfigManage.cpp	/^void KnobManage::CreateImageParam(GtkWidget* fixed)$/;"	kind:function	line:511	class:KnobManage	signature:(GtkWidget* fixed)
+KnobManage::CreateImageParam	test/ConfigManage.h	/^		void CreateImageParam(GtkWidget* fixed);$/;"	kind:prototype	line:34	class:KnobManage	access:public	signature:(GtkWidget* fixed)
+KnobManage::Debug	test/ConfigManage.cpp	/^void KnobManage::Debug()$/;"	kind:function	line:642	class:KnobManage	signature:()
+KnobManage::Debug	test/ConfigManage.h	/^		void Debug();$/;"	kind:prototype	line:44	class:KnobManage	access:public	signature:()
+KnobManage::DefaultView	test/ConfigManage.h	/^        std::vector<double> DefaultView()$/;"	kind:function	line:68	class:KnobManage	access:public	signature:()
+KnobManage::DoSetKnobValue	test/ConfigManage.cpp	/^void KnobManage::DoSetKnobValue($/;"	kind:function	line:480	class:KnobManage	signature:( std::string key, int oper, double real_value)
+KnobManage::FnMap	test/ConfigManage.h	/^		std::map<int, std::vector<KeyCallback>> FnMap;$/;"	kind:member	line:105	class:KnobManage	access:private
+KnobManage::GenValueMap	test/ConfigManage.h	/^		void GenValueMap(std::vector<KnobItem> &knobs, ValueMap &pre_value);$/;"	kind:prototype	line:64	class:KnobManage	access:public	signature:(std::vector<KnobItem> &knobs, ValueMap &pre_value)
+KnobManage::GenValueMap	test/ConfigManage.h	/^		void GenValueMap(std::vector<KnobItem> &knobs, ValueMapStr &pre_value);$/;"	kind:prototype	line:65	class:KnobManage	access:public	signature:(std::vector<KnobItem> &knobs, ValueMapStr &pre_value)
+KnobManage::GetFixed	test/ConfigManage.h	/^		GtkWidget* GetFixed() { return m_fixed_knob; }$/;"	kind:function	line:36	class:KnobManage	access:public	signature:()
+KnobManage::GetImageParam	test/ConfigManage.h	/^        GtkWidget** GetImageParam() { return image_param_; }$/;"	kind:function	line:38	class:KnobManage	access:public	signature:()
+KnobManage::GetImageParamUpper	test/ConfigManage.h	/^        GtkWidget** GetImageParamUpper() { return image_param_upper_; }$/;"	kind:function	line:39	class:KnobManage	access:public	signature:()
+KnobManage::GetInstance	test/ConfigManage.cpp	/^KnobManage* KnobManage::GetInstance()$/;"	kind:function	line:289	class:KnobManage	signature:()
+KnobManage::GetInstance	test/ConfigManage.h	/^        static KnobManage* GetInstance();$/;"	kind:prototype	line:28	class:KnobManage	access:public	signature:()
+KnobManage::GetKnobValue	test/ConfigManage.h	/^		void GetKnobValue(ValueMapStr &pre_value);$/;"	kind:prototype	line:37	class:KnobManage	access:public	signature:(ValueMapStr &pre_value)
+KnobManage::GetKnobValues	test/ConfigManage.h	/^		std::vector<double> GetKnobValues(std::vector<KnobItem> &grp);$/;"	kind:prototype	line:80	class:KnobManage	access:private	signature:(std::vector<KnobItem> &grp)
+KnobManage::GetKnobViewValue	test/ConfigManage.h	/^        void GetKnobViewValue(std::vector<double> &view_value);$/;"	kind:prototype	line:53	class:KnobManage	access:public	signature:(std::vector<double> &view_value)
+KnobManage::GetPrepareVPQuality4D	test/ConfigManage.h	/^        double GetPrepareVPQuality4D();$/;"	kind:prototype	line:59	class:KnobManage	access:public	signature:()
+KnobManage::GetWindow	test/ConfigManage.h	/^		GtkWidget* GetWindow() { return window_; }$/;"	kind:function	line:35	class:KnobManage	access:public	signature:()
+KnobManage::InitConfig	test/ConfigManage.cpp	/^void KnobManage::InitConfig()$/;"	kind:function	line:327	class:KnobManage	signature:()
+KnobManage::InitConfig	test/ConfigManage.h	/^		void InitConfig();$/;"	kind:prototype	line:29	class:KnobManage	access:public	signature:()
+KnobManage::InitKnobGroup	test/ConfigManage.cpp	/^void KnobManage::InitKnobGroup(std::vector<KnobItem> &grp, ValueMap &knobs)$/;"	kind:function	line:540	class:KnobManage	signature:(std::vector<KnobItem> &grp, ValueMap &knobs)
+KnobManage::InitKnobGroup	test/ConfigManage.h	/^        void InitKnobGroup(std::vector<KnobItem> &grp, ValueMap &knobs);$/;"	kind:prototype	line:127	class:KnobManage	access:protected	signature:(std::vector<KnobItem> &grp, ValueMap &knobs)
+KnobManage::KeyCallback	test/ConfigManage.h	/^			KeyCallback()$/;"	kind:function	line:95	signature:()
+KnobManage::KeyCallback	test/ConfigManage.h	/^			KeyCallback(std::string k, void (*cb)(double))$/;"	kind:function	line:100	signature:(std::string k, void (*cb)(double))
+KnobManage::KeyCallback	test/ConfigManage.h	/^		struct KeyCallback;$/;"	kind:externvar	line:90
+KnobManage::KnobF1	test/ConfigManage.cpp	/^void KnobManage::KnobF1(bool oper)$/;"	kind:function	line:383	class:KnobManage	signature:(bool oper)
+KnobManage::KnobF1	test/ConfigManage.h	/^        void KnobF1(bool oper);$/;"	kind:prototype	line:48	class:KnobManage	access:public	signature:(bool oper)
+KnobManage::KnobF2	test/ConfigManage.cpp	/^void KnobManage::KnobF2(bool oper)$/;"	kind:function	line:388	class:KnobManage	signature:(bool oper)
+KnobManage::KnobF2	test/ConfigManage.h	/^        void KnobF2(bool oper);$/;"	kind:prototype	line:49	class:KnobManage	access:public	signature:(bool oper)
+KnobManage::KnobF3	test/ConfigManage.cpp	/^void KnobManage::KnobF3(bool oper)$/;"	kind:function	line:393	class:KnobManage	signature:(bool oper)
+KnobManage::KnobF3	test/ConfigManage.h	/^        void KnobF3(bool oper);$/;"	kind:prototype	line:50	class:KnobManage	access:public	signature:(bool oper)
+KnobManage::KnobF4	test/ConfigManage.cpp	/^void KnobManage::KnobF4(bool oper)$/;"	kind:function	line:398	class:KnobManage	signature:(bool oper)
+KnobManage::KnobF4	test/ConfigManage.h	/^        void KnobF4(bool oper);$/;"	kind:prototype	line:51	class:KnobManage	access:public	signature:(bool oper)
+KnobManage::KnobF5	test/ConfigManage.cpp	/^void KnobManage::KnobF5(bool oper)$/;"	kind:function	line:403	class:KnobManage	signature:(bool oper)
+KnobManage::KnobF5	test/ConfigManage.h	/^        void KnobF5(bool oper);$/;"	kind:prototype	line:52	class:KnobManage	access:public	signature:(bool oper)
+KnobManage::KnobManage	test/ConfigManage.cpp	/^KnobManage::KnobManage()$/;"	kind:function	line:299	class:KnobManage	signature:()
+KnobManage::KnobManage	test/ConfigManage.h	/^        KnobManage();$/;"	kind:prototype	line:76	class:KnobManage	access:private	signature:()
+KnobManage::KnobView	test/ConfigManage.h	/^        std::vector<KnobItem> KnobView() { return knob_grp_view_; }$/;"	kind:function	line:67	class:KnobManage	access:public	signature:()
+KnobManage::Mode	test/ConfigManage.h	/^        int Mode() { return mode_; }$/;"	kind:function	line:63	class:KnobManage	access:public	signature:()
+KnobManage::PrepareMode	test/ConfigManage.cpp	/^void KnobManage::PrepareMode()$/;"	kind:function	line:600	class:KnobManage	signature:()
+KnobManage::PrepareMode	test/ConfigManage.h	/^        void PrepareMode();$/;"	kind:prototype	line:40	class:KnobManage	access:public	signature:()
+KnobManage::ReadConfig	test/ConfigManage.h	/^        void ReadConfig(ValueMap &knobs);$/;"	kind:prototype	line:129	class:KnobManage	access:protected	signature:(ValueMap &knobs)
+KnobManage::ResetView	test/ConfigManage.cpp	/^void KnobManage::ResetView()$/;"	kind:function	line:563	class:KnobManage	signature:()
+KnobManage::ResetView	test/ConfigManage.h	/^		void ResetView();$/;"	kind:prototype	line:54	class:KnobManage	access:public	signature:()
+KnobManage::SaveConfig	test/ConfigManage.h	/^		void SaveConfig();$/;"	kind:prototype	line:61	class:KnobManage	access:public	signature:()
+KnobManage::SetDefaultKnobsValue	test/ConfigManage.h	/^		void SetDefaultKnobsValue(const std::vector<double> &values);$/;"	kind:prototype	line:33	class:KnobManage	access:public	signature:(const std::vector<double> &values)
+KnobManage::SetKnobValue	test/ConfigManage.cpp	/^void KnobManage::SetKnobValue(int index_key, int oper, double value)$/;"	kind:function	line:408	class:KnobManage	signature:(int index_key, int oper, double value)
+KnobManage::SetKnobValue	test/ConfigManage.h	/^        void SetKnobValue(int index_key, int oper, double real_value = 0.0);$/;"	kind:prototype	line:66	class:KnobManage	access:public	signature:(int index_key, int oper, double real_value = 0.0)
+KnobManage::SetKnobViewValue	test/ConfigManage.h	/^        void SetKnobViewValue(const std::vector<double> view_value);$/;"	kind:prototype	line:55	class:KnobManage	access:public	signature:(const std::vector<double> view_value)
+KnobManage::SetParamLine	test/ConfigManage.cpp	/^void KnobManage::SetParamLine($/;"	kind:function	line:435	class:KnobManage	signature:( int index_key, std::string name, std::string value)
+KnobManage::SetPrepareVPQuality4D	test/ConfigManage.h	/^        void SetPrepareVPQuality4D(double value);$/;"	kind:prototype	line:60	class:KnobManage	access:public	signature:(double value)
+KnobManage::SetPrepareVPSwingAngle3D	test/ConfigManage.h	/^        void SetPrepareVPSwingAngle3D(double value);$/;"	kind:prototype	line:57	class:KnobManage	access:public	signature:(double value)
+KnobManage::SetPrepareVPSwingAngle4D	test/ConfigManage.h	/^        void SetPrepareVPSwingAngle4D(double value);$/;"	kind:prototype	line:58	class:KnobManage	access:public	signature:(double value)
+KnobManage::SetUserConfig	test/ConfigManage.h	/^        void SetUserConfig();$/;"	kind:prototype	line:128	class:KnobManage	access:protected	signature:()
+KnobManage::SlicesDefault	test/ConfigManage.cpp	/^void KnobManage::SlicesDefault(void)$/;"	kind:function	line:677	class:KnobManage	signature:(void)
+KnobManage::SlicesDefault	test/ConfigManage.h	/^        void SlicesDefault(void);$/;"	kind:prototype	line:47	class:KnobManage	access:public	signature:(void)
+KnobManage::SlicesMode	test/ConfigManage.cpp	/^void KnobManage::SlicesMode()$/;"	kind:function	line:671	class:KnobManage	signature:()
+KnobManage::SlicesMode	test/ConfigManage.h	/^        void SlicesMode();$/;"	kind:prototype	line:46	class:KnobManage	access:public	signature:()
+KnobManage::SwitchFocus	test/ConfigManage.cpp	/^void KnobManage::SwitchFocus(bool param0)$/;"	kind:function	line:555	class:KnobManage	signature:(bool param0)
+KnobManage::SwitchFocus	test/ConfigManage.h	/^        void SwitchFocus(bool param0);$/;"	kind:prototype	line:126	class:KnobManage	access:protected	signature:(bool param0)
+KnobManage::TranslateKnobValue	test/ConfigManage.cpp	/^std::string KnobManage::TranslateKnobValue(std::string name, double value)$/;"	kind:function	line:1116	class:KnobManage	signature:(std::string name, double value)
+KnobManage::TranslateKnobValue	test/ConfigManage.h	/^		std::string TranslateKnobValue(std::string name, double value);$/;"	kind:prototype	line:32	class:KnobManage	access:public	signature:(std::string name, double value)
+KnobManage::View4DMode	test/ConfigManage.cpp	/^void KnobManage::View4DMode()$/;"	kind:function	line:665	class:KnobManage	signature:()
+KnobManage::View4DMode	test/ConfigManage.h	/^        void View4DMode();$/;"	kind:prototype	line:45	class:KnobManage	access:public	signature:()
+KnobManage::ViewMode	test/ConfigManage.cpp	/^void KnobManage::ViewMode()$/;"	kind:function	line:659	class:KnobManage	signature:()
+KnobManage::ViewMode	test/ConfigManage.h	/^        void ViewMode();$/;"	kind:prototype	line:43	class:KnobManage	access:public	signature:()
+KnobManage::callback_	test/ConfigManage.h	/^			void (*callback_)(double value);$/;"	kind:variable	line:93
+KnobManage::image_param_	test/ConfigManage.h	/^		GtkWidget* image_param_[IMAGE_PARAM_NR];$/;"	kind:member	line:120	class:KnobManage	access:private
+KnobManage::image_param_upper_	test/ConfigManage.h	/^		GtkWidget* image_param_upper_[IMAGE_PARAM_UPPER_NR];$/;"	kind:member	line:121	class:KnobManage	access:private
+KnobManage::key_	test/ConfigManage.h	/^			std::string key_;$/;"	kind:variable	line:92
+KnobManage::knobs_by_key_	test/ConfigManage.h	/^        std::map<std::string, KnobItem> knobs_by_key_;$/;"	kind:member	line:107	class:KnobManage	access:private
+KnobManage::knobs_menu_	test/ConfigManage.h	/^        std::map<std::string, KnobMenu> knobs_menu_;$/;"	kind:member	line:106	class:KnobManage	access:private
+KnobManage::m_fixed_knob	test/ConfigManage.h	/^		GtkWidget* m_fixed_knob;$/;"	kind:member	line:117	class:KnobManage	access:private
+KnobManage::mode_	test/ConfigManage.h	/^        int mode_, mode_before_;$/;"	kind:member	line:112	class:KnobManage	access:private
+KnobManage::mode_before_	test/ConfigManage.h	/^        int mode_, mode_before_;$/;"	kind:member	line:112	class:KnobManage	access:private
+KnobManage::para_update_timer_	test/ConfigManage.h	/^        int para_update_timer_;$/;"	kind:member	line:122	class:KnobManage	access:private
+KnobManage::ptr_instance_	test/ConfigManage.h	/^        static KnobManage* ptr_instance_;$/;"	kind:member	line:88	class:KnobManage	access:private
+KnobManage::sys_conf_	test/ConfigManage.h	/^		MAP_SC sys_conf_;$/;"	kind:member	line:109	class:KnobManage	access:private
+KnobManage::user_conf_	test/ConfigManage.h	/^		MAP_UC user_conf_;$/;"	kind:member	line:110	class:KnobManage	access:private
+KnobManage::userconf_update_timer_	test/ConfigManage.h	/^        int userconf_update_timer_;$/;"	kind:member	line:123	class:KnobManage	access:private
+KnobManage::value_4d_	test/ConfigManage.h	/^        double value_4d_;$/;"	kind:member	line:113	class:KnobManage	access:private
+KnobManage::window_	test/ConfigManage.h	/^		GtkWidget* window_;$/;"	kind:member	line:116	class:KnobManage	access:private
+KnobManage::zoom_in_12	test/ConfigManage.cpp	/^void KnobManage::zoom_in_12()$/;"	kind:function	line:1154	class:KnobManage	signature:()
+KnobManage::zoom_in_12	test/ConfigManage.h	/^		void zoom_in_12();$/;"	kind:prototype	line:133	class:KnobManage	access:public	signature:()
+KnobManage::zoom_in_22	test/ConfigManage.cpp	/^void KnobManage::zoom_in_22()$/;"	kind:function	line:1143	class:KnobManage	signature:()
+KnobManage::zoom_in_22	test/ConfigManage.h	/^		void zoom_in_22();$/;"	kind:prototype	line:132	class:KnobManage	access:public	signature:()
+KnobManage::~KnobManage	test/ConfigManage.cpp	/^KnobManage::~KnobManage()$/;"	kind:function	line:319	class:KnobManage	signature:()
+KnobManage::~KnobManage	test/ConfigManage.h	/^        ~KnobManage();$/;"	kind:prototype	line:27	class:KnobManage	access:public	signature:()
+KnobType	test/ConfigManage.h	/^enum KnobType{$/;"	kind:enum	line:11
+KnobView	test/ConfigManage.h	/^        std::vector<KnobItem> KnobView() { return knob_grp_view_; }$/;"	kind:function	line:67	class:KnobManage	access:public	signature:()
 LAST_BUILD_TIME	build/version.h	8;"	kind:macro	line:8
 LIBS	Makefile	/^LIBS		=$/;"	kind:macro	line:9
 LN	makefiles/predef.mk	/^LN		= ln -sf$/;"	kind:macro	line:8
@@ -43,23 +218,54 @@ MAP_SC	include/ConfLite.h	/^typedef std::map<std::string, SysConf> MAP_SC;$/;"	k
 MAP_SS	include/ConfLite.h	/^typedef std::map<std::string, std::string> MAP_SS;$/;"	kind:typedef	line:133
 MAP_UC	include/ConfLite.h	/^typedef std::map<std::string, UserConf> MAP_UC;$/;"	kind:typedef	line:136
 MKDIR	makefiles/predef.mk	/^MKDIR	= mkdir -p$/;"	kind:macro	line:6
+Mode	test/ConfigManage.h	/^        int Mode() { return mode_; }$/;"	kind:function	line:63	class:KnobManage	access:public	signature:()
 OBJS	makefiles/predef.mk	/^OBJS			= $(patsubst %.cpp, $(BUILD)\/%.o, $(SOURCES))$/;"	kind:macro	line:23
 PROJECT	Makefile	/^PROJECT		= ConfLite$/;"	kind:macro	line:3
 PROJECT	build/version.h	4;"	kind:macro	line:4
 PROJECT	test/Makefile	/^PROJECT		= ConfLite$/;"	kind:macro	line:3
 PROJECT_ALIAS	makefiles/predef.mk	/^PROJECT_ALIAS	= $(shell echo $(PROJECT)|tr '[:upper:]' '[:lower:]')$/;"	kind:macro	line:10
 PROJECT_DIR	makefiles/predef.mk	/^PROJECT_DIR		= $(shell pwd)$/;"	kind:macro	line:11
+PlacentaThreshold	test/ConfigManage.cpp	/^	void PlacentaThreshold(double value)$/;"	kind:function	line:227	namespace:__anon1	signature:(double value)
+PrepareMode	test/ConfigManage.cpp	/^void KnobManage::PrepareMode()$/;"	kind:function	line:600	class:KnobManage	signature:()
+PrepareMode	test/ConfigManage.h	/^        void PrepareMode();$/;"	kind:prototype	line:40	class:KnobManage	access:public	signature:()
+QRotate	test/ConfigManage.cpp	/^	void QRotate(double value)$/;"	kind:function	line:126	namespace:__anon1	signature:(double value)
 REVISION	build/version.h	7;"	kind:macro	line:7
 REVISION	makefiles/predef.mk	/^	REVISION		= $(shell git log |head -1|cut -f2 -d\\ |sed -r 's\/(.{5})\/\\1-\/g'|cut -f-8 -d-)$/;"	kind:macro	line:28
 REVISION	makefiles/predef.mk	/^	REVISION		= $(shell svn info|grep "Last Changed Rev"|cut -f2 -d:|cut -f2 -d\\ )$/;"	kind:macro	line:26
 REVISION	makefiles/predef.mk	/^	REVISION		= None$/;"	kind:macro	line:30
 RM	makefiles/predef.mk	/^RM		= rm -rf$/;"	kind:macro	line:7
+ReadConfig	test/ConfigManage.h	/^        void ReadConfig(ValueMap &knobs);$/;"	kind:prototype	line:129	class:KnobManage	access:protected	signature:(ValueMap &knobs)
+ReadIniFile	test/ConfigManage.cpp	/^			readfile.ReadIniFile();$/;"	kind:prototype	line:81	file:	signature:()
+Render	test/ConfigManage.cpp	/^	void Render(double value)$/;"	kind:function	line:97	namespace:__anon1	signature:(double value)
+ResetView	test/ConfigManage.cpp	/^void KnobManage::ResetView()$/;"	kind:function	line:563	class:KnobManage	signature:()
+ResetView	test/ConfigManage.h	/^		void ResetView();$/;"	kind:prototype	line:54	class:KnobManage	access:public	signature:()
+RotationX	test/ConfigManage.cpp	/^	void RotationX(double value)$/;"	kind:function	line:166	namespace:__anon1	signature:(double value)
+RotationY	test/ConfigManage.cpp	/^	void RotationY(double value)$/;"	kind:function	line:182	namespace:__anon1	signature:(double value)
+RotationZ	test/ConfigManage.cpp	/^	void RotationZ(double value)$/;"	kind:function	line:198	namespace:__anon1	signature:(double value)
 SCM	Makefile	/^SCM			= git$/;"	kind:macro	line:11
 SHARED_OBJ	makefiles/predef.mk	/^SHARED_OBJ		= $(BUILD)\/lib$(PROJECT_ALIAS).so$/;"	kind:macro	line:22
 SOURCES	makefiles/predef.mk	/^SOURCES			= $(shell find $(SRCS) -iregex ".*\\.c\\(c\\|pp\\|++\\|xx\\)")$/;"	kind:macro	line:15
 SOURCES	test/Makefile	/^SOURCES		= $(shell find $(SRCS) -iregex ".*\\.c\\(c\\|pp\\|++\\|xx\\)")$/;"	kind:macro	line:9
 SRCS	Makefile	/^SRCS		= src$/;"	kind:macro	line:8
+SaveConfig	test/ConfigManage.h	/^		void SaveConfig();$/;"	kind:prototype	line:61	class:KnobManage	access:public	signature:()
+ScanDistance	test/ConfigManage.cpp	/^	void ScanDistance(double value)$/;"	kind:function	line:36	namespace:__anon1	signature:(double value)
+SetDefaultKnobsValue	test/ConfigManage.h	/^		void SetDefaultKnobsValue(const std::vector<double> &values);$/;"	kind:prototype	line:33	class:KnobManage	access:public	signature:(const std::vector<double> &values)
+SetKnobValue	test/ConfigManage.cpp	/^void KnobManage::SetKnobValue(int index_key, int oper, double value)$/;"	kind:function	line:408	class:KnobManage	signature:(int index_key, int oper, double value)
+SetKnobValue	test/ConfigManage.h	/^        void SetKnobValue(int index_key, int oper, double real_value = 0.0);$/;"	kind:prototype	line:66	class:KnobManage	access:public	signature:(int index_key, int oper, double real_value = 0.0)
+SetKnobViewValue	test/ConfigManage.h	/^        void SetKnobViewValue(const std::vector<double> view_value);$/;"	kind:prototype	line:55	class:KnobManage	access:public	signature:(const std::vector<double> view_value)
+SetParamLine	test/ConfigManage.cpp	/^void KnobManage::SetParamLine($/;"	kind:function	line:435	class:KnobManage	signature:( int index_key, std::string name, std::string value)
+SetPrepareVPQuality4D	test/ConfigManage.h	/^        void SetPrepareVPQuality4D(double value);$/;"	kind:prototype	line:60	class:KnobManage	access:public	signature:(double value)
+SetPrepareVPSwingAngle3D	test/ConfigManage.h	/^        void SetPrepareVPSwingAngle3D(double value);$/;"	kind:prototype	line:57	class:KnobManage	access:public	signature:(double value)
+SetPrepareVPSwingAngle4D	test/ConfigManage.h	/^        void SetPrepareVPSwingAngle4D(double value);$/;"	kind:prototype	line:58	class:KnobManage	access:public	signature:(double value)
+SetUserConfig	test/ConfigManage.h	/^        void SetUserConfig();$/;"	kind:prototype	line:128	class:KnobManage	access:protected	signature:()
+SlicesDefault	test/ConfigManage.cpp	/^void KnobManage::SlicesDefault(void)$/;"	kind:function	line:677	class:KnobManage	signature:(void)
+SlicesDefault	test/ConfigManage.h	/^        void SlicesDefault(void);$/;"	kind:prototype	line:47	class:KnobManage	access:public	signature:(void)
+SlicesMode	test/ConfigManage.cpp	/^void KnobManage::SlicesMode()$/;"	kind:function	line:671	class:KnobManage	signature:()
+SlicesMode	test/ConfigManage.h	/^        void SlicesMode();$/;"	kind:prototype	line:46	class:KnobManage	access:public	signature:()
+Smooth	test/ConfigManage.cpp	/^	void Smooth(double value)$/;"	kind:function	line:273	namespace:__anon1	signature:(double value)
 Step	include/ConfLite.h	/^    double Step;$/;"	kind:member	line:64	struct:SysConf	access:public
+SwitchFocus	test/ConfigManage.cpp	/^void KnobManage::SwitchFocus(bool param0)$/;"	kind:function	line:555	class:KnobManage	signature:(bool param0)
+SwitchFocus	test/ConfigManage.h	/^        void SwitchFocus(bool param0);$/;"	kind:prototype	line:126	class:KnobManage	access:protected	signature:(bool param0)
 SysConf	dbs/init_db.sql	/^create table SysConf ($/;"	kind:table	line:18
 SysConf	include/ConfLite.h	/^    SysConf ()$/;"	kind:function	line:74	struct:SysConf	access:public	signature:()
 SysConf	include/ConfLite.h	/^    SysConf (std::string k, double v, double s, double p, double l, std::string u = "")$/;"	kind:function	line:69	struct:SysConf	access:public	signature:(std::string k, double v, double s, double p, double l, std::string u = Ó)
@@ -84,12 +290,20 @@ SysConfLite	include/ConfLite.h	/^    SysConfLite(std::string fname) : ConfLite(f
 SysConfLite	include/ConfLite.h	/^class SysConfLite : public ConfLite$/;"	kind:class	line:229	inherits:ConfLite
 SysConfLite::SysConfLite	include/ConfLite.h	/^    SysConfLite(std::string fname) : ConfLite(fname) {}$/;"	kind:function	line:232	class:SysConfLite	access:public	signature:(std::string fname)
 SysConfLite::get	include/ConfLite.h	/^    SysConf get(std::string key = "");$/;"	kind:prototype	line:246	class:SysConfLite	access:public	signature:(std::string key = Ó)
-SysConfLite::get	src/ConfLite.cpp	/^SysConf SysConfLite::get(std::string key)$/;"	kind:function	line:184	class:SysConfLite	signature:(std::string key)
+SysConfLite::get	src/ConfLite.cpp	/^SysConf SysConfLite::get(std::string key)$/;"	kind:function	line:191	class:SysConfLite	signature:(std::string key)
 SysConfLite::get_all	include/ConfLite.h	/^    std::map<std::string, SysConf> get_all(std::string key = "");$/;"	kind:prototype	line:248	class:SysConfLite	access:public	signature:(std::string key = Ó)
-SysConfLite::get_all	src/ConfLite.cpp	/^std::map<std::string, SysConf> SysConfLite::get_all(std::string key)$/;"	kind:function	line:198	class:SysConfLite	signature:(std::string key)
+SysConfLite::get_all	src/ConfLite.cpp	/^std::map<std::string, SysConf> SysConfLite::get_all(std::string key)$/;"	kind:function	line:205	class:SysConfLite	signature:(std::string key)
 SysConfLite::~SysConfLite	include/ConfLite.h	/^    ~SysConfLite(){}$/;"	kind:function	line:234	class:SysConfLite	access:public	signature:()
 TH	include/ConfLite.h	27;"	kind:macro	line:27
 TOUCH	makefiles/predef.mk	/^TOUCH	= touch$/;"	kind:macro	line:5
+TRUE	test/ConfigManage.cpp	/^		gtk_box_pack_start (GTK_BOX (line1), image_param_[i], TRUE, TRUE, 0);$/;"	kind:local	line:525
+TRUE	test/ConfigManage.cpp	/^		gtk_box_pack_start(GTK_BOX (line2), image_param_upper_[i], TRUE, TRUE, 0);$/;"	kind:local	line:531
+Threshold	test/ConfigManage.cpp	/^	void Threshold(double value)$/;"	kind:function	line:252	namespace:__anon1	signature:(double value)
+TranslateKnobValue	test/ConfigManage.cpp	/^std::string KnobManage::TranslateKnobValue(std::string name, double value)$/;"	kind:function	line:1116	class:KnobManage	signature:(std::string name, double value)
+TranslateKnobValue	test/ConfigManage.h	/^		std::string TranslateKnobValue(std::string name, double value);$/;"	kind:prototype	line:32	class:KnobManage	access:public	signature:(std::string name, double value)
+UIS4DFACE::IMAGE_PARAM_X	test/ConfigManage.cpp	/^	gtk_fixed_put(GTK_FIXED(fixed), line1, UIS4DFACE::IMAGE_PARAM_X, UIS4DFACE::IMAGE_PARAM_Y);$/;"	kind:member	line:516	class:UIS4DFACE	file:
+UIS4DFACE::IMAGE_PARAM_Y	test/ConfigManage.cpp	/^	gtk_fixed_put(GTK_FIXED(fixed), line1, UIS4DFACE::IMAGE_PARAM_X, UIS4DFACE::IMAGE_PARAM_Y);$/;"	kind:member	line:516	class:UIS4DFACE	file:
+UIS4DFACE::IMAGE_START_X	test/ConfigManage.cpp	/^	gtk_fixed_put(GTK_FIXED(fixed), line2, UIS4DFACE::IMAGE_START_X, UIS4DFACE::HINT_Y-UIS4DFACE::IMAGE_PARAM_HEIGHT\/2-5);$/;"	kind:member	line:519	class:UIS4DFACE	file:
 Unit	include/ConfLite.h	/^    std::string Unit;$/;"	kind:member	line:67	struct:SysConf	access:public
 Upper	include/ConfLite.h	/^    double Upper;$/;"	kind:member	line:65	struct:SysConf	access:public
 UserConf	dbs/init_db.sql	/^create table UserConf ($/;"	kind:table	line:47
@@ -126,7 +340,7 @@ UserConfLite::get_map	src/ConfLite.cpp	/^MAP_SS UserConfLite::get_map(std::strin
 UserConfLite::get_string	include/ConfLite.h	/^    std::string get_string(std::string key);$/;"	kind:prototype	line:220	class:UserConfLite	access:public	signature:(std::string key)
 UserConfLite::get_string	src/ConfLite.cpp	/^std::string UserConfLite::get_string(std::string key)$/;"	kind:function	line:93	class:UserConfLite	signature:(std::string key)
 UserConfLite::reset	include/ConfLite.h	/^    void reset(std::string key);$/;"	kind:prototype	line:226	class:UserConfLite	access:public	signature:(std::string key)
-UserConfLite::reset	src/ConfLite.cpp	/^void UserConfLite::reset(std::string key)$/;"	kind:function	line:163	class:UserConfLite	signature:(std::string key)
+UserConfLite::reset_by_prefix	src/ConfLite.cpp	/^void UserConfLite::reset_by_prefix(std::string key)$/;"	kind:function	line:163	class:UserConfLite	signature:(std::string key)
 UserConfLite::set_value	include/ConfLite.h	/^    void set_value(std::string key, double value);$/;"	kind:prototype	line:213	class:UserConfLite	access:public	signature:(std::string key, double value)
 UserConfLite::set_value	include/ConfLite.h	/^    void set_value(std::string key, int value);$/;"	kind:prototype	line:214	class:UserConfLite	access:public	signature:(std::string key, int value)
 UserConfLite::set_value	include/ConfLite.h	/^    void set_value(std::string key, std::string value);$/;"	kind:prototype	line:215	class:UserConfLite	access:public	signature:(std::string key, std::string value)
@@ -141,6 +355,8 @@ VERSION	Makefile	/^VERSION		= 0.0.1$/;"	kind:macro	line:5
 VERSION	build/version.h	6;"	kind:macro	line:6
 VERSION	test/Makefile	/^VERSION		= 0.0.1$/;"	kind:macro	line:5
 VERSION_HEADER	makefiles/predef.mk	/^VERSION_HEADER	= $(BUILD)\/version.h$/;"	kind:macro	line:13
+VPQuality	test/ConfigManage.cpp	/^	void VPQuality(double value)$/;"	kind:function	line:88	namespace:__anon1	signature:(double value)
+VPSwingAngle	test/ConfigManage.cpp	/^	void VPSwingAngle(double value)$/;"	kind:function	line:53	namespace:__anon1	signature:(double value)
 VT_DOUBLE	include/ConfLite.h	/^    VT_DOUBLE, VT_INT, VT_STRING,$/;"	kind:enumerator	line:43	enum:VT_TABLE
 VT_INT	include/ConfLite.h	/^    VT_DOUBLE, VT_INT, VT_STRING,$/;"	kind:enumerator	line:43	enum:VT_TABLE
 VT_LAST	include/ConfLite.h	/^    VT_LAST$/;"	kind:enumerator	line:44	enum:VT_TABLE
@@ -148,8 +364,43 @@ VT_STRING	include/ConfLite.h	/^    VT_DOUBLE, VT_INT, VT_STRING,$/;"	kind:enumer
 VT_TABLE	include/ConfLite.h	/^enum VT_TABLE$/;"	kind:enum	line:41
 Value	include/ConfLite.h	/^    std::string Value;$/;"	kind:member	line:91	struct:UserConf	access:public
 ValueType	include/ConfLite.h	/^    VT_TABLE ValueType;$/;"	kind:member	line:92	struct:UserConf	access:public
+View4DMode	test/ConfigManage.cpp	/^void KnobManage::View4DMode()$/;"	kind:function	line:665	class:KnobManage	signature:()
+View4DMode	test/ConfigManage.h	/^        void View4DMode();$/;"	kind:prototype	line:45	class:KnobManage	access:public	signature:()
+ViewMode	test/ConfigManage.cpp	/^void KnobManage::ViewMode()$/;"	kind:function	line:659	class:KnobManage	signature:()
+ViewMode	test/ConfigManage.h	/^        void ViewMode();$/;"	kind:prototype	line:43	class:KnobManage	access:public	signature:()
+Vision	test/ConfigManage.cpp	/^	void Vision(double value)$/;"	kind:function	line:119	namespace:__anon1	signature:(double value)
+Zoom	test/ConfigManage.cpp	/^	void Zoom(double value)$/;"	kind:function	line:214	namespace:__anon1	signature:(double value)
 _ERR_	include/ConfLite.h	19;"	kind:macro	line:19
 _OUT_	include/ConfLite.h	18;"	kind:macro	line:18
+__KNOBMANAGE_H__	test/ConfigManage.h	2;"	kind:macro	line:2
+__anon1::Brightness	test/ConfigManage.cpp	/^	void Brightness(double value)$/;"	kind:function	line:259	namespace:__anon1	signature:(double value)
+__anon1::ChangeShift	test/ConfigManage.cpp	/^	void ChangeShift(double value)$/;"	kind:function	line:235	namespace:__anon1	signature:(double value)
+__anon1::Chroma	test/ConfigManage.cpp	/^	void Chroma(double value)$/;"	kind:function	line:134	namespace:__anon1	signature:(double value)
+__anon1::ClearRotationHint	test/ConfigManage.cpp	/^	gboolean ClearRotationHint(gpointer data)$/;"	kind:function	line:28	namespace:__anon1	signature:(gpointer data)
+__anon1::Contrast	test/ConfigManage.cpp	/^	void Contrast(double value)$/;"	kind:function	line:266	namespace:__anon1	signature:(double value)
+__anon1::Density	test/ConfigManage.cpp	/^	void Density(double value)$/;"	kind:function	line:244	namespace:__anon1	signature:(double value)
+__anon1::FHSwingAngle	test/ConfigManage.cpp	/^	void FHSwingAngle(double value)$/;"	kind:function	line:43	namespace:__anon1	signature:(double value)
+__anon1::Graymap	test/ConfigManage.cpp	/^	void Graymap(double value)$/;"	kind:function	line:153	namespace:__anon1	signature:(double value)
+__anon1::PlacentaThreshold	test/ConfigManage.cpp	/^	void PlacentaThreshold(double value)$/;"	kind:function	line:227	namespace:__anon1	signature:(double value)
+__anon1::QRotate	test/ConfigManage.cpp	/^	void QRotate(double value)$/;"	kind:function	line:126	namespace:__anon1	signature:(double value)
+__anon1::ReadIniFile	test/ConfigManage.cpp	/^			readfile.ReadIniFile();$/;"	kind:prototype	line:81	file:	signature:()
+__anon1::Render	test/ConfigManage.cpp	/^	void Render(double value)$/;"	kind:function	line:97	namespace:__anon1	signature:(double value)
+__anon1::RotationX	test/ConfigManage.cpp	/^	void RotationX(double value)$/;"	kind:function	line:166	namespace:__anon1	signature:(double value)
+__anon1::RotationY	test/ConfigManage.cpp	/^	void RotationY(double value)$/;"	kind:function	line:182	namespace:__anon1	signature:(double value)
+__anon1::RotationZ	test/ConfigManage.cpp	/^	void RotationZ(double value)$/;"	kind:function	line:198	namespace:__anon1	signature:(double value)
+__anon1::ScanDistance	test/ConfigManage.cpp	/^	void ScanDistance(double value)$/;"	kind:function	line:36	namespace:__anon1	signature:(double value)
+__anon1::Smooth	test/ConfigManage.cpp	/^	void Smooth(double value)$/;"	kind:function	line:273	namespace:__anon1	signature:(double value)
+__anon1::Threshold	test/ConfigManage.cpp	/^	void Threshold(double value)$/;"	kind:function	line:252	namespace:__anon1	signature:(double value)
+__anon1::VPQuality	test/ConfigManage.cpp	/^	void VPQuality(double value)$/;"	kind:function	line:88	namespace:__anon1	signature:(double value)
+__anon1::VPSwingAngle	test/ConfigManage.cpp	/^	void VPSwingAngle(double value)$/;"	kind:function	line:53	namespace:__anon1	signature:(double value)
+__anon1::Vision	test/ConfigManage.cpp	/^	void Vision(double value)$/;"	kind:function	line:119	namespace:__anon1	signature:(double value)
+__anon1::Zoom	test/ConfigManage.cpp	/^	void Zoom(double value)$/;"	kind:function	line:214	namespace:__anon1	signature:(double value)
+__anon1::color	test/ConfigManage.cpp	/^		RGBTRIPLE *color = CUIS4DRender::GetInstance()->GetColormap();$/;"	kind:local	line:160
+__anon1::data	test/ConfigManage.cpp	/^		float data = 0.0;$/;"	kind:local	line:45
+__anon1::data	test/ConfigManage.cpp	/^		float data = 0.0;$/;"	kind:local	line:55
+__anon1::gray	test/ConfigManage.cpp	/^		RGBTRIPLE *gray = ImageAreaManage::GetInstance()->RenderTranslateColor(color, value);$/;"	kind:local	line:161
+__anon1::readfile	test/ConfigManage.cpp	/^			CUIS4DIniFile readfile(PARA_FILE);$/;"	kind:prototype	line:80	file:	signature:(PARA_FILE)
+__anon1::vp_quality_3d	test/ConfigManage.cpp	/^			SCommon vp_quality_3d = readfile.GetVpQualityIndex();   $/;"	kind:local	line:82
 __get_value	include/ConfLite.h	/^    T __get_value(std::string key, std::string entry)$/;"	kind:function	line:186	class:ConfLite	access:public	signature:(std::string key, std::string entry)
 __set_value	include/ConfLite.h	/^    void __set_value(std::string key, T value, std::string entry)$/;"	kind:function	line:177	class:ConfLite	access:public	signature:(std::string key, T value, std::string entry)
 add_item	include/ConfLite.h	/^    void add_item(UserConf uc);$/;"	kind:prototype	line:223	class:UserConfLite	access:public	signature:(UserConf uc)
@@ -157,21 +408,26 @@ add_item	include/ConfLite.h	/^    void add_item(std::string k, std::string v, VT
 add_item	src/ConfLite.cpp	/^void UserConfLite::add_item(UserConf uc)$/;"	kind:function	line:148	class:UserConfLite	signature:(UserConf uc)
 add_item	src/ConfLite.cpp	/^void UserConfLite::add_item(std::string k, std::string v, VT_TABLE vt)$/;"	kind:function	line:153	class:UserConfLite	signature:(std::string k, std::string v, VT_TABLE vt)
 buf	include/ConfLite.h	/^        std::string buf;$/;"	kind:local	line:191
+callback_	test/ConfigManage.cpp	/^		(FnMap[mode_][index_key].callback_)(user_conf_[key]);$/;"	kind:prototype	line:420	file:	signature:(user_conf_[key])
+callback_	test/ConfigManage.h	/^			void (*callback_)(double value);$/;"	kind:variable	line:93
+color	test/ConfigManage.cpp	/^		RGBTRIPLE *color = CUIS4DRender::GetInstance()->GetColormap();$/;"	kind:local	line:160
 conf_db_file_	include/ConfLite.h	/^    std::string conf_db_file_;$/;"	kind:member	line:145	class:ConfLite	access:protected
 conf_table_	include/ConfLite.h	/^    std::string conf_table_;$/;"	kind:member	line:146	class:ConfLite	access:protected
 conn_	include/ConfLite.h	/^    sqlite3 *conn_;$/;"	kind:member	line:147	class:ConfLite	access:protected
+data	test/ConfigManage.cpp	/^		float data = 0.0;$/;"	kind:local	line:45
+data	test/ConfigManage.cpp	/^		float data = 0.0;$/;"	kind:local	line:55
 decode_single	include/ConfLite.h	/^T decode_single(std::string buf)$/;"	kind:function	line:114	signature:(std::string buf)
 dst	src/ConfLite.cpp	/^    std::string dst = conf_table_;$/;"	kind:local	line:167
 encode_single	include/ConfLite.h	/^std::string encode_single(T val)$/;"	kind:function	line:124	signature:(T val)
-entry	src/ConfLite.cpp	/^    std::string entry = "Key, DefaultValue, Step, Upper, Lower, Unit";$/;"	kind:local	line:200
+entry	src/ConfLite.cpp	/^    std::string entry = "Key, DefaultValue, Step, Upper, Lower, Unit";$/;"	kind:local	line:207
 except_cases	test/selftest-sys.cpp	/^        size_t except_cases = 0;$/;"	kind:local	line:70
 except_cases	test/selftest.cpp	/^        size_t except_cases = 0;$/;"	kind:local	line:129
 get	include/ConfLite.h	/^    SysConf get(std::string key = "");$/;"	kind:prototype	line:246	class:SysConfLite	access:public	signature:(std::string key = Ó)
-get	src/ConfLite.cpp	/^SysConf SysConfLite::get(std::string key)$/;"	kind:function	line:184	class:SysConfLite	signature:(std::string key)
+get	src/ConfLite.cpp	/^SysConf SysConfLite::get(std::string key)$/;"	kind:function	line:191	class:SysConfLite	signature:(std::string key)
 get_all	include/ConfLite.h	/^    MAP_UC get_all(std::string key = "");$/;"	kind:prototype	line:210	class:UserConfLite	access:public	signature:(std::string key = Ó)
 get_all	include/ConfLite.h	/^    std::map<std::string, SysConf> get_all(std::string key = "");$/;"	kind:prototype	line:248	class:SysConfLite	access:public	signature:(std::string key = Ó)
 get_all	src/ConfLite.cpp	/^MAP_UC UserConfLite::get_all(std::string key)$/;"	kind:function	line:113	class:UserConfLite	signature:(std::string key)
-get_all	src/ConfLite.cpp	/^std::map<std::string, SysConf> SysConfLite::get_all(std::string key)$/;"	kind:function	line:198	class:SysConfLite	signature:(std::string key)
+get_all	src/ConfLite.cpp	/^std::map<std::string, SysConf> SysConfLite::get_all(std::string key)$/;"	kind:function	line:205	class:SysConfLite	signature:(std::string key)
 get_double	include/ConfLite.h	/^    double get_double(std::string key);$/;"	kind:prototype	line:218	class:UserConfLite	access:public	signature:(std::string key)
 get_double	src/ConfLite.cpp	/^double UserConfLite::get_double(std::string key)$/;"	kind:function	line:83	class:UserConfLite	signature:(std::string key)
 get_int	include/ConfLite.h	/^    int get_int(std::string key);$/;"	kind:prototype	line:219	class:UserConfLite	access:public	signature:(std::string key)
@@ -180,22 +436,48 @@ get_map	include/ConfLite.h	/^    MAP_SS get_map(std::string key);$/;"	kind:proto
 get_map	src/ConfLite.cpp	/^MAP_SS UserConfLite::get_map(std::string key)$/;"	kind:function	line:98	class:UserConfLite	signature:(std::string key)
 get_string	include/ConfLite.h	/^    std::string get_string(std::string key);$/;"	kind:prototype	line:220	class:UserConfLite	access:public	signature:(std::string key)
 get_string	src/ConfLite.cpp	/^std::string UserConfLite::get_string(std::string key)$/;"	kind:function	line:93	class:UserConfLite	signature:(std::string key)
+gray	test/ConfigManage.cpp	/^		RGBTRIPLE *gray = ImageAreaManage::GetInstance()->RenderTranslateColor(color, value);$/;"	kind:local	line:161
+image_param_	test/ConfigManage.cpp	/^		gtk_box_pack_start (GTK_BOX (line1), image_param_[i], TRUE, TRUE, 0);$/;"	kind:local	line:525
+image_param_	test/ConfigManage.h	/^		GtkWidget* image_param_[IMAGE_PARAM_NR];$/;"	kind:member	line:120	class:KnobManage	access:private
+image_param_upper_	test/ConfigManage.cpp	/^		gtk_box_pack_start(GTK_BOX (line2), image_param_upper_[i], TRUE, TRUE, 0);$/;"	kind:local	line:531
+image_param_upper_	test/ConfigManage.h	/^		GtkWidget* image_param_upper_[IMAGE_PARAM_UPPER_NR];$/;"	kind:member	line:121	class:KnobManage	access:private
+index	test/ConfigManage.cpp	/^	int index = 0;$/;"	kind:local	line:457
+index	test/ConfigManage.cpp	/^	int index = 0;$/;"	kind:local	line:557
+is_vp	test/ConfigManage.cpp	/^	bool is_vp = StateProxy::GetInstance()->GetProbeVP();$/;"	kind:local	line:602
+key	test/ConfigManage.cpp	/^		std::string key = FnMap[mode_][index_key].key_;$/;"	kind:local	line:412
+key	test/ConfigManage.cpp	/^		std::string key = FnMap[mode_][index_key].key_;$/;"	kind:local	line:472
+key_	test/ConfigManage.h	/^			std::string key_;$/;"	kind:variable	line:92
+knobs_by_key_	test/ConfigManage.h	/^        std::map<std::string, KnobItem> knobs_by_key_;$/;"	kind:member	line:107	class:KnobManage	access:private
+knobs_menu_	test/ConfigManage.h	/^        std::map<std::string, KnobMenu> knobs_menu_;$/;"	kind:member	line:106	class:KnobManage	access:private
+line1	test/ConfigManage.cpp	/^	GtkWidget* line1 = gtk_hbox_new(true, 3);$/;"	kind:local	line:513
+line1	test/ConfigManage.cpp	/^	gtk_fixed_put(GTK_FIXED(fixed), line1, UIS4DFACE::IMAGE_PARAM_X, UIS4DFACE::IMAGE_PARAM_Y);$/;"	kind:local	line:516
+line2	test/ConfigManage.cpp	/^	GtkWidget* line2 = gtk_hbox_new(true, 0);$/;"	kind:local	line:514
+line2	test/ConfigManage.cpp	/^	gtk_fixed_put(GTK_FIXED(fixed), line2, UIS4DFACE::IMAGE_START_X, UIS4DFACE::HINT_Y-UIS4DFACE::IMAGE_PARAM_HEIGHT\/2-5);$/;"	kind:local	line:519
+lower	test/ConfigManage.cpp	/^	double lower = sys_conf_[key].Lower;$/;"	kind:local	line:485
+m_fixed_knob	test/ConfigManage.h	/^		GtkWidget* m_fixed_knob;$/;"	kind:member	line:117	class:KnobManage	access:private
 main	test/selftest-sys.cpp	/^int main(int argc, char* argv[])$/;"	kind:function	line:63	signature:(int argc, char* argv[])
 main	test/selftest.cpp	/^int main(int argc, char* argv[])$/;"	kind:function	line:122	signature:(int argc, char* argv[])
 make_pair	src/ConfLite.cpp	/^    ret_map->insert(std::make_pair(s.Key, s));$/;"	kind:prototype	line:69	file:	signature:(s.Key, s)
 make_pair	src/ConfLite.cpp	/^    ret_map->insert(std::make_pair(u.Key, u));$/;"	kind:prototype	line:49	file:	signature:(u.Key, u)
+mode_	test/ConfigManage.h	/^        int mode_, mode_before_;$/;"	kind:member	line:112	class:KnobManage	access:private
+mode_before_	test/ConfigManage.h	/^        int mode_, mode_before_;$/;"	kind:member	line:112	class:KnobManage	access:private
 o	include/ConfLite.h	/^    std::ostringstream o;$/;"	kind:local	line:126
+o	test/ConfigManage.cpp	/^		std::ostringstream o;$/;"	kind:local	line:440
 operator <<	include/ConfLite.h	/^    friend std::ostream& operator<< (std::ostream &o, SysConf a)$/;"	kind:function	line:82	struct:SysConf	access:friend	signature:(std::ostream &o, SysConf a)
 operator <<	include/ConfLite.h	/^    friend std::ostream& operator<< (std::ostream &o, UserConf a)$/;"	kind:function	line:107	struct:UserConf	access:friend	signature:(std::ostream &o, UserConf a)
+para_update_timer_	test/ConfigManage.h	/^        int para_update_timer_;$/;"	kind:member	line:122	class:KnobManage	access:private
+ptr_instance_	test/ConfigManage.h	/^        static KnobManage* ptr_instance_;$/;"	kind:member	line:88	class:KnobManage	access:private
+readfile	test/ConfigManage.cpp	/^			CUIS4DIniFile readfile(PARA_FILE);$/;"	kind:prototype	line:80	file:	signature:(PARA_FILE)
 reset	include/ConfLite.h	/^    void reset(std::string key);$/;"	kind:prototype	line:226	class:UserConfLite	access:public	signature:(std::string key)
-reset	src/ConfLite.cpp	/^void UserConfLite::reset(std::string key)$/;"	kind:function	line:163	class:UserConfLite	signature:(std::string key)
+reset_by_prefix	src/ConfLite.cpp	/^void UserConfLite::reset_by_prefix(std::string key)$/;"	kind:function	line:163	class:UserConfLite	signature:(std::string key)
 ret	include/ConfLite.h	/^   T ret;$/;"	kind:local	line:116
 ret	include/ConfLite.h	/^   s >> ret;$/;"	kind:local	line:118
-ret	src/ConfLite.cpp	/^    MAP_SC ret;$/;"	kind:local	line:210
+ret	src/ConfLite.cpp	/^    MAP_SC ret;$/;"	kind:local	line:217
 ret	src/ConfLite.cpp	/^    MAP_SS ret;$/;"	kind:local	line:106
 ret	src/ConfLite.cpp	/^    MAP_UC ret;$/;"	kind:local	line:126
-ret	src/ConfLite.cpp	/^    MAP_UC ret;$/;"	kind:local	line:179
+ret	src/ConfLite.cpp	/^    MAP_UC ret;$/;"	kind:local	line:186
 ret	src/ConfLite.cpp	/^    VEC_UC ret;$/;"	kind:local	line:158
+ret	test/ConfigManage.cpp	/^		std::string ret;$/;"	kind:local	line:1118
 ret	test/selftest-sys.cpp	/^    MAP_SC ret = u.get_all();$/;"	kind:local	line:26
 ret	test/selftest.cpp	/^    MAP_SS ret;$/;"	kind:local	line:20
 ret	test/selftest.cpp	/^    MAP_SS ret;$/;"	kind:local	line:44
@@ -204,6 +486,7 @@ ret	test/selftest.cpp	/^    MAP_UC ret;$/;"	kind:local	line:73
 ret	test/selftest.cpp	/^    MAP_UC ret;$/;"	kind:local	line:94
 s	include/ConfLite.h	/^   std::istringstream s(buf);$/;"	kind:prototype	line:117	signature:(buf)
 s	src/ConfLite.cpp	/^    SysConf s; $/;"	kind:local	line:60
+scan_type	test/ConfigManage.cpp	/^	PrepareCtrl::ScanType scan_type = StateProxy::GetInstance()->GetScanType();$/;"	kind:local	line:603
 selftest_case1	test/selftest-sys.cpp	/^void selftest_case1(SysConfLite &u)$/;"	kind:function	line:10	signature:(SysConfLite &u)
 selftest_case1	test/selftest.cpp	/^void selftest_case1(UserConfLite &u)$/;"	kind:function	line:10	signature:(UserConfLite &u)
 selftest_case2	test/selftest-sys.cpp	/^void selftest_case2(SysConfLite &u)$/;"	kind:function	line:16	signature:(SysConfLite &u)
@@ -227,10 +510,16 @@ set_value	include/ConfLite.h	/^    void set_value(std::string key, std::string v
 set_value	src/ConfLite.cpp	/^void UserConfLite::set_value(std::string key, double value)$/;"	kind:function	line:133	class:UserConfLite	signature:(std::string key, double value)
 set_value	src/ConfLite.cpp	/^void UserConfLite::set_value(std::string key, int value)$/;"	kind:function	line:138	class:UserConfLite	signature:(std::string key, int value)
 set_value	src/ConfLite.cpp	/^void UserConfLite::set_value(std::string key, std::string value)$/;"	kind:function	line:143	class:UserConfLite	signature:(std::string key, std::string value)
+set_value	test/ConfigManage.cpp	/^			u.set_value(key, lower);$/;"	kind:prototype	line:498	file:	signature:(key, lower)
+set_value	test/ConfigManage.cpp	/^			u.set_value(key, real_value);$/;"	kind:prototype	line:491	file:	signature:(key, real_value)
+set_value	test/ConfigManage.cpp	/^			u.set_value(key, upper);$/;"	kind:prototype	line:505	file:	signature:(key, upper)
+set_value	test/ConfigManage.cpp	/^			u.set_value(key, value + step);$/;"	kind:prototype	line:500	file:	signature:(key, value + step)
+set_value	test/ConfigManage.cpp	/^			u.set_value(key, value-step);$/;"	kind:prototype	line:507	file:	signature:(key, value-step)
+set_value	test/ConfigManage.cpp	/^    		it->set_value(knobs[it->get_original_title()]);$/;"	kind:prototype	line:549	file:	signature:(knobs[it->get_original_title()])
 sql	include/ConfLite.h	/^        std::string sql = "select " + entry + " from " + conf_table_ + " where Key=\\"" + key + "\\";";$/;"	kind:local	line:188
 sql	include/ConfLite.h	/^        std::string sql = "update " + conf_table_ + " set " + entry + "=\\"" + encode_single<T>(value) + "\\" where Key=\\"" + key + "\\";";$/;"	kind:local	line:179
 sql	src/ConfLite.cpp	/^    std::string sql = "insert into " + conf_table_ + " values (\\"" + k + "\\", \\"" + v + "\\", " + encode_single<VT_TABLE>(vt) + ");";$/;"	kind:local	line:155
-sql	src/ConfLite.cpp	/^    std::string sql = "select " + entry + " from " + conf_table_;$/;"	kind:local	line:201
+sql	src/ConfLite.cpp	/^    std::string sql = "select " + entry + " from " + conf_table_;$/;"	kind:local	line:208
 sql	src/ConfLite.cpp	/^    std::string sql = "select Key, Value from " + conf_table_ + " where Key like \\"%" + key + "%\\";";$/;"	kind:local	line:103
 sql	src/ConfLite.cpp	/^    std::string sql = "select Key, Value, ValueType from " + conf_table_;$/;"	kind:local	line:118
 sql	src/ConfLite.cpp	/^    std::string sql;$/;"	kind:local	line:165
@@ -241,16 +530,36 @@ sql_query_map_cb	src/ConfLite.cpp	/^int sql_query_map_cb (void* ret, int col_nr,
 sql_query_sys_cb	src/ConfLite.cpp	/^int sql_query_sys_cb (void* ret, int col_nr, char** rows, char** colnames)$/;"	kind:function	line:54	signature:(void* ret, int col_nr, char** rows, char** colnames)
 sql_query_user_cb	include/ConfLite.h	/^int sql_query_user_cb (void* ret, int col_nr, char** rows, char** colnames);$/;"	kind:prototype	line:140	signature:(void* ret, int col_nr, char** rows, char** colnames)
 sql_query_user_cb	src/ConfLite.cpp	/^int sql_query_user_cb (void* ret, int col_nr, char** rows, char** colnames)$/;"	kind:function	line:32	signature:(void* ret, int col_nr, char** rows, char** colnames)
+step	test/ConfigManage.cpp	/^	double step = sys_conf_[key].Step;$/;"	kind:local	line:483
 success_cases	test/selftest-sys.cpp	/^        size_t success_cases = 0;$/;"	kind:local	line:72
 success_cases	test/selftest.cpp	/^        size_t success_cases = 0;$/;"	kind:local	line:131
-sys	src/ConfLite.cpp	/^    SysConf sys;$/;"	kind:local	line:186
+sys	src/ConfLite.cpp	/^    SysConf sys;$/;"	kind:local	line:193
+sys_conf_	test/ConfigManage.h	/^		MAP_SC sys_conf_;$/;"	kind:member	line:109	class:KnobManage	access:private
 total_cases	test/selftest-sys.cpp	/^        size_t total_cases = sizeof(selftests)\/sizeof(void*);$/;"	kind:local	line:71
 total_cases	test/selftest.cpp	/^        size_t total_cases = sizeof(selftests)\/sizeof(void*);$/;"	kind:local	line:130
 u	src/ConfLite.cpp	/^    UserConf u;$/;"	kind:local	line:39
+u	test/ConfigManage.cpp	/^	    SysConfLite u = SysConfLite(CONF_DB_FILE);$/;"	kind:local	line:331
+u	test/ConfigManage.cpp	/^	    UserConfLite u = UserConfLite(CONF_DB_FILE);$/;"	kind:local	line:344
+u	test/ConfigManage.cpp	/^	    UserConfLite u = UserConfLite(CONF_DB_FILE);$/;"	kind:local	line:415
+u	test/ConfigManage.cpp	/^    UserConfLite u = UserConfLite(CONF_DB_FILE);$/;"	kind:local	line:568
 u	test/selftest-sys.cpp	/^        SysConfLite u = SysConfLite(conf_db_file);$/;"	kind:local	line:67
 u	test/selftest.cpp	/^        UserConfLite u = UserConfLite(userconf_db_file);$/;"	kind:local	line:126
+upper	test/ConfigManage.cpp	/^	double upper = sys_conf_[key].Upper;$/;"	kind:local	line:484
+user_conf_	test/ConfigManage.h	/^		MAP_UC user_conf_;$/;"	kind:member	line:110	class:KnobManage	access:private
+userconf_update_timer_	test/ConfigManage.h	/^        int userconf_update_timer_;$/;"	kind:member	line:123	class:KnobManage	access:private
 val	include/ConfLite.h	/^    o << std::fixed << val;$/;"	kind:local	line:128
+value	test/ConfigManage.cpp	/^		o << "<" << (index_key+1) << "> " << name << ' ' << value;$/;"	kind:local	line:441
+value	test/ConfigManage.cpp	/^	double value = user_conf_[key].Value;$/;"	kind:local	line:486
+value_4d_	test/ConfigManage.h	/^        double value_4d_;$/;"	kind:member	line:113	class:KnobManage	access:private
+vp_quality_3d	test/ConfigManage.cpp	/^			SCommon vp_quality_3d = readfile.GetVpQualityIndex();   $/;"	kind:local	line:82
+window_	test/ConfigManage.h	/^		GtkWidget* window_;$/;"	kind:member	line:116	class:KnobManage	access:private
+zoom_in_12	test/ConfigManage.cpp	/^void KnobManage::zoom_in_12()$/;"	kind:function	line:1154	class:KnobManage	signature:()
+zoom_in_12	test/ConfigManage.h	/^		void zoom_in_12();$/;"	kind:prototype	line:133	class:KnobManage	access:public	signature:()
+zoom_in_22	test/ConfigManage.cpp	/^void KnobManage::zoom_in_22()$/;"	kind:function	line:1143	class:KnobManage	signature:()
+zoom_in_22	test/ConfigManage.h	/^		void zoom_in_22();$/;"	kind:prototype	line:132	class:KnobManage	access:public	signature:()
 ~ConfLite	include/ConfLite.h	/^    ~ConfLite()$/;"	kind:function	line:156	class:ConfLite	access:public	signature:()
+~KnobManage	test/ConfigManage.cpp	/^KnobManage::~KnobManage()$/;"	kind:function	line:319	class:KnobManage	signature:()
+~KnobManage	test/ConfigManage.h	/^        ~KnobManage();$/;"	kind:prototype	line:27	class:KnobManage	access:public	signature:()
 ~SysConf	include/ConfLite.h	/^    ~SysConf ()$/;"	kind:function	line:78	struct:SysConf	access:public	signature:()
 ~SysConfLite	include/ConfLite.h	/^    ~SysConfLite(){}$/;"	kind:function	line:234	class:SysConfLite	access:public	signature:()
 ~UserConf	include/ConfLite.h	/^    ~UserConf ()$/;"	kind:function	line:103	struct:UserConf	access:public	signature:()
