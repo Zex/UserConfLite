@@ -101,6 +101,12 @@ void selftest_case7(UserConfLite &u)
     }
 }
 
+void selftest_case8(UserConfLite &u)
+{
+    // -case--------------------------------------------------------
+    u.reset("View.");
+}
+
 void (*selftests[])(UserConfLite&) = {
 
     selftest_case1,
@@ -110,6 +116,7 @@ void (*selftests[])(UserConfLite&) = {
     selftest_case5,
     selftest_case6,
     selftest_case7,
+    selftest_case8,
 };
 
 int main(int argc, char* argv[])

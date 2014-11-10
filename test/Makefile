@@ -10,6 +10,8 @@ SOURCES		= $(shell find $(SRCS) -iregex ".*\.c\(c\|pp\|++\|xx\)")
 LIBS		+= conflite
 LDPATH		+= ../build
 LDFLAGS		+= $(LDPATH:%=-L%)
+CFLAGS		+= `pkg-config --cflags sqlite3`
+LDFLAGS		+= `pkg-config --libs sqlite3`
 #MACROS		+= _GLIBCXX_USE_NANOSLEEP
 
 include ../makefiles/predef.mk

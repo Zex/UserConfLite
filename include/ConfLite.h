@@ -222,6 +222,8 @@ public:
     /* add new user configure item */
     void add_item(UserConf uc);
     void add_item(std::string k, std::string v, VT_TABLE vt);
+
+    void reset(std::string key);
 };
 
 class SysConfLite : public ConfLite
@@ -241,7 +243,7 @@ public:
 //    void set_value(std::string key, double value);
 
     /* get value by key */
-    SysConf get(std::string key);
+    SysConf get(std::string key = "");
  
     std::map<std::string, SysConf> get_all(std::string key = "");
 //    /* add new user configure item */

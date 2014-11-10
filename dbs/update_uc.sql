@@ -8,7 +8,11 @@ insert into UserConf (Key, Value, ValueType)
 update UserConf set Key="Prepare.Distance" where Key="Prepare.MovingLength";
 */
 
-select * from UserConf;
+update UserConf
+set Value = (select SysConf.DefaultValue from SysConf where UserConf.Key=SysConf.Key)
+where exists (select * from SysConf where UserConf.Key=SysConf.Key);
+
+select Key, '-',  Value, '-', ValueType from UserConf;
 
 commit;
 
