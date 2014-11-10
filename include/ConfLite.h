@@ -223,7 +223,7 @@ public:
     void add_item(UserConf uc);
     void add_item(std::string k, std::string v, VT_TABLE vt);
 
-    void reset(std::string key);
+    void reset_by_prefix(std::string key);
 };
 
 class SysConfLite : public ConfLite

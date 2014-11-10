@@ -160,20 +160,27 @@ void UserConfLite::add_item(std::string k, std::string v, VT_TABLE vt)
     EXEC_SQLITE_LOG(conn_, sqlite3_exec(conn_, sql.c_str(), 0, 0, 0), "sqlite3_exec, query done", "sqlite3_exec failed")
 }
 
-void UserConfLite::reset(std::string key)
+void UserConfLite::reset_by_prefix(std::string key)
 {
     std::string sql;
     std::string src("SysConf");
     std::string dst = conf_table_;
 
     sql.append("update " + dst);
-    sql.append(" set Value = (select " + src + ".DefaultValue from " + src + " where " + dst + ".Key=" + src + ".Key)");
-    sql.append(" where exists (select * from " + src + " where " + dst + ".Key=" + src + ".Key);");
+    sql.append(" set Value = (select " + src + ".DefaultValue from " + src + " where " + dst + ".Key=" + src + ".Key");
 
-//    if (key.empty())
-//        sql += ";";
-//    else
-//        sql += " where Key like \"%" + key + "%\";";
+    if (!key.empty())
+        sql.append(" and " + src + ".Key like \"" + key + ".%\"");
+
+    sql.append(");");
+
+    sql.append(" where exists (select * from " + src + " where " + dst + ".Key=" + src + ".Key");
+
+    if (!key.empty())
+        sql.append(" and " + src + ".Key like \"" + key + ".%\"");
+
+    sql.append(");");
+
     LOG("::[" << sql << "]")
 
     MAP_UC ret;
