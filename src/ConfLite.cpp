@@ -170,14 +170,14 @@ void UserConfLite::reset_by_prefix(std::string key)
     sql.append(" set Value = (select " + src + ".DefaultValue from " + src + " where " + dst + ".Key=" + src + ".Key");
 
     if (!key.empty())
-        sql.append(" and " + src + ".Key like \"" + key + ".%\"");
+        sql.append(" and " + src + ".Key like \"" + key + "%\"");
 
-    sql.append(");");
+    sql.append(")");
 
     sql.append(" where exists (select * from " + src + " where " + dst + ".Key=" + src + ".Key");
 
     if (!key.empty())
-        sql.append(" and " + src + ".Key like \"" + key + ".%\"");
+        sql.append(" and " + src + ".Key like \"" + key + "%\"");
 
     sql.append(");");
 
