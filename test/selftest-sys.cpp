@@ -10,18 +10,23 @@ std::string conf_db_file("dbs/config.db");
 void selftest_case1(SysConfLite &u)
 {
     // -case--------------------------------------------------------
-    LOG(u.get("Prepare.SwingAngle"));
+//    LOG(u.get("Prepare.SwingAngle"));
 }
 
 void selftest_case2(SysConfLite &u)
 {
     // -case--------------------------------------------------------
-    LOG(u.get("View.RotationZ"));
+//    LOG(u.get("View.RotationZ"));
+    u.get("*");
 }
 
 void selftest_case3(SysConfLite &u)
 {
     // -case--------------------------------------------------------
+    MAP_SC ret = u.get_all();
+
+    for(MAP_SC::iterator it = ret.begin(); it != ret.end(); it++)
+        LOG(it->first << " => " << it->second);
 }
 
 void selftest_case4(SysConfLite &u)

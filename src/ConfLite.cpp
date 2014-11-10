@@ -7,6 +7,63 @@
  */
 #include "ConfLite.h"
 
+int sql_query_cb (void* ret, int col_nr, char** rows, char** colnames)
+{
+    if (rows == 0) return 0;
+    if (0 > col_nr) return 0;
+
+    std::string *val = reinterpret_cast<std::string*>(ret);
+    *val = rows[0];
+
+    return 0;
+}
+
+int sql_query_map_cb (void* ret, int col_nr, char** rows, char** colnames)
+{
+    if (2 > col_nr)
+        return 0;
+
+    MAP_SS *ret_map = reinterpret_cast<MAP_SS*>(ret);
+    (*ret_map)[rows[0]] = rows[col_nr-1];
+
+    return 0;
+}
+
+int sql_query_user_cb (void* ret, int col_nr, char** rows, char** colnames)
+{
+    if (3 > col_nr)
+        return 0;
+
+    VEC_UC *ret_vec = reinterpret_cast<VEC_UC*>(ret);
+    ret_vec->resize(ret_vec->size()+1);
+
+    ret_vec->at(ret_vec->size()-1).Key = rows[0];
+    ret_vec->at(ret_vec->size()-1).Value = rows[1];
+    ret_vec->at(ret_vec->size()-1).ValueType = (VT_TABLE)decode_single<int>(rows[2]);
+
+    return 0;
+}
+
+int sql_query_sys_cb (void* ret, int col_nr, char** rows, char** colnames)
+{
+    if (5 > col_nr)
+        return 0;
+
+    MAP_SC *ret_map = reinterpret_cast<MAP_SC*>(ret);
+    SysConf s; 
+
+    s.Key = rows[0];
+    s.DefaultValue = decode_single<double>(rows[1]);
+    s.Step = decode_single<double>(rows[2]);
+    s.Upper = decode_single<double>(rows[3]);
+    s.Lower = decode_single<double>(rows[4]);
+    s.Unit = rows[5];
+
+    ret_map->insert(std::make_pair(s.Key, s));
+
+    return 0;
+}
+
 UserConfLite::UserConfLite(std::string fname)
 :ConfLite(fname)
 {
@@ -56,7 +113,7 @@ VEC_UC UserConfLite::get_full(std::string key)
 
     VEC_UC ret;
 
-    EXEC_SQLITE_LOG(conn_, sqlite3_exec(conn_, sql.c_str(), sql_query_full_cb, &ret, 0), "sqlite3_exec, query done", "sqlite3_exec failed")
+    EXEC_SQLITE_LOG(conn_, sqlite3_exec(conn_, sql.c_str(), sql_query_user_cb, &ret, 0), "sqlite3_exec, query done", "sqlite3_exec failed")
 
     return ret;
 }
@@ -100,7 +157,21 @@ SysConf SysConfLite::get(std::string key)
     sys.Step = __get_value<double>(key, "Step");
     sys.Upper = __get_value<double>(key, "Upper");
     sys.Lower = __get_value<double>(key, "Lower");
-    sys.Unit = __get_value<double>(key, "Unit");
+    sys.Unit = __get_value<std::string>(key, "Unit");
 
     return sys;
 }
+
+std::map<std::string, SysConf> SysConfLite::get_all()
+{
+    std::string entry = "Key, DefaultValue, Step, Upper, Lower, Unit";
+    std::string sql = "select " + entry + " from " + conf_table_ + ";";
+    LOG("::[" << sql << "]")
+
+    MAP_SC ret;
+
+    EXEC_SQLITE_LOG(conn_, sqlite3_exec(conn_, sql.c_str(), sql_query_sys_cb, &ret, 0), "sqlite3_exec, query done", "sqlite3_exec failed");
+
+    return ret;
+}
+

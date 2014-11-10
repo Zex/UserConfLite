@@ -132,43 +132,11 @@ std::string encode_single(T val)
 
 typedef std::map<std::string, std::string> MAP_SS;
 typedef std::vector<UserConf> VEC_UC;
+typedef std::map<std::string, SysConf> MAP_SC;
 
-int sql_query_cb (void* ret, int col_nr, char** rows, char** colnames)
-{
-    if (rows == 0) return 0;
-    if (0 > col_nr) return 0;
-
-    std::string *val = reinterpret_cast<std::string*>(ret);
-    *val = rows[0];
-
-    return 0;
-}
-
-int sql_query_map_cb (void* ret, int col_nr, char** rows, char** colnames)
-{
-    if (2 > col_nr)
-        return 0;
-
-    MAP_SS *ret_map = reinterpret_cast<MAP_SS*>(ret);
-    (*ret_map)[rows[0]] = rows[col_nr-1];
-
-    return 0;
-}
-
-int sql_query_full_cb (void* ret, int col_nr, char** rows, char** colnames)
-{
-    if (3 > col_nr)
-        return 0;
-
-    VEC_UC *ret_vec = reinterpret_cast<VEC_UC*>(ret);
-    ret_vec->resize(ret_vec->size()+1);
-
-    ret_vec->at(ret_vec->size()-1).Key = rows[0];
-    ret_vec->at(ret_vec->size()-1).Value = rows[1];
-    ret_vec->at(ret_vec->size()-1).ValueType = (VT_TABLE)decode_single<int>(rows[2]);
-
-    return 0;
-}
+int sql_query_cb (void* ret, int col_nr, char** rows, char** colnames);
+int sql_query_map_cb (void* ret, int col_nr, char** rows, char** colnames);
+int sql_query_user_cb (void* ret, int col_nr, char** rows, char** colnames);
 
 class ConfLite
 {
@@ -274,6 +242,7 @@ public:
     /* get value by key */
     SysConf get(std::string key);
  
+    std::map<std::string, SysConf> get_all();
 //    /* add new user configure item */
 //    void add_item(SysConf uc);
 //    void add_item(std::string k, std::string v, VT_TABLE vt);
