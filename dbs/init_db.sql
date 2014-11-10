@@ -12,6 +12,7 @@
  *
  * Sample usage: sqlite3 ConfLite < init_db.sql
  */
+
 begin transaction;
 
 create table SysConf (
@@ -36,7 +37,12 @@ insert into SysConf values ("View.Chroma",          "2.0",   "1.0",  "7.0",   "0
 insert into SysConf values ("View.Graymap",         "6.0",   "1.0",  "6.0",   "0.0",  "");
 insert into SysConf values ("View.Zoom",            "1.0",   "0.4",  "2.2",   "0.6",  "");
 insert into SysConf values ("View.Render",          "3.0",   "1.0",  "4.0",   "0.0",  "");
+insert into SysConf values ("View.Threshold",       "50.0",  "5.0",  "100.0", "10.0", "");
 insert into SysConf values ("Slice.Shift",          "0.0",   "0.1",  "1.0",   "0.0",  "");
+insert into SysConf values ("Debug.Density",        "1.0",   "0.1",  "1.0",   "0.0",  "");
+insert into SysConf values ("Debug.Brightness",     "2.25",  "0.1",  "5.0",   "0.0",  "");
+insert into SysConf values ("Debug.Contrast",       "0.0",   "0.1",  "3.0",   "0.0",  "");
+insert into SysConf values ("Debug.Smooth",         "3.0",   "1.0",  "4.0",   "0.0",  "");
 
 create table UserConf (
     Key text primary key not null,
@@ -47,7 +53,7 @@ create table UserConf (
 insert into UserConf (Key, Value, ValueType) 
     select Key, DefaultValue, 0 from SysConf;
 
-insert into UserConf values ("Prepare.PreferedScan", "3D",    2);
+/* insert into UserConf values ("Prepare.PreferedScan", "3D",    2); */
 
 commit;
 
