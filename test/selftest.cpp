@@ -56,27 +56,27 @@ void selftest_case4(UserConfLite &u)
 void selftest_case5(UserConfLite &u)
 {
     // -case--------------------------------------------------------
-    VEC_UC ret;
+    MAP_UC ret;
 
-    ret = u.get_full("View.");
+    ret = u.get_all("View");
 
-    for (VEC_UC::iterator it = ret.begin();
+    for (MAP_UC::iterator it = ret.begin();
         it != ret.end(); it++)
     {
-        LOG(*it);
+        LOG(it->first << " => " << it->second);
     }
 }
 
 void selftest_case6(UserConfLite &u)
 {
     // -case--------------------------------------------------------
-    VEC_UC ret;
-    ret = u.get_full("Prepare.");
+    MAP_UC ret;
+    ret = u.get_all("Prepare.");
 
-    for (VEC_UC::iterator it = ret.begin();
+    for (MAP_UC::iterator it = ret.begin();
         it != ret.end(); it++)
     {
-        LOG(*it);
+        LOG(it->first << " => " << it->second);
     }
 }
 
@@ -87,17 +87,17 @@ void selftest_case7(UserConfLite &u)
     UserConf uc1("View.DisplayFormat", "1", VT_INT);
     UserConf uc2("View.ReferenceImage", "C", VT_STRING);
 
-    u.add_item("Capture3D.Step", "10", VT_INT);
-    u.add_item(uc1);
-    u.add_item(uc2);
+//    u.add_item("Capture3D.Step", "10", VT_INT);
+//    u.add_item(uc1);
+//    u.add_item(uc2);
 
-    VEC_UC ret;
-    ret = u.get_full("");
+    MAP_UC ret;
+    ret = u.get_all();
 
-    for (VEC_UC::iterator it = ret.begin();
+    for (MAP_UC::iterator it = ret.begin();
         it != ret.end(); it++)
     {
-        LOG(*it);
+        LOG(it->first << " => " << it->second);
     }
 }
 

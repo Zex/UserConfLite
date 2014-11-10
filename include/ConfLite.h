@@ -133,6 +133,7 @@ std::string encode_single(T val)
 typedef std::map<std::string, std::string> MAP_SS;
 typedef std::vector<UserConf> VEC_UC;
 typedef std::map<std::string, SysConf> MAP_SC;
+typedef std::map<std::string, UserConf> MAP_UC;
 
 int sql_query_cb (void* ret, int col_nr, char** rows, char** colnames);
 int sql_query_map_cb (void* ret, int col_nr, char** rows, char** colnames);
@@ -206,7 +207,7 @@ public:
     MAP_SS get_map(std::string key);
 
     /* get all column values by key */
-    VEC_UC get_full(std::string key);
+    MAP_UC get_all(std::string key = "");
 
     /* set value referenced by key */
     void set_value(std::string key, double value);
@@ -242,7 +243,7 @@ public:
     /* get value by key */
     SysConf get(std::string key);
  
-    std::map<std::string, SysConf> get_all();
+    std::map<std::string, SysConf> get_all(std::string key = "");
 //    /* add new user configure item */
 //    void add_item(SysConf uc);
 //    void add_item(std::string k, std::string v, VT_TABLE vt);

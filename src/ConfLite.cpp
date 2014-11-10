@@ -34,12 +34,19 @@ int sql_query_user_cb (void* ret, int col_nr, char** rows, char** colnames)
     if (3 > col_nr)
         return 0;
 
-    VEC_UC *ret_vec = reinterpret_cast<VEC_UC*>(ret);
-    ret_vec->resize(ret_vec->size()+1);
+    MAP_UC *ret_map = reinterpret_cast<MAP_UC*>(ret);
+//    ret_vec->resize(ret_vec->size()+1);
+    UserConf u;
 
-    ret_vec->at(ret_vec->size()-1).Key = rows[0];
-    ret_vec->at(ret_vec->size()-1).Value = rows[1];
-    ret_vec->at(ret_vec->size()-1).ValueType = (VT_TABLE)decode_single<int>(rows[2]);
+//    ret_vec->at(ret_vec->size()-1).Key = rows[0];
+//    ret_vec->at(ret_vec->size()-1).Value = rows[1];
+//    ret_vec->at(ret_vec->size()-1).ValueType = (VT_TABLE)decode_single<int>(rows[2]);
+
+    u.Key = rows[0];
+    u.Value = rows[1];
+    u.ValueType = (VT_TABLE)decode_single<int>(rows[2]);
+
+    ret_map->insert(std::make_pair(u.Key, u));
 
     return 0;
 }
@@ -103,15 +110,20 @@ MAP_SS UserConfLite::get_map(std::string key)
     return ret;
 }
 
-VEC_UC UserConfLite::get_full(std::string key)
+MAP_UC UserConfLite::get_all(std::string key)
 {
-    if (key.empty())
-        throw std::runtime_error("Iteration not allow");
+//    if (key.empty())
+//        throw std::runtime_error("Iteration not allow");
 
-    std::string sql = "select Key, Value, ValueType from " + conf_table_ + " where Key like \"%" + key + "%\";";
+    std::string sql = "select Key, Value, ValueType from " + conf_table_;
+
+    if (key.empty())
+        sql += ";";
+    else
+        sql += " where Key like \"%" + key + "%\";";
     LOG("::[" << sql << "]")
 
-    VEC_UC ret;
+    MAP_UC ret;
 
     EXEC_SQLITE_LOG(conn_, sqlite3_exec(conn_, sql.c_str(), sql_query_user_cb, &ret, 0), "sqlite3_exec, query done", "sqlite3_exec failed")
 
@@ -162,10 +174,16 @@ SysConf SysConfLite::get(std::string key)
     return sys;
 }
 
-std::map<std::string, SysConf> SysConfLite::get_all()
+std::map<std::string, SysConf> SysConfLite::get_all(std::string key)
 {
     std::string entry = "Key, DefaultValue, Step, Upper, Lower, Unit";
-    std::string sql = "select " + entry + " from " + conf_table_ + ";";
+    std::string sql = "select " + entry + " from " + conf_table_;
+
+    if (key.empty())
+        sql += ";";
+    else
+        sql += " where Key like \"%" + key + "%\";";
+
     LOG("::[" << sql << "]")
 
     MAP_SC ret;
