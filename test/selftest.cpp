@@ -104,7 +104,7 @@ void selftest_case7(UserConfLite &u)
 void selftest_case8(UserConfLite &u)
 {
     // -case--------------------------------------------------------
-    u.reset("View.");
+    u.reset_by_prefix("View.");
 }
 
 void (*selftests[])(UserConfLite&) = {
