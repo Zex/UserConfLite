@@ -26,7 +26,7 @@ create table SysConf (
 
                             /* Key,                 DefVal,  Step,   Upper,   Lower,  Unit */
 insert into SysConf values ("Prepare.SwingAngle",   "70.0",  "10.0", "70.0",  "20.0", "");
-insert into SysConf values ("Prepare.Distance", "11.0",  "1.0",  "7.0",   "99.0", "cm");
+insert into SysConf values ("Prepare.Distance",     "11.0",  "1.0",  "99.0",  "7.0", "cm");
 insert into SysConf values ("Prepare.QualityIndex", "2.0",   "1.0",  "2.0",   "1.0",  "");
 insert into SysConf values ("View.Vision",          "0.0",   "1.0",  "2.0",   "1.0",  "");
 insert into SysConf values ("View.QRotate",         "0.0",   "90.0", "270.0", "0.0",  "");

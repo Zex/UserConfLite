@@ -16,6 +16,10 @@ set Value = (select SysConf.DefaultValue from SysConf where UserConf.Key=SysConf
 where exists (select * from SysConf where UserConf.Key=SysConf.Key and SysConf.Key like "View.%");
 */
 
+update UserConf
+set Value = (select SysConf.DefaultValue from SysConf where UserConf.Key=SysConf.Key)
+where exists (select * from SysConf where UserConf.Key=SysConf.Key);
+
 select Key, '-',  Value, '-', ValueType from UserConf;
 
 commit;
