@@ -44,7 +44,7 @@ enum VT_TABLE
     VT_LAST
 };
 
-const char* VALUE_TYPE[] = {
+static std::string VALUE_TYPE[] = {
     "VT_DOUBLE", "VT_INT", "VT_STRING",
 };
 
@@ -135,9 +135,9 @@ typedef std::vector<UserConf> VEC_UC;
 typedef std::map<std::string, SysConf> MAP_SC;
 typedef std::map<std::string, UserConf> MAP_UC;
 
-int sql_query_cb (void* ret, int col_nr, char** rows, char** colnames);
-int sql_query_map_cb (void* ret, int col_nr, char** rows, char** colnames);
-int sql_query_user_cb (void* ret, int col_nr, char** rows, char** colnames);
+extern int sql_query_cb (void* ret, int col_nr, char** rows, char** colnames);
+extern int sql_query_map_cb (void* ret, int col_nr, char** rows, char** colnames);
+extern int sql_query_user_cb (void* ret, int col_nr, char** rows, char** colnames);
 
 class ConfLite
 {

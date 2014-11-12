@@ -1,3 +1,5 @@
+.separator ' '
+
 begin transaction;
 /*
 insert into UserConf (Key, Value, ValueType) 
@@ -15,12 +17,14 @@ update UserConf
 set Value = (select SysConf.DefaultValue from SysConf where UserConf.Key=SysConf.Key and SysConf.Key like "View.%")
 where exists (select * from SysConf where UserConf.Key=SysConf.Key and SysConf.Key like "View.%");
 */
-
+/*
 update UserConf
 set Value = (select SysConf.DefaultValue from SysConf where UserConf.Key=SysConf.Key)
 where exists (select * from SysConf where UserConf.Key=SysConf.Key);
+*/
 
-select Key, '-',  Value, '-', ValueType from UserConf;
+select Key, ',Value: ',  Value, ',Type: ', ValueType from UserConf;
+select Key, ',DefaultValue: ', DefaultValue, ',Step: ', Step, ',Upper: ', Upper, ',Lower: ', Lower from SysConf;
 
 commit;
 
