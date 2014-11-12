@@ -21,11 +21,26 @@ where exists (select * from SysConf where UserConf.Key=SysConf.Key and SysConf.K
 update UserConf
 set Value = (select SysConf.DefaultValue from SysConf where UserConf.Key=SysConf.Key)
 where exists (select * from SysConf where UserConf.Key=SysConf.Key);
-*/
 
 select Key, ',Value: ',  Value, ',Type: ', ValueType from UserConf;
 select Key, ',DefaultValue: ', DefaultValue, ',Step: ', Step, ',Upper: ', Upper, ',Lower: ', Lower from SysConf;
 
+alter table SysConf
+add chk_defval
+check (cast(DefaultValue as float) >= cast(Lower as float) and cast(DefaultValue as float) <= cast(Upper as float));
+*/
+
+insert into SysConf values ("Prepare.DistanceAA",     "13.0",  "1.0",  "99.0",  "7.0", "cm");
+/*
+select cast(round(0.3, 2) as float);
+select cast(round(0.3, 2) as int);
+
+select Key, ',Value: ',  cast(Value as float), ',Type: ', ValueType from UserConf;
+*/
+select Key,
+',DefaultValue: ', cast(DefaultValue as float),
+',Step: ', cast(Step as float),
+',Upper: ', cast(Upper as float),
+',Lower: ', cast(Lower as float) from SysConf;
 
 commit;
-

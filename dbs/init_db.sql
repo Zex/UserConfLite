@@ -17,7 +17,8 @@ begin transaction;
 
 create table SysConf (
     Key text primary key not null,
-    DefaultValue text not null,
+    DefaultValue text not null 
+    check (cast(DefaultValue as float) >= cast(Lower as float) and cast(DefaultValue as float) <= cast(Upper as float)),
     Step text not null,
     Upper text not null,
     Lower text not null,
@@ -66,7 +67,6 @@ insert into UserConf (Key, Value, ValueType)
 insert into UserConf values ("Prepare.PreferedScan", "3D",    2);
 
 commit;
-
 
                             /* Key,                  Value,   ValueType */
 /*
