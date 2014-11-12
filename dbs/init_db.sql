@@ -28,7 +28,7 @@ create table SysConf (
 insert into SysConf values ("Prepare.SwingAngle",   "70.0",  "10.0", "70.0",  "20.0", "");
 insert into SysConf values ("Prepare.Distance",     "11.0",  "1.0",  "99.0",  "7.0", "cm");
 insert into SysConf values ("Prepare.QualityIndex", "2.0",   "1.0",  "2.0",   "1.0",  "");
-insert into SysConf values ("View.Vision",          "0.0",   "1.0",  "2.0",   "1.0",  "");
+insert into SysConf values ("View.Vision",          "0.0",   "1.0",  "2.0",   "0.0",  "");
 insert into SysConf values ("View.QRotate",         "0.0",   "90.0", "270.0", "0.0",  "");
 insert into SysConf values ("View.RotationX",       "270.0", "5.0",  "360.0", "0.0",  "");
 insert into SysConf values ("View.RotationY",       "0.0",   "5.0",  "360.0", "0.0",  "");
@@ -39,10 +39,20 @@ insert into SysConf values ("View.Zoom",            "1.0",   "0.4",  "2.2",   "0
 insert into SysConf values ("View.Render",          "3.0",   "1.0",  "4.0",   "0.0",  "");
 insert into SysConf values ("View.Threshold",       "50.0",  "5.0",  "100.0", "10.0", "");
 insert into SysConf values ("Slice.Shift",          "0.0",   "0.1",  "1.0",   "0.0",  "");
-insert into SysConf values ("Debug.Density",        "1.0",   "0.1",  "1.0",   "0.0",  "");
-insert into SysConf values ("Debug.Brightness",     "2.25",  "0.1",  "5.0",   "0.0",  "");
-insert into SysConf values ("Debug.Contrast",       "0.0",   "0.1",  "3.0",   "0.0",  "");
-insert into SysConf values ("Debug.Smooth",         "3.0",   "1.0",  "4.0",   "0.0",  "");
+insert into SysConf values ("Debug.Density.Vi0",    "1.0",   "0.1",  "1.0",   "0.0",  "");
+insert into SysConf values ("Debug.Brightness.Vi0", "2.25",  "0.1",  "5.0",   "0.0",  "");
+insert into SysConf values ("Debug.Contrast.Vi0",   "0.0",   "0.1",  "3.0",   "0.0",  "");
+insert into SysConf values ("Debug.Smooth.Vi0",     "3.0",   "1.0",  "4.0",   "0.0",  "");
+
+insert into SysConf values ("Debug.Density.Vi1",    "1.0",   "0.1",  "1.0",   "0.0",  "");
+insert into SysConf values ("Debug.Brightness.Vi1", "2.25",  "0.1",  "5.0",   "0.0",  "");
+insert into SysConf values ("Debug.Contrast.Vi1",   "0.0",   "0.1",  "3.0",   "0.0",  "");
+insert into SysConf values ("Debug.Smooth.Vi1",     "3.0",   "1.0",  "4.0",   "0.0",  "");
+
+insert into SysConf values ("Debug.Density.Vi2",    "1.0",   "0.1",  "1.0",   "0.0",  "");
+insert into SysConf values ("Debug.Brightness.Vi2", "2.25",  "0.1",  "5.0",   "0.0",  "");
+insert into SysConf values ("Debug.Contrast.Vi2",   "0.0",   "0.1",  "3.0",   "0.0",  "");
+insert into SysConf values ("Debug.Smooth.Vi2",     "3.0",   "1.0",  "4.0",   "0.0",  "");
 
 create table UserConf (
     Key text primary key not null,

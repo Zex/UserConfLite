@@ -26,5 +26,6 @@ where exists (select * from SysConf where UserConf.Key=SysConf.Key);
 select Key, ',Value: ',  Value, ',Type: ', ValueType from UserConf;
 select Key, ',DefaultValue: ', DefaultValue, ',Step: ', Step, ',Upper: ', Upper, ',Lower: ', Lower from SysConf;
 
+
 commit;
 
