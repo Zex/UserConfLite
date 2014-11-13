@@ -65,7 +65,7 @@ create table UserConf (
 insert into UserConf (Key, Value, ValueType) 
     select Key, DefaultValue, 0 from SysConf;
 
-insert into UserConf values ("Prepare.PreferedScan", "3D",    2);
+insert into UserConf values ("Prepare.PreferredScan", "3D",    2);
 
 commit;
 
