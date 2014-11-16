@@ -1,0 +1,161 @@
+body {
+    font-weight: bold;
+    color: #920481;
+    background-color: #012345;/*90d0d;*/
+}
+
+div.default_page {
+    text-align: center; 
+    width: auto; /* 1022px; /* image width */
+    height: auto; /* 664px; image height */
+    font-size: 20pt;
+}
+
+/*#navigator {*/
+div.navigator {
+    width: 15%;
+    float: left;
+/*  outline: 5px outset #1377d3;
+    border: 5px inset #1315dd;
+*/
+}
+
+div.content {
+    margin-left: 19%;
+    width: 80%;
+    outline: 5px outset #1377d3;
+    border: 5px inset #1315dd;
+}
+
+ul, li {
+    font-weight: bold;
+    color: #920481;
+    background-color: inherit;
+}
+
+img {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    border: 0;
+/*    height: 200px; */
+}
+
+th.normal {
+    background-color: #a53999;
+    color: #aabbcc;
+    border: 3px solid #157401;
+}
+
+tr.normal, td.normal {
+    background-color: #152079;
+    color: #837192;
+    border: 3px solid #157401;
+}
+
+tr[align=center] {
+    color: #ff0000;
+    background-color: #eeeeee;
+    border: 20px solid #157401;
+}
+
+table.normal {
+    background-color: #152079;
+    color: #837192;
+    border: 3px solid #157401;
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 96%; 
+}
+
+table.login {
+    background-color: #333933;
+    color: #79a3d8;
+    margin-left: 30%;
+    margin-right: 20%;
+    margin-top: 20%;
+    margin-bottom: 20%;
+    border-spacing: 5px;
+}
+
+th.login {
+    background-color: #333933;
+    color: #79a3d8;
+    border-spacing: 5px;
+}
+
+tr.login, td.login {
+    background-color: #333933;
+    color: #79a3d8;
+/*    border: 3px dotted #740392; */
+    border-spacing: 5px;
+}
+
+input[type=text], input[type=submit], label, textarea, select {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+img.source {
+    align: center;
+}
+
+textarea.source {
+    font-family: comic sans ms;
+    font-size: 12px;
+    color: #00ff00;
+    background-color: #123456;
+    resize: none;
+    margin-left: 0;/* 5%; */
+    width: 100%;
+}
+
+table.source_ln {
+    font-family: comic sans ms;
+    font-size: 12px;
+    color: #00ff00;
+    background-color: #123456;
+    margin-left: 2%;
+}
+
+a:visited {
+    color:#d53030;
+}
+
+a:link {
+    color:#a5a0a0;
+}
+
+div.normal, p {
+    margin-left: 2%;
+    margin-right: 2%;
+    line-height: 3em;
+}
+
+div.source {
+    margin-left: 0;
+    margin-right: 0;
+    align: center;
+}
+
+textarea {
+    width: 80%;
+    height: 50%;
+}
+
+textarea[readonly=true] {
+    resize: none
+}
+
+span {
+    color: #0dd00d;
+}
+
+pre {
+    font-size: 20px;
+    color: #a22281;
+    background-color: #dddddd;
+    white-space: pre;
+    width: 80%;
+    display: block;
+}
