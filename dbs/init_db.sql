@@ -56,6 +56,8 @@ insert into SysConf values ("Debug.Brightness.Vi2", "1.45",  "0.1",  "5.0",   "0
 insert into SysConf values ("Debug.Contrast.Vi2",   "1.0",   "0.1",  "3.0",   "0.0",  "");
 insert into SysConf values ("Debug.Smooth.Vi2",     "3.0",   "1.0",  "4.0",   "0.0",  "");
 
+insert into SysConf values ("Review.Speed",         "0.0",   "1.0",  "3.0",   "0.0",  "");
+
 create table UserConf (
     Key text primary key not null,
     Value text not null,
