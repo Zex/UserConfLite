@@ -1,5 +1,7 @@
 # Makefile for ConfLite
-
+#
+# Author: Zex Li<top_zlynch@yahoo.com>
+#
 PROJECT		= ConfLite
 DESCRIPTION	= A sqlite solution to system/user configure
 VERSION		= 0.0.1
