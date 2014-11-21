@@ -1,0 +1,20 @@
+getaddrinfo           getfsfile             getipnodebyname       getopt_long           getrpcbynumber_r      getusershell
+getaddrinfo_a         getfsspec             getline               getopt_long_only      getrpcent             getutent
+getaliasbyname        getgrent              getloadavg            getpass               getrpcent_r           getutent_r
+getaliasbyname_r      getgrent_r            getlogin              getprotobyname        getrpcport            getutid
+getaliasent           getgrgid              getlogin_r            getprotobyname_r      gets                  getutid_r
+getaliasent_r         getgrgid_r            getmntent             getprotobynumber      getservbyname         getutline
+getauxval             getgrnam              getmntent_r           getprotobynumber_r    getservbyname_r       getutline_r
+getc                  getgrnam_r            get_myaddress         getprotoent           getservbyport         getutmp
+getchar               getgrouplist          getnameinfo           getprotoent_r         getservbyport_r       getutmpx
+getchar_unlocked      gethostbyaddr         getnetbyaddr          getpt                 getservent            getutxent
+getc_unlocked         gethostbyaddr_r       getnetbyaddr_r        getpw                 getservent_r          getutxid
+get_current_dir_name  gethostbyname         getnetbyname          getpwent              getspent              getutxline
+getcwd                gethostbyname2        getnetbyname_r        getpwent_r            getspent_r            getw
+getdate               gethostbyname2_r      getnetent             getpwnam              getspnam              getwc
+getdate_err           gethostbyname_r       getnetent_r           getpwnam_r            getspnam_r            getwchar
+getdate_r             gethostent            getnetgrent           getpwuid              getsubopt             getwchar_unlocked
+getdelim              gethostent_r          getnetgrent_r         getpwuid_r            gettext               getwc_unlocked
+getdirentries         gethostid             get_nprocs            getrpcbyname          getttyent             getwd
+getenv                getifaddrs            get_nprocs_conf       getrpcbyname_r        getttynam             
+getfsent              getipnodebyaddr       getopt                getrpcbynumber        getumask     
