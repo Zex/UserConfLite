@@ -24,7 +24,7 @@
 //               int    p_proto;      /* protocol number */
 //           }
 
-// g++ -o ts-addrinfo ts-addrinfo.cpp translate.cpp translate.h errhdr.h
+// g++ -o ts-dispatch ts-dispatch.cpp translate.cpp translate.h errhdr.h
 
 int case1(int argc, char* argv[])
 {
@@ -252,6 +252,77 @@ int case6(int argc, char* argv[])
 
     return 0;
 }
+#include <utmp.h>
+
+//       struct utmp *getutent(void);
+//       struct utmp *getutid(struct utmp *ut);
+//       struct utmp *getutline(struct utmp *ut);
+//       struct utmp *pututline(struct utmp *ut);
+//
+//       void setutent(void);
+//       void endutent(void);
+//
+//       int utmpname(const char *file);
+//
+//struct utmp
+//{
+//  short int ut_type;		/* Type of login.  */
+//  pid_t ut_pid;			/* Process ID of login process.  */
+//  char ut_line[UT_LINESIZE];	/* Devicename.  */
+//  char ut_id[4];		/* Inittab ID.  */
+//  char ut_user[UT_NAMESIZE];	/* Username.  */
+//  char ut_host[UT_HOSTSIZE];	/* Hostname for remote login.  */
+//  struct exit_status ut_exit;	/* Exit status of a process marked
+//				   as DEAD_PROCESS.  */
+///* The ut_session and ut_tv fields must be the same size when compiled
+//   32- and 64-bit.  This allows data files and shared memory to be
+//   shared between 32- and 64-bit applications.  */
+//#ifdef __WORDSIZE_TIME64_COMPAT32
+//  int32_t ut_session;		/* Session ID, used for windowing.  */
+//  struct
+//  {
+//    int32_t tv_sec;		/* Seconds.  */
+//    int32_t tv_usec;		/* Microseconds.  */
+//  } ut_tv;			/* Time entry was made.  */
+//#else
+//  long int ut_session;		/* Session ID, used for windowing.  */
+//  struct timeval ut_tv;		/* Time entry was made.  */
+//#endif
+//
+//  int32_t ut_addr_v6[4];	/* Internet address of remote host.  */
+//  char __unused[20];		/* Reserved for future use.  */
+//};
+
+int case7(int argc, char* argv[])
+{
+    struct utmp *ent;
+
+    setutent();
+
+    while ((ent = getutent()))
+    {
+        std::cout
+            << "\nut_type: " << ent->ut_type
+            << "\nut_pid: " << ent->ut_pid
+            << "\nut_line: " << ent->ut_line
+            << "\nut_id: " << ent->ut_id
+            << "\nut_user: " << ent->ut_user
+            << "\nut_host: " << ent->ut_host
+            << "\nut_session: " << ent->ut_session
+            << "\nut_tv.tv_sec: " << ent->ut_tv.tv_sec
+            << "\nut_tv.tv_usec: " << ent->ut_tv.tv_usec
+            << "\nut_addr_v6: " << ent->ut_addr_v6
+            << "\n__unused: " << ent->__unused
+            << "\n\n";
+        std::cout << "\n******************************************\n";
+
+    }
+
+    endutent();
+
+    return 0;
+}
+
 
 //       struct hostent *getipnodebyname(const char *name, int af,
 //                                       int flags, int *error_num);
@@ -266,14 +337,19 @@ int case6(int argc, char* argv[])
 //               int    h_length;
 //               char **h_addr_list;
 //           };
-int case6(int argc, char* argv[])
+int case8(int argc, char* argv[])
 {
     struct hostent *ent;
 
-    if ((ent = getipnodebyname()))
+//    if ((ent = getipnodebyname()))
 
     return 0;
 }
+
+
+
+
+
 
 int main(int argc, char* argv[])
 {
@@ -284,5 +360,8 @@ int main(int argc, char* argv[])
     case5(argc, argv);
     case6(argc, argv);
     case7(argc, argv);
+    case8(argc, argv);
     return 0;
 }
+
+
