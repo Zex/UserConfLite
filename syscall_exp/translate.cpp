@@ -107,3 +107,29 @@ std::string get_ai_flag(int f)
 
     return ret;
 }
+
+
+std::string get_utmp_type(int t)
+{
+    std::string ret;
+
+    switch (t)
+    {
+        case EMPTY        : return "EMPTY";
+        case RUN_LVL      : return "RUN_LVL";
+        case BOOT_TIME    : return "BOOT_TIME";
+        case NEW_TIME     : return "NEW_TIME";
+        case OLD_TIME     : return "OLD_TIME";
+        case INIT_PROCESS : return "INIT_PROCESS";
+        case LOGIN_PROCESS: return "LOGIN_PROCESS";
+        case USER_PROCESS : return "USER_PROCESS";
+        case DEAD_PROCESS : return "DEAD_PROCESS";
+        case ACCOUNTING   : return "ACCOUNTING";
+        default: return "UNKNOWN";
+    }
+
+    return ret;
+
+}
+
+
