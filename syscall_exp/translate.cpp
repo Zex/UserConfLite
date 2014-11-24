@@ -133,3 +133,26 @@ std::string get_utmp_type(int t)
 }
 
 
+std::string get_inotify_mask(uint32_t m)
+{
+    std::string ret;
+
+    if (m & IN_ACCESS) ret.append("IN_ACCESS,");
+    if (m & IN_MODIFY) ret.append("IN_MODIFY,");
+    if (m & IN_ATTRIB) ret.append("IN_ATTRIB,");
+    if (m & IN_CLOSE_WRITE) ret.append("IN_CLOSE_WRITE,");
+    if (m & IN_CLOSE_NOWRITE) ret.append("IN_CLOSE_NOWRITE,");
+    if (m & IN_OPEN) ret.append("IN_OPEN,");
+    if (m & IN_MOVED_FROM) ret.append("IN_MOVED_FROM,");
+    if (m & IN_MOVED_TO) ret.append("IN_MOVED_TO,");
+    if (m & IN_CREATE) ret.append("IN_CREATE,");
+    if (m & IN_DELETE) ret.append("IN_DELETE,");
+    if (m & IN_DELETE_SELF) ret.append("IN_DELETE_SELF,");
+    if (m & IN_MOVE_SELF) ret.append("IN_MOVE_SELF,");
+
+    if (ret.at(ret.size()-1) == ',')
+        ret = ret.substr(0, ret.size()-1);
+
+    return ret;
+}
+
