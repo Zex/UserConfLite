@@ -19,13 +19,13 @@ create table SysConf (
     Key text primary key not null,
     DefaultValue text not null 
     check (cast(DefaultValue as float) >= cast(Lower as float) and cast(DefaultValue as float) <= cast(Upper as float)),
-    Step text not null,
+    Step text not null
+    check (cast(Step as float) <= cast(Upper as float) - cast(Lower as float)),
     Upper text not null,
     Lower text not null,
     Unit text
 );
 
-                            /* Key,                 DefVal,  Step,   Upper,   Lower,  Unit */
 insert into SysConf values ("Prepare.SwingAngle",   "70.0",  "10.0", "70.0",  "20.0", "");
 insert into SysConf values ("Prepare.Distance",     "11.0",  "1.0",  "99.0",  "7.0", "cm");
 insert into SysConf values ("Prepare.QualityIndex", "2.0",   "1.0",  "2.0",   "1.0",  "");
