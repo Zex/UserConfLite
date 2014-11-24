@@ -1,4 +1,5 @@
 body {
+    font-family: "Arial Narrow";
     font-weight: bold;
     color: #920481;
     background-color: #012345;/*90d0d;*/
@@ -158,4 +159,37 @@ pre {
     white-space: pre;
     width: 80%;
     display: block;
+}
+
+div.error {
+    background-color: #2a13d2;
+    color: #4cceff;
+    font-size: 25px;
+}
+
+td.userconf {
+    background-color: #152079;
+    color: #837192;
+    border: 3px solid #157401;
+    width: 70%;
+}
+
+input.sysconf {
+    margin-left: 0;
+    margin-right: 0;
+    width: 98%;
+}
+
+input.config_submit {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-right: 2%;
+    margin-left: 2%;
+    font-size: 17px;
+    height: 40;
+    width: 10%;
+}
+
+input.config_submit_in_table {
+    font-size: 15px;
 }

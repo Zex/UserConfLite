@@ -68,7 +68,7 @@ function update_configure()
         }
         catch (Exception $e)
         {
-            echo "<div>".$e->getCode()." => ".$e->getMessage()."</div>";
+            echo "<div class=\"error\">".$e->getCode()." => ".$e->getMessage()."</div>";
         }
         
      }
@@ -143,7 +143,7 @@ function read_sysconf()
                 if ($t == 'Key') continue;
 
                 echo "<td class=\"normal\">";
-                echo "<input style=\"width:98%\" name=\"".$row['Key'].".".$t."\" type=\"text\" value=\"".$row[$t]."\"/>";
+                echo "<input class=\"sysconf\" name=\"".$row['Key'].".".$t."\" type=\"text\" value=\"".$row[$t]."\"/>";
                 echo "</td>";
             }
 
@@ -151,7 +151,7 @@ function read_sysconf()
         }
 
         echo "</table>";
-        echo "<input type=\"submit\" value=\""."Submit"."\"/>";
+        echo "<input class=\"config_submit\" type=\"submit\" value=\""._("Submit")."\"/>";
         echo "</form>";
 
         echo "<form action=\"d4config?additem\" method=\"post\" enctype=\"multipart/form-data\">";
@@ -161,12 +161,12 @@ function read_sysconf()
         foreach ($titles as $t)
         {
             echo "<td class=\"normal\">";
-            echo "<input name=\"".$t."\" type=\"text\"/>";
+            echo "<input class=\"sysconf\" name=\"".$t."\" type=\"text\"/>";
             echo "</td>";
         }
 
         echo "</table>";
-        echo "<input type=\"submit\" value=\""."New Item"."\"/>";
+        echo "<input class=\"config_submit\" type=\"submit\" value=\""._("New Item")."\"/>";
         echo "</form>";
     }
 
@@ -207,8 +207,8 @@ function read_userconf()
         {
             echo "<tr class=\"normal\">";
             echo "<form action=\"d4config?dui=".$row['Key']."\" method=\"post\" enctype=\"multipart/form-data\">";
-            echo "<td class=\"normal\" width=\"70%\">";
-            echo "<input type=\"submit\" name=\"".$row['Key']."\" value=\""."Delete"."\"/>";
+            echo "<td class=\"userconf\">";
+            echo "<input class=\"config_submit_in_table\" type=\"submit\" name=\"".$row['Key']."\" value=\""._("Delete")."\"/>";
             echo "<span>".$row['Key']."</span>"."</td>";
             echo "</form>";
 
@@ -217,7 +217,7 @@ function read_userconf()
                 if ($t == 'Key') continue;
 
                 echo "<td class=\"normal\" width=\"15%\">";
-                echo "<input style=\"width:98%\" name=\"".$row['Key'].'.'.$t."\" type=\"text\" value=\"".$row[$t]."\" readonly=\"true\"/>";
+                echo "<input class=\"sysconf\" name=\"".$row['Key'].'.'.$t."\" type=\"text\" value=\"".$row[$t]."\" readonly=\"true\"/>";
                 echo "</td>";
             }
 
@@ -225,7 +225,7 @@ function read_userconf()
         }
 
         echo "</table>";
-        echo "<input type=\"submit\" value=\""."Reset"."\"/>";
+        echo "<input class=\"config_submit\" type=\"submit\" value=\""._("Reset")."\"/>";
         echo "</form>";
 
         echo "<form action=\"d4config?aui\" method=\"post\" enctype=\"multipart/form-data\">";
@@ -235,12 +235,12 @@ function read_userconf()
         foreach ($titles as $t)
         {
             echo "<td class=\"normal\">";
-            echo "<input name=\"".$t."\" type=\"text\"/>";
+            echo "<input class=\"sysconf\" name=\"".$t."\" type=\"text\"/>";
             echo "</td>";
         }
 
         echo "</table>";
-        echo "<input type=\"submit\" value=\""."New Item"."\"/>";
+        echo "<input class=\"config_submit\" type=\"submit\" value=\""._("New Item")."\"/>";
         echo "</form>";
     }
     
@@ -290,7 +290,7 @@ function add_item()
         }
         catch (Exception $e)
         {
-            echo "<div>".$e->getCode()." => ".$e->getMessage()."</div>";
+            echo "<div class=\"error\">".$e->getCode()." => ".$e->getMessage()."</div>";
         }
         
      }
@@ -336,7 +336,7 @@ function add_user_item()
         }
         catch (Exception $e)
         {
-            echo "<div>".$e->getCode()." => ".$e->getMessage()."</div>";
+            echo "<div class=\"error\">".$e->getCode()." => ".$e->getMessage()."</div>";
         }
         
      }
@@ -368,7 +368,7 @@ function del_user_item($key)
         }
         catch (Exception $e)
         {
-            echo "<div>".$e->getCode()." => ".$e->getMessage()."</div>";
+            echo "<div class=\"error\">".$e->getCode()." => ".$e->getMessage()."</div>";
         }
      }
     
@@ -422,7 +422,7 @@ function reply()
         }
         catch (Exception $e)
         {
-            echo "<div>".$e->getCode()." => ".$e->getMessage()."</div>";
+            echo "<div class=\"error\">".$e->getCode()." => ".$e->getMessage()."</div>";
         }
     }
 
