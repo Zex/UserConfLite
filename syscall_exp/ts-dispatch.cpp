@@ -252,8 +252,8 @@ int case6(int argc, char* argv[])
 
     return 0;
 }
-#include <utmp.h>
 
+//#include <utmp.h>
 //       struct utmp *getutent(void);
 //       struct utmp *getutid(struct utmp *ut);
 //       struct utmp *getutline(struct utmp *ut);
@@ -292,30 +292,41 @@ int case6(int argc, char* argv[])
 //  int32_t ut_addr_v6[4];	/* Internet address of remote host.  */
 //  char __unused[20];		/* Reserved for future use.  */
 //};
+//
+//           struct exit_status {              /* Type for ut_exit, below */
+//               short int e_termination;      /* Process termination status */
+//               short int e_exit;             /* Process exit status */
+//           };
 
 int case7(int argc, char* argv[])
 {
     struct utmp *ent;
+    char buf[128];
 
     setutent();
 
     while ((ent = getutent()))
     {
         std::cout
-            << "\nut_type: " << ent->ut_type
+            << "\nut_type: " << get_utmp_type(ent->ut_type)
             << "\nut_pid: " << ent->ut_pid
             << "\nut_line: " << ent->ut_line
             << "\nut_id: " << ent->ut_id
             << "\nut_user: " << ent->ut_user
             << "\nut_host: " << ent->ut_host
+            << "\nut_exit.e_termination: " << get_utmp_type(ent->ut_exit.e_termination)
+            << "\nut_exit.e_exit: " << get_utmp_type(ent->ut_exit.e_exit)
             << "\nut_session: " << ent->ut_session
             << "\nut_tv.tv_sec: " << ent->ut_tv.tv_sec
             << "\nut_tv.tv_usec: " << ent->ut_tv.tv_usec
-            << "\nut_addr_v6: " << ent->ut_addr_v6
-            << "\n__unused: " << ent->__unused
-            << "\n\n";
-        std::cout << "\n******************************************\n";
+            << "\nut_addr_v6: ";
 
+        if (inet_ntop(AF_INET, (in_addr*)&ent->ut_addr_v6[0], buf, 128))
+            std::cout << buf;
+//            << "\nut_addr_v6: " << inet_ntoa(*(in_addr*)&ent->ut_addr_v6[0])
+        std::cout << "\n__unused: " << ent->__unused
+            << "\nlogin time: " << asctime(localtime(&ent->ut_tv.tv_sec));
+        std::cout << "\n******************************************\n";
     }
 
     endutent();
@@ -323,11 +334,8 @@ int case7(int argc, char* argv[])
     return 0;
 }
 
-
-//       struct hostent *getipnodebyname(const char *name, int af,
-//                                       int flags, int *error_num);
-//       struct hostent *getipnodebyaddr(const void *addr, size_t len,
-//                                       int af, int *error_num);
+//       struct hostent *getipnodebyname(const char *name, int af, int flags, int *error_num);
+//       struct hostent *getipnodebyaddr(const void *addr, size_t len, int af, int *error_num);
 //       void freehostent(struct hostent *ip);
 //
 //           struct hostent {
@@ -345,11 +353,6 @@ int case8(int argc, char* argv[])
 
     return 0;
 }
-
-
-
-
-
 
 int main(int argc, char* argv[])
 {
