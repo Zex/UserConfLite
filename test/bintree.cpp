@@ -10,11 +10,9 @@ struct node
     node* right_;
 
     node(int e = 0)
-    : val_(e)
+    : val_(e), left_(NULL),
+        right_(NULL)
     {
-        std::cout << "val_ = " << val_ << '\n';
-        left_ = NULL;
-        right_ = NULL;
     }
 
     friend bool operator< (node &a, node &b)
@@ -88,13 +86,11 @@ public:
             crash_all(root_);
     }
 
-    void insert(int e, node *root)
+    void insert(int e, node *&root)
     {
         if (!root)
         {
-            std::cout << "root == NULL\n";
             root = new node(e);
-            std::cout << root->val_ << '\n';
         }
         else
         {
@@ -192,7 +188,6 @@ public:
                 return;
             }
 
-            std::cout << "LEAF:" << nd << '\n';
             delete nd;
         }
     }
@@ -213,9 +208,8 @@ public:
 
 int main(int argc, char* argv[])
 {
-    bintree b;// = bintree(10);
+    bintree b;//(10);
 
-    b.print_tree();
     b.insert(10);
     b.print_tree();
     b.insert(2);
