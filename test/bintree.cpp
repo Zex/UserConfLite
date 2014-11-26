@@ -57,6 +57,11 @@ protected:
 
 public:
 
+    node* root()
+    {
+        return root_;
+    }
+
     bintree() : root_(NULL)
     {
     }
@@ -66,7 +71,7 @@ public:
         root_ = new node(e);
     }
 
-    void crash_all(node* root)
+    void crash_all(node *&root)
     {
         if (root)
         {
@@ -203,6 +208,60 @@ public:
         print_tree(root_);
         std::cout << "----------------------------------||\n";
     }
+
+    void preorder(node *&root)
+    {
+        if (root)
+        {
+            std::cout << root->val_ << ' ';
+
+            if (root->left_)
+            {
+                preorder(root->left_);
+            }
+
+            if (root->right_)
+            {
+                preorder(root->right_);
+            }
+        }
+    }
+
+    void postorder(node *&root)
+    {
+        if (root)
+        {
+            if (root->left_)
+            {
+                postorder(root->left_);
+            }
+
+            if (root->right_)
+            {
+                postorder(root->right_);
+            }
+
+            std::cout << root->val_ << ' ';
+        }
+    }
+
+    void inorder(node *&root)
+    {
+        if (root)
+        {
+            if (root->left_)
+            {
+                inorder(root->left_);
+            }
+           
+            std::cout << root->val_ << ' ';
+
+            if (root->right_)
+            {
+                inorder(root->right_);
+            }
+        }
+    }
 };
 
 
@@ -230,12 +289,25 @@ int main(int argc, char* argv[])
     b.insert(25);
     b.print_tree();
 
-    b.remove(19);
+    b.insert(14);
     b.print_tree();
+//    b.remove(19);
+//    b.print_tree();
+//
+//    b.remove(2);
+//    b.print_tree();
+    node* r = b.root();
+    std::cout << "preorder: ";
+    b.preorder(r);
+    std::cout << '\n';
 
-    b.remove(2);
-    b.print_tree();
+    std::cout << "postorder: ";
+    b.postorder(r);
+    std::cout << '\n';
 
+    std::cout << "inorder: ";
+    b.inorder(r);
+    std::cout << '\n';
     return 0;
 }
 
