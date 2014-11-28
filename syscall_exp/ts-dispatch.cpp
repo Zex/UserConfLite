@@ -326,7 +326,7 @@ int case7(int argc, char* argv[])
             std::cout << buf;
 // << "\nut_addr_v6: " << inet_ntoa(*(in_addr*)&ent->ut_addr_v6[0])
         std::cout << "\n__unused: " << ent->__unused
-            << "\nlogin time: " << asctime(localtime(&ent->ut_tv.tv_sec));
+            << "\nlogin time: " << asctime(localtime((time_t*)&ent->ut_tv.tv_sec));
         std::cout << "\n******************************************\n";
     }
 
@@ -492,6 +492,25 @@ int case9(int argc, char* argv[])
     return 0;
 }
 
+//       char *getusershell(void);
+//       void setusershell(void);
+//       void endusershell(void);
+int case10(int argc, char* argv[])
+{
+    char* ent;
+
+    setusershell();
+
+    while ((ent = getusershell()))
+    {
+        LOG(ent);
+    }
+
+    endusershell();
+
+    return 0;
+}
+
 
 int main(int argc, char* argv[])
 {
@@ -504,6 +523,7 @@ int main(int argc, char* argv[])
     case7(argc, argv);
     case8(argc, argv);
     case9(argc, argv);
+    case10(argc, argv);
     return 0;
 }
 
