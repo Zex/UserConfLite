@@ -229,7 +229,7 @@ int case5(int argc, char* argv[])
         std::cout
             << "\nr_name: " << ent->r_name
             << "\nr_number: " << ent->r_number
-            << "\nr_name: ";
+            << "\nr_aliases: ";
         for (char** p = ent->r_aliases; *p != 0; p++)
             std::cout << *p << ",";
         std::cout << "\n******************************************\n";
