@@ -502,7 +502,7 @@ int case10(int argc, char* argv[])
     setusershell();
 
     while ((ent = getusershell()))
-    {
+    {ys
         LOG(ent);
     }
 
@@ -511,6 +511,53 @@ int case10(int argc, char* argv[])
     return 0;
 }
 
+#include <linux/kcmp.h>
+
+// int kcmp(pid_t pid1, pid_t pid2, int type,
+//     unsigned long idx1, unsigned long idx2);
+// KCMP_FILE
+// Check whether a file descriptor idx1 in the process pid1 refers to the same open file description (see open(2)) as file descriptor
+// idx2 in the process pid2.
+// 
+// KCMP_FILES
+// Check whether the process share the same set of open file descriptors.  The arguments idx1 and idx2 are ignored.
+// 
+// KCMP_FS
+// Check  whether  the  processes  share the same file system information (i.e., file mode creation mask, working directory, and file
+// system root).  The arguments idx1 and idx2 are ignored.
+// 
+// KCMP_IO
+// Check whether the processes share I/O context.  The arguments idx1 and idx2 are ignored.
+// 
+// KCMP_SIGHAND
+// Check whether the processes share the same table of signal dispositions.  The arguments idx1 and idx2 are ignored.
+// 
+// KCMP_SYSVSEM
+// Check whether the processes share the same list of System V semaphore undo operations.  The arguments idx1 and idx2 are ignored.
+// 
+// KCMP_VM
+// Check whether the processes share the same address space.  The arguments idx1 and idx2 are ignored.
+// 0   v1 is equal to v2; in other words, the two processes share the resource.
+// 1   v1 is less than v2.
+// 2   v1 is greater than v2.
+// 3   v1 is not equal to v2, but ordering information is unavailable.
+// 
+int case11(int argc, char* argv[])
+{
+    int ret;
+
+    if (0 > (ret = syscall(SYS_kcmp, getpid(), getppid(), KCMP_IO)))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
+
+    LOG("KCMP getpid():getppid() => " 
+        << (ret == 0: "share the resource"?
+            ret == 1: "v1 is less than v2"?
+            ret == 2: "v1 is greater than v2"?
+            "ordering information is unavailable"));
+}
 
 int main(int argc, char* argv[])
 {
@@ -524,7 +571,9 @@ int main(int argc, char* argv[])
     case8(argc, argv);
     case9(argc, argv);
     case10(argc, argv);
+    case11(argc, argv);
     return 0;
 }
+
 
 
