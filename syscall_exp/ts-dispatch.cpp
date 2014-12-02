@@ -502,7 +502,7 @@ int case10(int argc, char* argv[])
     setusershell();
 
     while ((ent = getusershell()))
-    {ys
+    {
         LOG(ent);
     }
 
@@ -511,7 +511,7 @@ int case10(int argc, char* argv[])
     return 0;
 }
 
-#include <linux/kcmp.h>
+//#include <linux/kcmp.h>
 
 // int kcmp(pid_t pid1, pid_t pid2, int type,
 //     unsigned long idx1, unsigned long idx2);
@@ -544,19 +544,60 @@ int case10(int argc, char* argv[])
 // 
 int case11(int argc, char* argv[])
 {
+//    int ret;
+//
+//    if (0 > (ret = syscall(SYS_kcmp, getpid(), getppid(), KCMP_IO)))
+//    {
+//        LOG_ERR(strerror(errno))
+//        return 0;
+//    }
+//
+//    LOG("KCMP getpid():getppid() => " 
+//        << (ret == 0: "share the resource"?
+//            ret == 1: "v1 is less than v2"?
+//            ret == 2: "v1 is greater than v2"?
+//            "ordering information is unavailable"));
+}
+
+// int rt_sigqueueinfo(pid_t tgid, int sig, siginfo_t *uinfo);
+// 
+// int rt_tgsigqueueinfo(pid_t tgid, pid_t tid, int sig,
+// siginfo_t *uinfo);
+//
+// si_code
+// This must be one of the SI_* codes in the Linux kernel source file include/asm-generic/siginfo.h, with the restriction that the code
+// must be negative (i.e., cannot be SI_USER, which is used by the kernel to indicate a signal sent by kill(2)) and cannot (since Linux
+// 2.6.39) be SI_TKILL (which is used by the kernel to indicate a signal sent using tgkill(2)).
+// 
+// si_pid This should be set to a process ID, typically the process ID of the sender.
+// 
+// si_uid This should be set to a user ID, typically the real user ID of the sender.
+// 
+// si_value
+// This  field  contains  the  user data to accompany the signal.  For more information, see the description of the last (union sigval)
+// argument of sigqueue(3).
+#include <sys/signal.h>
+#include <sys/syscall.h>
+
+int case12(int argc, char* argv[])
+{
     int ret;
 
-    if (0 > (ret = syscall(SYS_kcmp, getpid(), getppid(), KCMP_IO)))
+    siginfo_t sig;
+
+    sig.si_code = SI_QUEUE;
+    sig.si_pid = getpid();
+    sig.si_uid = 0;
+    sig.si_value.sival_int =  317;
+
+    if (0 > (ret = syscall(SYS_rt_sigqueueinfo, getpid(), SIGALRM, &sig)))
+//    if (0 > (ret = syscall(129, getpid(), SIGALRM, &sig)))
     {
         LOG_ERR(strerror(errno))
         return 0;
     }
 
-    LOG("KCMP getpid():getppid() => " 
-        << (ret == 0: "share the resource"?
-            ret == 1: "v1 is less than v2"?
-            ret == 2: "v1 is greater than v2"?
-            "ordering information is unavailable"));
+    LOG("ret: " << ret)
 }
 
 int main(int argc, char* argv[])
@@ -569,11 +610,13 @@ int main(int argc, char* argv[])
     case6(argc, argv);
     case7(argc, argv);
     case8(argc, argv);
-    case9(argc, argv);
+//    case9(argc, argv);
     case10(argc, argv);
     case11(argc, argv);
+    case12(argc, argv);
     return 0;
 }
+
 
 
 
