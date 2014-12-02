@@ -1,12 +1,11 @@
 
 #include "translate.h"
 
-#include <sys/signal.h>
 #include <sys/syscall.h>
 
 void hello(int signo)
 {
-    LOG(__func__)
+    LOG(__func__ << ':' << get_signame(signo))
 }
 
 //int sigsuspend(const sigset_t *mask);
@@ -21,7 +20,9 @@ void case1(int argc, char* argv[])
     {
         msk.__val[SIGINT] = sigmask(SIGINT);
     }
+
     signal(SIGINT, hello);
+
     if (EFAULT == sigsuspend(&msk))
     {
         LOG_ERR(strerror(errno))
