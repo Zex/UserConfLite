@@ -600,6 +600,55 @@ int case12(int argc, char* argv[])
     LOG("ret: " << ret)
 }
 
+#include <sys/quota.h>
+//#include <xfs/xqm.h>
+
+// int quotactl(int cmd, const char *special, int id, caddr_t addr);
+// struct dqblk {          /* Definition since Linux 2.4.22 */
+// uint64_t dqb_bhardlimit;   /* absolute limit on disk
+// quota blocks alloc */
+// uint64_t dqb_bsoftlimit;   /* preferred limit on
+// disk quota blocks */
+// uint64_t dqb_curspace;     /* current quota block
+// count */
+// uint64_t dqb_ihardlimit;   /* maximum number of
+// allocated inodes */
+// uint64_t dqb_isoftlimit;   /* preferred inode limit */
+// uint64_t dqb_curinodes;    /* current number of
+// allocated inodes */
+// uint64_t dqb_btime;        /* time limit for excessive
+// disk use */
+// uint64_t dqb_itime;        /* time limit for excessive
+// files */
+// uint32_t dqb_valid;        /* bit mask of QIF_* constants */
+// };
+
+int case13(int argc, char* argv[])
+{
+    struct dqblk ent;
+
+    if (0 > quotactl(Q_GETQUOTA, "/dev/sda2", 0, (caddr_t)&ent))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
+
+    std::cout << "QUOTA"
+        << "\ndqb_bhardlimit: " << ent.dqb_bhardlimit
+        << "\ndqb_bsoftlimit: " << ent.dqb_bsoftlimit
+        << "\ndqb_curspace: " << ent.dqb_curspace
+        << "\ndqb_ihardlimit: " << ent.dqb_ihardlimit
+        << "\ndqb_isoftlimit: " << ent.dqb_isoftlimit
+        << "\ndqb_curinodes: " << ent.dqb_curinodes
+        << "\ndqb_btime: " << ent.dqb_btime
+        << "\ndqb_itime: " << ent.dqb_itime
+        << "\ndqb_valid: " << ent.dqb_valid;
+    std::cout << "\n******************************************\n";
+
+    return 0;
+}
+
+
 int main(int argc, char* argv[])
 {
     case1(argc, argv);
@@ -613,9 +662,13 @@ int main(int argc, char* argv[])
 //    case9(argc, argv);
     case10(argc, argv);
     case11(argc, argv);
-    case12(argc, argv);
+//    case12(argc, argv);
+    case13(argc, argv);
     return 0;
 }
+
+
+
 
 
 
