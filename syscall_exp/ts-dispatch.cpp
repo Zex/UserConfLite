@@ -544,19 +544,19 @@ int case10(int argc, char* argv[])
 // 
 int case11(int argc, char* argv[])
 {
-//    int ret;
-//
-//    if (0 > (ret = syscall(SYS_kcmp, getpid(), getppid(), KCMP_IO)))
-//    {
-//        LOG_ERR(strerror(errno))
-//        return 0;
-//    }
-//
-//    LOG("KCMP getpid():getppid() => " 
-//        << (ret == 0: "share the resource"?
-//            ret == 1: "v1 is less than v2"?
-//            ret == 2: "v1 is greater than v2"?
-//            "ordering information is unavailable"));
+    int ret;
+
+    if (0 > (ret = syscall(SYS_kcmp, getpid(), getppid(), KCMP_IO)))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
+
+    LOG("KCMP getpid():getppid() => " 
+        << (ret == 0: "share the resource"?
+            ret == 1: "v1 is less than v2"?
+            ret == 2: "v1 is greater than v2"?
+            "ordering information is unavailable"));
 }
 
 // int rt_sigqueueinfo(pid_t tgid, int sig, siginfo_t *uinfo);
