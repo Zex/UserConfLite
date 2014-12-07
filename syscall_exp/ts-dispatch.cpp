@@ -544,6 +544,7 @@ int case10(int argc, char* argv[])
 // 
 int case11(int argc, char* argv[])
 {
+#ifdef CONFIG_CHECKPOINT_RESTORE
     int ret;
 
     if (0 > (ret = syscall(SYS_kcmp, getpid(), getppid(), KCMP_IO)))
@@ -557,6 +558,9 @@ int case11(int argc, char* argv[])
             ret == 1: "v1 is less than v2"?
             ret == 2: "v1 is greater than v2"?
             "ordering information is unavailable"));
+#endif
+
+    return 0;
 }
 
 // int rt_sigqueueinfo(pid_t tgid, int sig, siginfo_t *uinfo);
@@ -648,6 +652,37 @@ int case13(int argc, char* argv[])
     return 0;
 }
 
+#include <sys/uio.h>
+// 
+// ssize_t readv(int fd, const struct iovec *iov, int iovcnt);
+// ssize_t writev(int fd, const struct iovec *iov, int iovcnt);
+// ssize_t preadv(int fd, const struct iovec *iov, int iovcnt,
+// off_t offset);
+// 
+// ssize_t pwritev(int fd, const struct iovec *iov, int iovcnt,
+// off_t offset);
+// 
+// struct iovec {
+// void  *iov_base;    /* Starting address */
+// size_t iov_len;     /* Number of bytes to transfer */
+// };
+int case14(int argc, char* argv[])
+{
+    int fd = STDIN_FILENO, iov_nr = (int)sizeof(ssize_t);
+    struct iovec iov[iov_nr];
+
+    if (0 > readv(fd, iov, iov_nr)); 
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
+
+//    std::cout << "iovec: "
+//        << "\niov_base: " << (char*)iov.iov_base
+//        << "\niov_len: " << iov.iov_len;
+    std::cout << "\n******************************************\n";
+    return 0;
+}
 
 int main(int argc, char* argv[])
 {
@@ -664,12 +699,7 @@ int main(int argc, char* argv[])
     case11(argc, argv);
 //    case12(argc, argv);
     case13(argc, argv);
+    case14(argc, argv);
     return 0;
 }
-
-
-
-
-
-
 
