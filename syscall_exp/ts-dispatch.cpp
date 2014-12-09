@@ -653,6 +653,8 @@ int case13(int argc, char* argv[])
 }
 
 #include <sys/uio.h>
+#include <fcntl.h>
+#include <stdlib.h>
 // 
 // ssize_t readv(int fd, const struct iovec *iov, int iovcnt);
 // ssize_t writev(int fd, const struct iovec *iov, int iovcnt);
@@ -668,12 +670,15 @@ int case13(int argc, char* argv[])
 // };
 int case14(int argc, char* argv[])
 {
-    int fd = STDIN_FILENO, iov_nr = (int)sizeof(ssize_t);
+    int fd = STDIN_FILENO;
+//    int fd = open("message", O_CLOEXEC);
+    int iov_nr = 3;//(int)sizeof(ssize_t);
     struct iovec iov[iov_nr];
 
-    if (0 > readv(fd, iov, iov_nr)); 
+    if (0 > readv(fd, iov, iov_nr)) 
     {
         LOG_ERR(strerror(errno))
+//        close(fd);
         return 0;
     }
 
@@ -681,6 +686,30 @@ int case14(int argc, char* argv[])
 //        << "\niov_base: " << (char*)iov.iov_base
 //        << "\niov_len: " << iov.iov_len;
     std::cout << "\n******************************************\n";
+//    close(fd);
+    return 0;
+}
+
+//#include <linux/capability.h>
+#include <sys/prctl.h>
+// int capget(cap_user_header_t hdrp, cap_user_data_t datap);
+// int capset(cap_user_header_t hdrp, const cap_user_data_t datap);
+int case15(int argc, char* argv[])
+{
+//    cap_user_header_t cap_hdr;
+//    cap_user_data_t cap_data;
+
+//    if (0 > capget(cap_hdr, cap_data))
+    char *ret;
+
+    if (0 > prctl(PR_GET_NAME, ret))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
+   
+    LOG("NAME: " << ret);
+
     return 0;
 }
 
@@ -699,7 +728,8 @@ int main(int argc, char* argv[])
     case11(argc, argv);
 //    case12(argc, argv);
     case13(argc, argv);
-    case14(argc, argv);
+//    case14(argc, argv);
+    case15(argc, argv);
     return 0;
 }
 
