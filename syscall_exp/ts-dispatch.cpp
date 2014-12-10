@@ -544,7 +544,8 @@ int case10(int argc, char* argv[])
 // 
 int case11(int argc, char* argv[])
 {
-#ifdef CONFIG_CHECKPOINT_RESTORE
+// CONFIG_CHECKPOINT_RESTORE
+#if 0
     int ret;
 
     if (0 > (ret = syscall(SYS_kcmp, getpid(), getppid(), KCMP_IO)))
@@ -692,6 +693,7 @@ int case14(int argc, char* argv[])
 
 //#include <linux/capability.h>
 #include <sys/prctl.h>
+#include <linux/version.h>
 // int capget(cap_user_header_t hdrp, cap_user_data_t datap);
 // int capset(cap_user_header_t hdrp, const cap_user_data_t datap);
 int case15(int argc, char* argv[])
@@ -700,15 +702,45 @@ int case15(int argc, char* argv[])
 //    cap_user_data_t cap_data;
 
 //    if (0 > capget(cap_hdr, cap_data))
-    char *ret;
+    char *name;
 
-    if (0 > prctl(PR_GET_NAME, ret))
+    if (0 > prctl(PR_GET_NAME, name))
     {
         LOG_ERR(strerror(errno))
         return 0;
     }
    
-    LOG("NAME: " << ret);
+    LOG("NAME: " << name);
+
+    int sig;
+
+    if (0 > prctl(PR_GET_PDEATHSIG, &sig))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
+
+    LOG("PDEATHSIG: " << sig);
+
+    LOG("LINUX_VERSION_CODE: " << LINUX_VERSION_CODE)
+    LOG("KERNEL_VERSION(3,5,0): " << KERNEL_VERSION(3,5,0))
+
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(3,5,0)
+// CONFIG_CHECKPOINT_RESTORE
+#if 0
+    int *addr[2];
+
+    if (0 > prctl(PR_GET_TID_ADDRESS, addr))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
+
+    LOG("TID_ADDRESS: 0x" << std::hex << *addr[0]);
+    LOG("TID_ADDRESS: 0x" << std::hex << *addr[1]);
+#endif
+#endif
+
 
     return 0;
 }
