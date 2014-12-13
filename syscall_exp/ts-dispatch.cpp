@@ -695,6 +695,7 @@ int case14(int argc, char* argv[])
 //#include <linux/capability.h>
 #include <sys/prctl.h>
 #include <linux/version.h>
+#include <linux/seccomp.h>
 // int capget(cap_user_header_t hdrp, cap_user_data_t datap);
 // int capset(cap_user_header_t hdrp, const cap_user_data_t datap);
 int case15(int argc, char* argv[])
@@ -742,11 +743,18 @@ int case15(int argc, char* argv[])
 #endif
 #endif
 
+    if (0 > prctl(PR_GET_SECCOMP, &sig))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
+
+    LOG("SECCOMP: " << (sig == SECCOMP_MODE_STRICT ? "SECCOMP_MODE_STRICT"
+                        : sig == SECCOMP_MODE_FILTER ? "SECCOMP_MODE_FILTER"
+                        : "SECCOMP_MODE_DISABLED"))
 
     return 0;
 }
-
-//TODO:SECOMP
 
 int main(int argc, char* argv[])
 {
