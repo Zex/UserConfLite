@@ -753,6 +753,24 @@ int case15(int argc, char* argv[])
                         : sig == SECCOMP_MODE_FILTER ? "SECCOMP_MODE_FILTER"
                         : "SECCOMP_MODE_DISABLED"))
 
+//    struct sock_fprog limit;
+    sig = SECCOMP_MODE_STRICT;
+
+    if (0 > prctl(PR_SET_SECCOMP, sig))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }// kill
+    
+    if (0 > prctl(PR_GET_SECCOMP, &sig))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
+
+    LOG("SECCOMP: " << (sig == SECCOMP_MODE_STRICT ? "SECCOMP_MODE_STRICT"
+                        : sig == SECCOMP_MODE_FILTER ? "SECCOMP_MODE_FILTER"
+                        : "SECCOMP_MODE_DISABLED"))
     return 0;
 }
 
