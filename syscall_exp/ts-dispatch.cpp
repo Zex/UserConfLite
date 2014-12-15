@@ -774,6 +774,25 @@ int case15(int argc, char* argv[])
     return 0;
 }
 
+//       int truncate(const char *path, off_t length);
+//       int ftruncate(int fd, off_t length);
+int case16(int argc, char* argv[])
+{
+    std::string fname;
+    off_t len;
+
+    fname = "hello.buf";
+    len = 512;
+
+    if (0 > truncate(fname.c_str(), len))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
+    
+    return 0;
+}
+
 int main(int argc, char* argv[])
 {
     case1(argc, argv);
@@ -790,7 +809,11 @@ int main(int argc, char* argv[])
 //    case12(argc, argv);
     case13(argc, argv);
 //    case14(argc, argv);
-    case15(argc, argv);
+//    case15(argc, argv);
+    case16(argc, argv);
+
     return 0;
 }
+
+
 
