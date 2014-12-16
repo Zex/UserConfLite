@@ -793,6 +793,24 @@ int case16(int argc, char* argv[])
     return 0;
 }
 
+//      long gethostid(void);
+//       int sethostid(long hostid);
+int case17(int argc, char* argv[])
+{
+    long ret;
+
+    if (0 > (ret = gethostid()))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
+
+    LOG("HOSTID: 0x" << std::hex << ret)
+
+    return 0;
+}
+
+
 int main(int argc, char* argv[])
 {
     case1(argc, argv);
@@ -811,6 +829,7 @@ int main(int argc, char* argv[])
 //    case14(argc, argv);
 //    case15(argc, argv);
     case16(argc, argv);
+    case17(argc, argv);
 
     return 0;
 }
