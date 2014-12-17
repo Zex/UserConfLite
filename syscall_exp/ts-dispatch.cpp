@@ -776,6 +776,44 @@ int case15(int argc, char* argv[])
 
 //       int truncate(const char *path, off_t length);
 //       int ftruncate(int fd, off_t length);
+//       extern int h_errno;
+//
+//       struct hostent *gethostbyname(const char *name);
+//
+//       #include <sys/socket.h>       /* for AF_INET */
+//       struct hostent *gethostbyaddr(const void *addr,
+//                                     socklen_t len, int type);
+//
+//       void sethostent(int stayopen);
+//
+//       void endhostent(void);
+//
+//       void herror(const char *s);
+//
+//       const char *hstrerror(int err);
+//
+//       /* System V/POSIX extension */
+//       struct hostent *gethostent(void);
+//
+//       /* GNU extensions */
+//       struct hostent *gethostbyname2(const char *name, int af);
+//
+//       int gethostent_r(
+//               struct hostent *ret, char *buf, size_t buflen,
+//               struct hostent **result, int *h_errnop);
+//
+//       int gethostbyaddr_r(const void *addr, socklen_t len, int type,
+//               struct hostent *ret, char *buf, size_t buflen,
+//               struct hostent **result, int *h_errnop);
+//
+//       int gethostbyname_r(const char *name,
+//               struct hostent *ret, char *buf, size_t buflen,
+//               struct hostent **result, int *h_errnop);
+//
+//       int gethostbyname2_r(const char *name, int af,
+//               struct hostent *ret, char *buf, size_t buflen,
+//               struct hostent **result, int *h_errnop);
+
 int case16(int argc, char* argv[])
 {
     std::string fname;
@@ -833,6 +871,7 @@ int main(int argc, char* argv[])
 
     return 0;
 }
+
 
 
 
