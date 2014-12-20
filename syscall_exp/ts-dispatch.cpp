@@ -581,12 +581,78 @@ int case11(int argc, char* argv[])
 // si_value
 // This  field  contains  the  user data to accompany the signal.  For more information, see the description of the last (union sigval)
 // argument of sigqueue(3).
+//
+// int sigaction(int signum, const struct sigaction *act,
+//  struct sigaction *oldact);
+//
+// NOTE: On some architectures a union is involved: do not assign to both sa_handler and sa_sigaction.
+//
+//struct sigaction {
+//	__sighandler_t sa_handler;
+//	unsigned long sa_flags;
+//#ifdef SA_RESTORER
+//	__sigrestore_t sa_restorer;
+//#endif
+//	sigset_t sa_mask;		/* mask last for extensibility */
+//};
+//
+// SA_NOCLDSTOP
+// If signum is SIGCHLD, do not receive notification when child processes stop (i.e., when they receive one of SIGSTOP,  SIGTSTP,
+// SIGTTIN  or  SIGTTOU)  or resume (i.e., they receive SIGCONT) (see wait(2)).  This flag is meaningful only when establishing a
+// handler for SIGCHLD.
+// 
+// SA_NOCLDWAIT (since Linux 2.6)
+// If signum is SIGCHLD, do not transform children into zombies when they terminate.  See also waitpid(2).  This flag is meaning‐
+// ful only when establishing a handler for SIGCHLD, or when setting that signal's disposition to SIG_DFL.
+// 
+// If  the SA_NOCLDWAIT flag is set when establishing a handler for SIGCHLD, POSIX.1 leaves it unspecified whether a SIGCHLD sig‐
+// nal is generated when a child process terminates.  On Linux, a SIGCHLD signal is generated in this case; on some other  imple‐
+// mentations, it is not.
+// 
+// SA_NODEFER
+// Do  not  prevent  the signal from being received from within its own signal handler.  This flag is meaningful only when estab‐
+// lishing a signal handler.  SA_NOMASK is an obsolete, nonstandard synonym for this flag.
+// 
+// SA_ONSTACK
+// Call the signal handler on an alternate signal stack provided by sigaltstack(2).  If an alternate stack is not available,  the
+// default stack will be used.  This flag is meaningful only when establishing a signal handler.
+// 
+// SA_RESETHAND
+// Restore  the  signal action to the default upon entry to the signal handler.  This flag is meaningful only when establishing a
+// signal handler.  SA_ONESHOT is an obsolete, nonstandard synonym for this flag.
+// 
+// SA_RESTART
+// Provide behavior compatible with BSD signal semantics by making certain system calls restartable across signals.  This flag is
+// meaningful only when establishing a signal handler.  See signal(7) for a discussion of system call restarting.
+// 
+// SA_SIGINFO (since Linux 2.2)
+// The signal handler takes three arguments, not one.  In this case, sa_sigaction should be set instead of sa_handler.  This flag
+// is meaningful only when establishing a signal handler.
 #include <sys/signal.h>
 #include <sys/syscall.h>
+
+void sigalarm_cb(int signo)
+{
+    LOG("SIG: " << signo);
+}
 
 int case12(int argc, char* argv[])
 {
     int ret;
+
+
+    struct sigaction act, oldact;
+
+    act.sa_handler = sigalarm_cb;
+    act.sa_flags = SA_ONSTACK|SA_NOCLDWAIT;
+    unsigned long msk = sigmask(SIGALRM);
+    memcpy(&act.sa_mask, &msk, sizeof(msk));
+
+    if (0 > (ret = syscall(SYS_rt_sigaction, &act, &oldact)))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
 
     siginfo_t sig;
 
@@ -603,7 +669,6 @@ int case12(int argc, char* argv[])
     }
 
     LOG("ret: " << ret)
-    //TODO: rt_sigaction
 }
 
 #include <sys/quota.h>
@@ -862,7 +927,7 @@ int main(int argc, char* argv[])
 //    case9(argc, argv);
     case10(argc, argv);
     case11(argc, argv);
-//    case12(argc, argv);
+    case12(argc, argv); return 0;
     case13(argc, argv);
 //    case14(argc, argv);
 //    case15(argc, argv);
@@ -871,6 +936,7 @@ int main(int argc, char* argv[])
 
     return 0;
 }
+
 
 
 
