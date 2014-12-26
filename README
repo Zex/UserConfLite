@@ -11,15 +11,15 @@ Archived in key-value way.
 
 Ex:
 
-int main(int, char**)[userconflite.cpp:90]: View.Chroma => 2
-int main(int, char**)[userconflite.cpp:90]: View.Graymap => 3
-int main(int, char**)[userconflite.cpp:90]: View.QRotate => 0
-int main(int, char**)[userconflite.cpp:90]: View.Render => 3
-int main(int, char**)[userconflite.cpp:90]: View.RotationX => 270
-int main(int, char**)[userconflite.cpp:90]: View.RotationY => 0
-int main(int, char**)[userconflite.cpp:90]: View.RotationZ => 270
-int main(int, char**)[userconflite.cpp:90]: View.Vision => 0
-int main(int, char**)[userconflite.cpp:90]: View.Zoom => 1
+int main(int, char**)[conflite.cpp:90]: View.Chroma => 2
+int main(int, char**)[conflite.cpp:90]: View.Graymap => 3
+int main(int, char**)[conflite.cpp:90]: View.QRotate => 0
+int main(int, char**)[conflite.cpp:90]: View.Render => 3
+int main(int, char**)[conflite.cpp:90]: View.RotationX => 270
+int main(int, char**)[conflite.cpp:90]: View.RotationY => 0
+int main(int, char**)[conflite.cpp:90]: View.RotationZ => 270
+int main(int, char**)[conflite.cpp:90]: View.Vision => 0
+int main(int, char**)[conflite.cpp:90]: View.Zoom => 1
 
 For a fresh setup system, initiate the configure db with
 
