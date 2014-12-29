@@ -913,6 +913,20 @@ int case17(int argc, char* argv[])
     return 0;
 }
 
+int case18(int argc, char* argv[])
+{
+    pid_t ret;
+
+    if (0 > (ret = getsid(getpid())))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
+
+    LOG("SID: 0x" << std::hex << ret)
+
+    return 0;
+}
 
 int main(int argc, char* argv[])
 {
@@ -927,12 +941,13 @@ int main(int argc, char* argv[])
 //    case9(argc, argv);
     case10(argc, argv);
     case11(argc, argv);
-    case12(argc, argv); return 0;
+    case12(argc, argv);
     case13(argc, argv);
 //    case14(argc, argv);
 //    case15(argc, argv);
     case16(argc, argv);
     case17(argc, argv);
+    case18(argc, argv);
 
     return 0;
 }
