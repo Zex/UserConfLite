@@ -923,7 +923,61 @@ int case18(int argc, char* argv[])
         return 0;
     }
 
-    LOG("SID: 0x" << std::hex << ret)
+    LOG("SID-PID: 0x" << std::hex << ret)
+
+    if (0 > (ret = getpgrp()))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
+
+    LOG("SID-PGRP: 0x" << std::hex << ret)
+
+    if (0 > (ret = getpgid(getpid())))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
+
+    LOG("SID-PGID: 0x" << std::hex << ret)
+
+    if (0 > (ret = getsid(getppid())))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
+
+    LOG("SID-PPID: 0x" << std::hex << ret)
+
+    if (0 > (ret = setsid()))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
+
+    if (0 > (ret = getsid(getpid())))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
+
+    LOG("SID-PID: 0x" << std::hex << ret)
+
+    if (0 > (ret = getpgrp()))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
+
+    LOG("SID-PGRP: 0x" << std::hex << ret)
+
+    if (0 > (ret = getpgid(getpid())))
+    {
+        LOG_ERR(strerror(errno))
+        return 0;
+    }
+
+    LOG("SID-PGID: 0x" << std::hex << ret)
 
     return 0;
 }
